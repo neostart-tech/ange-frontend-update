@@ -140,29 +140,9 @@ export default {
   width: 48%;
   height: 4px;
   position: absolute;
-  background-color: #007608;
+  background-color: #0a9cce;
   bottom: 20px;
   left: 50%;
-  color:white;
   transform: translateX(-50%);
 }
-.contact-cta {
-  background-color: #007608;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  font-size: 12px;
-  line-height: 1.2;
-}
-
 </style>
-
-
-
