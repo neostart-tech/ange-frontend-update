@@ -35,52 +35,29 @@
     </div>
 
     <!-- Domains Section -->
-    <!-- <main class="container my-5 domains-container">
-      <div class="row" style="background: #0b9dd1;">
+    <main class="container my-5 domains-container">
+      <div class="row domains-row">
         <div
             v-for="(domain, idx) in domains"
             :key="idx"
-            class="col-lg-4 col-md-6 mb-4"
+            class="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12 mb-4 domain-item"
+            :class="{ 'first-domain': idx === 0 }"
         >
-          <div class="card h-100 text-center shadow">
-            <div class="card-body d-flex flex-column text-center">
+          <div class="card h-100 shadow">
+            <div class="card-body d-flex flex-column">
               <div class="icon">
                 <i :class="domain.iconClass"></i>
               </div>
               <h4 class="card-title">{{ domain.title }}</h4>
               <div class="mt-auto">
-                <a :href="domain.link" class="link-gradient" target="_blank">{{
-                    domain.linkText
-                  }}</a>
+                <a :href="domain.link" class="link-gradient" target="_blank">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </main> -->
- <main class="container my-5 domains-container">
-  <div class="row" >
-    <div
-        v-for="(domain, idx) in domains"
-        :key="idx"
-        class="col-xl-3 col-lg-4 col-md-6 mb-4"
-       
-    >
-      <div class="card h-100  shadow">
-        <div class="card-body d-flex flex-column ">
-          <div class="icon">
-            <i :class="domain.iconClass"></i>
-          </div>
-          <h4 class="card-title">{{ domain.title }}</h4>
-          <div class="mt-auto">
-            <a :href="domain.link" class="link-gradient" target="_blank">En savoir plus <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    </main>
   </div>
-</main>
- </div>
 </template>
 
 <script>
@@ -129,7 +106,7 @@ export default {
       domains: [
         {
           iconClass: "fa fa-file-alt",
-          title: "Projets soumis à étude d’impact environnemental et social",
+          title: "Projets soumis à étude d'impact environnemental et social",
           link: "/projets-soumis",
           linkText: "En savoir plus",
         },
@@ -145,13 +122,6 @@ export default {
           link: "https://service-public.gouv.tg/service/672142cb7bacb864efe779f0/licences-agrements-certificats/demande-du-certificat-de-conformite-environnementale",
           linkText: "En savoir plus",
         },
-        
-        // {
-        //   iconClass: "fa fa-briefcase",
-        //   title: "Nos Prestations",
-        //   link: "#",
-        //   linkText: "En savoir plus",
-        // },
         {
           iconClass: "fa fa-user-check",
           title: "Consultants agréés",
@@ -196,23 +166,9 @@ export default {
   position: relative;
   margin-bottom: 10rem;
 }
-.col-xl-3{
- 
-  height: 200px;
-}
-
-.card{
-  padding-left: 20px;
-  background: #0b9dd1 !important;
-  color: white;
-  display: flex;
-  align-items: center;
-}
 
 .domains-container {
   position: absolute;
-  /* bottom: -180px; */
-  
   bottom: -230px;
   width: 100%;
   z-index: 10;
@@ -220,23 +176,107 @@ export default {
   right: 0;
 }
 
-.intro-slider {
-  z-index: 1; /* Slider est en arrière-plan */
+.domains-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 
-/* Styles pour petits et moyens écrans */
-@media (max-width: 991px) {
+.domain-item {
+  flex: 0 0 25%;
+  max-width: 25%;
+  display: flex;
+}
+
+.card {
+  padding-left: 20px;
+  background: #0b9dd1 !important;
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+.intro-slider {
+  z-index: 1;
+}
+
+/* Premier domaine - Superposition sur tous les écrans */
+.first-domain {
+  position: relative;
+  z-index: 20;
+}
+
+/* Styles pour PC (lg et xl) */
+@media (min-width: 992px) {
+  .first-domain {
+    margin-top: -80px; /* Légère superposition sur PC */
+  }
+}
+
+/* Styles pour tablettes (md) */
+@media (max-width: 991px) and (min-width: 768px) {
+  .domains-row {
+    flex-wrap: wrap;
+  }
+  
+  .domain-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  
   .domains-container {
     position: relative;
     bottom: 0;
     margin-top: 2rem;
   }
+  
+  /* Premier domaine superposé au slider sur tablette */
+  .first-domain {
+    margin-top: -120px; /* Superposition plus prononcée sur tablette */
+  }
+  
+  /* Le deuxième domaine aussi pour l'alignement */
+  .domain-item:nth-child(2) {
+    margin-top: -120px;
+  }
+}
+
+/* Styles pour mobiles (sm et xs) */
+@media (max-width: 767px) {
+  .domains-container {
+    position: relative;
+    bottom: 0;
+    margin-top: 1rem;
+  }
+  
+  .domains-row {
+    flex-wrap: wrap;
+  }
+  
+  .domain-item {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .card {
+    height: auto;
+    min-height: 180px;
+  }
+  
+  /* Superposition du premier élément avec le slider sur mobile */
+  .first-domain {
+    margin-top: -100px;
+  }
 }
 
 .container.my-5 {
-  margin-top: 5rem !important; /* Ajuste l'espacement selon besoin */
+  margin-top: 5rem !important;
 }
-.container h4{
+
+.container h4 {
   font-size: 18px;
 }
 
