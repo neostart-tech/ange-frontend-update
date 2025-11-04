@@ -1,0 +1,75 @@
+{
+    "footerAboutWidget": {
+        "logoSrc": "/images/logo/logo-ANGE.png",
+        "telephone": "0123456789",
+        "email": "demo@example.com",
+        "fbUrl": "https://www.facebook.com/profile.php?id=100068022197046",
+        "twitterUrl": "https://twitter.com/ange_togo",
+        "linkedinUrl": "https://www.linkedin.com/in/ange-togo-agence-nationale-de-gestion-de-l-environnement-7669962a7/"
+    },
+    "footerLinkTitleOne": "Liens Utiles",
+    "navListOne": [
+        {
+            "navTitle": "Ministère de l'environnement",
+            "navUrl": "https://environnement.gouv.tg"
+        },
+        {
+            "navTitle": "CFE",
+            "navUrl": "https://www.cfetogo.tg/"
+        },
+        {
+            "navTitle": "OTR Direction du cadastre",
+            "navUrl": "https://www.dadc.gouv.tg/"
+        },
+        {
+            "navTitle": "OTR impôt",
+            "navUrl": "https://www.otr.tg/index.php/fr/"
+        },
+        {
+            "navTitle": "Ministère de l'Urbanisme ",
+            "navUrl": "https://urbanisme.gouv.tg/"
+        },
+        {
+            "navTitle": "Ministère de l'eau",
+            "navUrl": "https://eau.gouv.tg/"
+        }
+    ],
+    "footerLinkTitleTwo": "Coordonnées",
+    "navListTwo": [
+        {
+            "navTitle": "01 BP: 2244 Lomé TOGO",
+            "navUrl": "#"
+        },
+        {
+            "navTitle": "Tel: (00228) 22 21 21 53",
+            "navUrl": "#"
+        }
+    ],
+    "footerLinkTitleThree": "Liens Rapides",
+    "navListThree": [
+        {
+            "navTitle": "Ange",
+            "navUrl": "/nous-decouvrir"
+        },
+        {
+            "navTitle": "CNCE",
+            "navUrl": "/cnce"
+        },
+        {
+            "navTitle": "Documentations",
+            "navUrl": "/documentation"
+        },
+        {
+            "navTitle": "Procédures administratives",
+            "navUrl": "/procedure"
+        },
+        {
+            "navTitle": "Plaintes",
+            "navUrl": "/plainte"
+        },
+        {
+            "navTitle": "FAQ",
+            "navUrl": "/faq"
+        }
+    ]
+}
