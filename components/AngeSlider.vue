@@ -35,7 +35,7 @@
     </div>
 
     <!-- Domains Section -->
-    <main class="container my-5 domains-container mb-5" style="background-color: red;">
+    <main class="container my-5 domains-container mb-5" >
       <div class="row domains-row">
         <div
             v-for="(domain, idx) in domains"

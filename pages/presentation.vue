@@ -4,10 +4,13 @@
       <Title>ANGE-TOGO | Qui sommes-nous</Title>
       <Meta name="description" content="Nous sommes L'ANGE-TOGO"></Meta>
     </Head>
-    <AngeBreadcrumb
+    <!-- <AngeBreadcrumb
       activePageName="Qui sommes-nous"
       backgroundUrl="/images/bg/bg-ange-03.jpg"
       :others="[{ title: 'Accueil', url: '/' }]"
+    /> -->
+     <AngeBreadcrumb
+      
     />
 
     <div class="container mt-5 mb-5">

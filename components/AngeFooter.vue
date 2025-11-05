@@ -1,7 +1,7 @@
 <template>
   <div
     class="footer-section"
-    style="background-image: linear-gradient(-90deg, #016a98 0%, #146C53 100%),url('');
+    style="background-image: linear-gradient(-90deg, #016a98 0%, #146C53 100%),url('/images/');
   padding: 38px 0 0;"
    
   >
