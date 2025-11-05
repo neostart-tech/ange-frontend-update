@@ -2,7 +2,7 @@
   <div class="brand-section section-padding">
     <div class="container">
       <div class="row">
-        <div class="section-title text-center" data-aos="fade-up">
+        <div class="section-title text-center d-flex flex-start" data-aos="fade-up">
           <h3 class="text-cnce fz-32" style="color: #285a43 !important">
             Nos partenaires
           </h3>
