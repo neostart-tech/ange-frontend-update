@@ -2,6 +2,7 @@
   <AngeQuiSommeNous/>
   <AngeRealisation/>
   <AngeMissionvaleurVision/>
+  <AngeObjectifs/>
  
 </template>
 
@@ -36,6 +37,8 @@ defineExpose({
 <style scoped>
 body{
     background: #f7f7f7;
+    margin: 0;
+    padding: 0;
 
 }
 .container {
