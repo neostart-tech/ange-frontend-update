@@ -1,7 +1,7 @@
 <template>
   <div
     class="mt-5 mb-5 container d-flex justify-content-center align-items-center min-vh-50"
-    style="background: #fff !important;"
+    
     ref="containerRef"
   >
     <div class="row text-center text-md-start w-100">
@@ -126,6 +126,10 @@ onUnmounted(() => {
 <style scoped>
 .container {
   padding: 60px 20px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .value h1 {

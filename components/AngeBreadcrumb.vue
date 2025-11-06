@@ -192,7 +192,6 @@ defineExpose({
   width: 100%;
   padding: 100px 100px;
   margin-left: 200px;
-  color: red;
 }
 
 .breadcrumbs-list {

@@ -96,14 +96,12 @@ defineExpose({
 </script>
 
 <style scoped>
-body{
-    background: #f7f7f7;
 
-}
 .container {
   max-width: 1200px;
   margin: 0 ;
   padding: 0 ;
+    position: relative;
 }
 
 .grande-div {
