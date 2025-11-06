@@ -36,7 +36,7 @@ const pageData = ref({
 
 const breadcrumbs = ref([
   { name: 'Accueil', path: '/' },
-  { name: 'À propos', path: '/about' }
+  { name: 'À propos', path: '/presentation' }
 ])
 
 // Fonctions si besoin

@@ -4,6 +4,10 @@
   <AngeMissionvaleurVision/>
   <AngeObjectifs class="mb-5"/>
   <AngeProjets class="mt-5"/>
+  <AngeAttribtutionetCompetence/>
+  <AngeMotDuDirecteur/>
+  <AngeTexteFondateur/>
+  <AngePartenaire/>
  
 </template>
 
