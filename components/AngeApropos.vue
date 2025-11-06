@@ -1,6 +1,7 @@
 <template>
   <AngeQuiSommeNous/>
   <AngeRealisation/>
+  <AngeMissionvaleurVision/>
  
 </template>
 
