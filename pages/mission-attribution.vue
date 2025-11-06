@@ -25,7 +25,7 @@ import { ref } from 'vue'
 
 // Données réactives
 const pageData = ref({
-  title: 'Mission & Attributions',
+  title: 'Mission & Attributions ',
   description: 'Nous unissons expertise et engagement pour bâtir un avenir durable au service du développement national.'
 })
 
