@@ -11,14 +11,40 @@
         (QEDD)"
       ></Meta>
     </Head>
-    <AngeBreadcrumb
-      activePageName="QEDD"
-      backgroundUrl="/images/bg/bg-ange-03.jpg"
-      :others="[
-        { title: 'Accueil', url: '/' },
-        { title: 'Projet', url: '#' },
-      ]"
+     <AngeBreadcrumb 
+      :page-title="pageData.title"
+      :page-description="pageData.description"
+      :breadcrumbs="breadcrumbs" 
     />
     <AngeQedd />
   </AngeRoot>
 </template>
+
+<script  setup >
+import { ref } from 'vue'
+
+// Données réactives
+const pageData = ref({
+  title: 'QEDD',
+  description: "Quinzaine de l'environnement et du développement durable"
+})
+
+const breadcrumbs = ref([
+  { name: 'Accueil', path: '/' },
+  { name: 'Projets', path: '/' }
+])
+
+// Fonctions si besoin
+const updatePageData = (newTitle, newDescription) => {
+  pageData.value.title = newTitle
+  pageData.value.description = newDescription
+}
+
+// Exposer des données/méthodes au template si nécessaire
+defineExpose({
+  pageData,
+  breadcrumbs,
+  updatePageData
+})
+
+</script>

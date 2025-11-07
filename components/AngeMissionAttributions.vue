@@ -1,6 +1,7 @@
 <template>
   <AngeMissionEvaluationEnvironnement/>
   <AngeMissionSuiviEnvironnement/>
+  <AngeAttribution/>
  
 </template>
 

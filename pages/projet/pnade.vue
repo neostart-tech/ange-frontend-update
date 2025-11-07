@@ -11,14 +11,40 @@
         l'environnement (PNADE)"
       ></Meta>
     </Head>
-    <AngeBreadcrumb
-      activePageName="PNADE"
-      backgroundUrl="/images/bg/bg-ange-03.jpg"
-      :others="[
-        { title: 'Accueil', url: '/' },
-        { title: 'Projet', url: '#' },
-      ]"
+    <AngeBreadcrumb 
+      :page-title="pageData.title"
+      :page-description="pageData.description"
+      :breadcrumbs="breadcrumbs" 
     />
     <AngePnade />
   </AngeRoot>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+// Données réactives
+const pageData = ref({
+  title: 'PNADE',
+  description: "Programme nationale d'actions décentralisées de l'environnement"
+})
+
+const breadcrumbs = ref([
+  { name: 'Accueil', path: '/' },
+  { name: 'Projets', path: '/' }
+])
+
+// Fonctions si besoin
+const updatePageData = (newTitle, newDescription) => {
+  pageData.value.title = newTitle
+  pageData.value.description = newDescription
+}
+
+// Exposer des données/méthodes au template si nécessaire
+defineExpose({
+  pageData,
+  breadcrumbs,
+  updatePageData
+})
+
+</script>

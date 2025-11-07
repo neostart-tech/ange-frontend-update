@@ -53,7 +53,6 @@ const missions = [
   margin-bottom: 40px;
 }
 
-/* --- Titre --- */
 .subtitle {
   font-size: 13px;
   color: #007608;
@@ -73,7 +72,7 @@ const missions = [
   font-size: 14px;
   color: #555;
   line-height: 1.6;
-  text-align: justify;
+  text-align: center;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -85,7 +84,6 @@ const missions = [
   justify-content: space-between;
   gap: 20px;
   padding: 40px 10px;
-  background-color: #e0f9e0;
   margin-top: 40px;
 }
 
@@ -93,13 +91,13 @@ const missions = [
 .card {
   flex: 1 1 30%;
   min-width: 250px;
-  background: #fff;
+  background-color: #e0f9e0;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 8px;
 }
 
 .icone {
