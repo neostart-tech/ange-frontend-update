@@ -1,11 +1,7 @@
 <template>
   <div class="section-padding-t90 section-padding-bottom overflow-hidden">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3 class="text-cnce fz-32 ange-sty-center">Nos actualités</h3>
-        </div>
-      </div>
+      
 
       <div class="row" v-if="isLoading">
         <div class="text-center">
