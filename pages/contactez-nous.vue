@@ -10,7 +10,7 @@
       backgroundUrl="/images/bg/bg-ange-03.jpg"
       :others="[{ title: 'Accueil', url: '/' }]"
     />
-    <AngeInfoContact />
+    <!-- <AngeInfoContact /> -->
     <AngeFormContact />
   </AngeRoot>
 </template>>
