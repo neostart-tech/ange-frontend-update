@@ -1,0 +1,22 @@
+[
+    {
+        "numero":1,
+        "cout_investissement":"<= 100 000 000",
+        "montant_redevance":" 2% CI"
+    },
+        {
+        "numero":2,
+        "cout_investissement":"100000 000 - 1 000 000 000  ",
+        "montant_redevance":"2 000 000 + 2% CI"
+    },
+        {
+        "numero":3,
+        "cout_investissement":"1 000 000 000 - 50 000 000 000 ",
+        "montant_redevance":"4 600 000 + 0,1 % CI"
+    },
+        {
+        "numero":4,
+        "cout_investissement":"> 50 000 000 000",
+        "montant_redevance":"14 400 000 + 0,1% CI"
+    }
+]
