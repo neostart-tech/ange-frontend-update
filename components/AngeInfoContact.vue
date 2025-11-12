@@ -1,63 +1,30 @@
 <template>
-    <div class="section-padding-t90-b100 overflow-hidden">
-        <div class="container shape-animate">
-
-            <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1 mtn-30">
-                <div class="col mt-30 gsaTest" data-aos="fade-up">
-                    <div class="contact-info">
-                        <div class="icon">
-                            <img class="svgInject" src="/images/svg/linea/linea-basic-map.svg" alt="Icon">
-                        </div>
-                        <div class="info">
-                            <h4 class="title">Localisation</h4>
-                            <span class="info-text"> 575, rue de l'Entente (Ex rue de l'OCAM)</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mt-30" data-aos="fade-up">
-                    <div class="contact-info">
-                        <div class="icon">
-                            <img class="svgInject" src="/images/svg/linea/linea-basic-message-txt.svg" alt="Icon">
-                        </div>
-                        <div class="info">
-                            <h4 class="title">Téléphone</h4>
-                            <span class="info-text"> +228 22 21 21 53 </span><br>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mt-30" data-aos="fade-up">
-                    <div class="contact-info">
-                        <div class="icon">
-                            <img class="svgInject" src="/images/svg/linea/linea-basic-mail-open-text.svg" alt="Icon">
-                        </div>
-                        <div class="info">
-                            <h4 class="title">Boite mail</h4>
-                            <span class="info-text">
-                                <a href="mailto:demo@example.com">angeenvironnement@gmail.com</a>
-                            </span><br>
-                            <p></p>
-                        </div>
-                    </div>
-                </div>
+    <div class=" container">
+        <div class="google-map-area section-padding-bottom">
+            <div class="contact-map-area">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63471.90499099693!2d1.1704259216796893!3d6.131499000000025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1023e198420d666b%3A0xa1a4308dcac6a2f5!2sAgence%20nationale%20de%20Gestion%20de%20l'Environnement%20(ANGE)!5e0!3m2!1sfr!2stg!4v1712149560177!5m2!1sfr!2stg"
+                    allowfullscreen loading="lazy" aria-hidden="false" tabindex="0"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
-
-            <shape-with-animation add-class-name="shape-1" data-depth="4"
-                img-src="/images/shape-animation/video-shape-1.png" />
-
         </div>
     </div>
 </template>
 
-<script>
-
-
-export default {
-    components: {
-        ShapeWithAnimation: () => import("@/components/ShapeWithAnimation"),
-    },
-
-};
+<script setup>
 </script>
+
+<style scoped>
+.contact-map-area iframe {
+    width: 100% !important;
+    height: 550px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.google-map-area {
+    padding: 10px;
+}
+</style>
