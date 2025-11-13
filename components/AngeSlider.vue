@@ -16,6 +16,10 @@
               class="intro-section overlay bg-cover"
               :style="{ backgroundImage: `url(${banner.bgImgSrc})` }"
           >
+            <!-- Double overlay pour meilleur contraste -->
+            <div class="background-overlay"></div>
+            <div class="content-overlay"></div>
+            
             <div class="container h-100">
               <div class="row justify-content-center align-items-center h-100">
                 <div class="col-xl-8 col-lg-10 col-md-12 text-center">
@@ -193,12 +197,12 @@ export default {
   align-items: center;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   position: relative;
 }
 
-/* Overlay sombre amélioré */
-.intro-section::before {
-  content: '';
+/* Double overlay système pour meilleur contraste */
+.background-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -206,16 +210,34 @@ export default {
   bottom: 0;
   background: linear-gradient(
     135deg, 
-    rgba(0, 0, 0, 0.6) 0%, 
-    rgba(0, 0, 0, 0.4) 50%, 
-    rgba(0, 0, 0, 0.6) 100%
+    rgba(0, 0, 0, 0) 0%, 
+    rgba(0, 0, 0, 0) 50%, 
+    rgba(0, 0, 0, 0) 100%
   );
   z-index: 1;
+}
+
+.content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.6) 30%,
+    rgba(0, 0, 0, 0.8) 70%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: 2;
 }
 
 /* Centrage parfait */
 .container.h-100 {
   height: 100%;
+  position: relative;
+  z-index: 3;
 }
 
 .row.h-100 {
@@ -224,10 +246,11 @@ export default {
 
 .intro-content {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .title {
@@ -236,7 +259,21 @@ export default {
   font-weight: 700;
   line-height: 1.3;
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.9);
+  position: relative;
+}
+
+/* Effet de brillance sur le texte */
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #007608, transparent);
+  border-radius: 2px;
 }
 
 /* CTA Buttons améliorés */
@@ -255,32 +292,51 @@ export default {
   transition: all 0.3s ease;
   border: 2px solid transparent;
   font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
 }
 
 .btn-primary {
   background: #007608;
   color: white;
   border-color: #007608;
+  box-shadow: 0 4px 15px rgba(0, 118, 8, 0.3);
 }
 
 .btn-primary:hover {
   background: #005a06;
   border-color: #005a06;
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 118, 8, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 118, 8, 0.5);
 }
 
 .btn-outline {
   background: transparent;
   color: white;
   border-color: white;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
 .btn-outline:hover {
   background: white;
   color: #007608;
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
 }
 
 /* Navigation buttons corrigés */
@@ -303,7 +359,7 @@ export default {
 .swiper-button-prev,
 .swiper-button-next {
   color: white;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -311,6 +367,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .swiper-button-prev::after,
@@ -322,12 +380,15 @@ export default {
 .swiper-button-next i {
   font-size: 1.5rem;
   font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-  background: rgba(0, 118, 8, 0.8);
+  background: rgba(0, 118, 8, 0.9);
+  border-color: rgba(255, 255, 255, 0.6);
   transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 118, 8, 0.4);
 }
 
 /* Domains Section */
@@ -424,6 +485,11 @@ export default {
     margin-bottom: 1rem;
   }
   
+  .title::after {
+    width: 80px;
+    bottom: -8px;
+  }
+  
   .cta-buttons {
     flex-direction: column;
     align-items: center;
@@ -485,6 +551,11 @@ export default {
   
   .title {
     font-size: 1.3rem;
+  }
+  
+  .title::after {
+    width: 60px;
+    bottom: -6px;
   }
   
   .btn {
