@@ -1,5 +1,5 @@
 <template>
-  <div class="flash-info-container">
+  <div class="container">
     <div class="flash-info-label">Flash info :</div>
     <div class="flash-info-content">
       <div class="flash-text">
@@ -20,9 +20,9 @@
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  max-width: 1200px;
-  margin: 20px auto;
-  width: calc(100% - 40px);
+  /* max-width: 1200px; */
+  /* margin: 20px auto; */
+  /* width: calc(100% - 40px); */
 }
 
 .flash-info-container:hover {
