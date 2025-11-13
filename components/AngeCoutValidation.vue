@@ -1,46 +1,34 @@
 <template>
-    <div class="container mt-5 d-flex flex-column align-items-center section-padding">
-        <div class="intro mb-5" data-aos="fade-up">
-            <h4 class="subtitle">Informations</h4>
-            <h2 class="main-title" style="color: #000 !important">
-                Procédures, délais et coûts d'obtention des autorisations
-            </h2>
-            <p>Pour avoir plus d'informations concernant couts et delais , la durée des processus et autres ,
-                téléchargez ce document ci-dessous. </p>
-        </div>
-
-        <!-- LIEN PDF -->
-        <div class="note-link mb-5" data-aos="fade-up">
-            <a href="/pdf/plaintes.pdf" target="_blank" class="pdf-link">
-                Informations complémentaires &nbsp;
-                <i class="fa fa-download"></i>
-            </a>
-        </div>
-
+    <div class="container d-flex flex-column align-items-center section-padding">
         <div class="contain">
-            <div class="title mt-5">
-                <h3>A. Processus , délais , couts et responsables </h3>
-                <hr class="title-underline">
+            <div class="title">
                 
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Processus /Etapes IEIS</th>
-                                <th>Delais des processus IEIS</th>
-                                <th>Couts</th>
-                                <th>Responsables</th>
+                                <th colspan="3" class="table-main-title">
+                                    2.Couts de validation des rapports provisoires 
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Numéro</th>
+                                <th>Cout d’investissement </th>
+                                <th>Montant de redevance</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(procedure, index) in procedures" :key="index">
-                                <td>{{ procedure.etape }}</td>
-                                <td>{{ procedure.delais }}</td>
-                                <td>{{ procedure.cout }}</td>
-                                <td>{{ procedure.responsable }}</td>
+                            <tr v-for="(coutValidation, index) in coutValidations" :key="index">
+                                <td>{{ coutValidation.numero }}</td>
+                                <td>{{ coutValidation.cout_investissement }}</td>
+                                <td>{{ coutValidation.montant_redevance }}</td>
                             </tr>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="desc">
+                    <p class="text-center mt-5">Source : Extrait de l'arrêté interministériel n°0024 / MEF/MERF</p>
                 </div>
             </div>
         </div>
@@ -52,6 +40,14 @@ import { defineProps } from 'vue';
 
 const props = defineProps({
     procedures: {
+        type: Array,
+        required: true
+    },
+    coutPrestations: {
+        type: Array,
+        required: true
+    },
+    coutValidations: {
         type: Array,
         required: true
     }
@@ -119,26 +115,37 @@ const props = defineProps({
     background-color: #007608;
     border: none;
     margin: 0 auto 20px auto;
-    /* Centrage automatique */
+}
+
+/* ===== TITRE PRINCIPAL DU TABLEAU ===== */
+.table-main-title {
+    background-color: #00970a !important;
+    color: white !important;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 15px !important;
+    border: 1px solid #007608 !important;
 }
 
 /* ===== TABLEAU ===== */
 .table-responsive {
     width: 100%;
     overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
-    /* Force les colonnes à avoir la même largeur */
+    margin-bottom: 0;
 }
 
 /* En-tête du tableau avec fond gris */
 .table thead th {
     background-color: #f8f9fa;
-    /* Gris clair */
     color: #333;
     font-weight: 600;
     text-align: center;
@@ -151,10 +158,24 @@ const props = defineProps({
 .table tbody td {
     padding: 12px 10px;
     border: 1px solid #dee2e6;
-    text-align: justify;
+    text-align: center;
     vertical-align: middle;
     word-wrap: break-word;
-    /* Permet de casser les mots longs */
+}
+
+/* Alignement spécifique pour les colonnes */
+.table tbody td:nth-child(1) {
+    text-align: center;
+    font-weight: 500;
+}
+
+.table tbody td:nth-child(2) {
+    text-align: left;
+}
+
+.table tbody td:nth-child(3) {
+    text-align: center;
+    font-weight: 500;
 }
 
 /* Alternance des couleurs des lignes pour meilleure lisibilité */
@@ -172,25 +193,20 @@ const props = defineProps({
     transition: background-color 0.3s ease;
 }
 
-/* RÉPARTITION MODIFIÉE - Colonne Processus plus large */
+/* RÉPARTITION DES COLONNES */
 .table th:nth-child(1),
 .table td:nth-child(1) {
-    width: 35%; /* Augmenté de 25% à 35% */
+    width: 20%;
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
-    width: 20%; /* Réduit de 25% à 20% */
+    width: 50%;
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3) {
-    width: 20%; /* Réduit de 25% à 20% */
-}
-
-.table th:nth-child(4),
-.table td:nth-child(4) {
-    width: 25%; /* Réduit de 25% à 25% */
+    width: 30%;
 }
 
 /* Responsive */
@@ -202,7 +218,12 @@ const props = defineProps({
 
     .table thead th,
     .table tbody td {
-        padding: 8px 6px;
+        padding: 10px 8px;
+    }
+
+    .table-main-title {
+        font-size: 16px;
+        padding: 15px 10px !important;
     }
 
     .table th:nth-child(1),
@@ -210,11 +231,8 @@ const props = defineProps({
     .table th:nth-child(2),
     .table td:nth-child(2),
     .table th:nth-child(3),
-    .table td:nth-child(3),
-    .table th:nth-child(4),
-    .table td:nth-child(4) {
+    .table td:nth-child(3) {
         width: auto;
-        /* Largeur automatique sur mobile */
     }
 
     .main-title {
@@ -242,7 +260,12 @@ const props = defineProps({
 
     .table thead th,
     .table tbody td {
-        padding: 6px 4px;
+        padding: 8px 6px;
+    }
+
+    .table-main-title {
+        font-size: 14px;
+        padding: 12px 8px !important;
     }
 
     .pdf-link {
@@ -257,6 +280,10 @@ const props = defineProps({
     .title-underline {
         width: 50px;
         height: 2px;
+    }
+
+    .table tbody td:nth-child(2) {
+        text-align: left;
     }
 }
 </style>

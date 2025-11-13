@@ -10,6 +10,9 @@
                     backgroundUrl="/images/bg/bg-ange-03.jpg" :others="[{ title: 'Accueil', url: '/' }]"/>
 
                     <AngeObtentionInformations :procedures="procedures" />
+                    <AngeCoutPrestation :coutPrestations="coutPrestations"/>
+                    <AngeCoutValidation :coutValidations="coutValidations" />
+                    <AngeCoutDelivrance :coutDelivrances="coutDelivrances"/>
 
   
   </AngeRoot>
@@ -17,11 +20,18 @@
 
 <script>
 import procedures from "~/data/procedure.json";
+import coutPrestations from "~/data/cout-prestation.json";
+import coutValidations from "~/data/cout-validation.json";
+import coutDelivrances from "~/data/cout-delivrance.json";
 
 export default {
   data() {
     return {
       procedures,
+      coutPrestations,
+      coutValidations,
+      coutDelivrances
+
     };
   },
 };

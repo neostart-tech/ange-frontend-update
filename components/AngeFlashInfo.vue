@@ -1,5 +1,5 @@
 <template>
-     <div class="flash-info-container mt-5" style="margin-top: 200px !important; ">
+  <div class="flash-info-container">
     <div class="flash-info-label">Flash info :</div>
     <div class="flash-info-content">
       <div class="flash-text">
@@ -11,7 +11,6 @@
 </template>
 
 <style scoped>
-
 .flash-info-container {
   display: flex;
   align-items: stretch;
@@ -35,7 +34,7 @@
 .flash-info-label {
   background: linear-gradient(135deg, #146c53 0%, #146c53 100%);
   color: white;
-  padding: 10px 10px;
+  padding: 15px 20px;
   font-weight: 800;
   font-size: 1.1rem;
   text-transform: uppercase;
@@ -43,7 +42,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
+  min-width: 140px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -65,7 +64,6 @@
   0% {
     transform: translateX(-100%) translateY(-100%) rotate(45deg);
   }
-
   100% {
     transform: translateX(100%) translateY(100%) rotate(45deg);
   }
@@ -85,13 +83,38 @@
   line-height: 1.6;
   margin: 0;
   font-weight: 500;
+  text-align: left;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+
+@media (max-width: 1200px) {
   .flash-info-container {
+    max-width: 1000px;
     margin: 20px 30px;
     width: calc(100% - 60px);
+  }
+}
+
+/* Tablettes portrait */
+@media (max-width: 1024px) {
+  .flash-info-container {
+    max-width: 900px;
+    margin: 18px 25px;
+    width: calc(100% - 50px);
+  }
+  
+  .flash-info-label {
+    min-width: 130px;
+    padding: 14px 18px;
+    font-size: 1.05rem;
+  }
+  
+  .flash-info-content {
+    padding: 18px 22px;
+  }
+  
+  .flash-text {
+    font-size: 0.98rem;
   }
 }
 
@@ -100,28 +123,42 @@
     flex-direction: column;
     margin: 15px 20px;
     width: calc(100% - 40px);
+    border-radius: 10px;
   }
 
   .flash-info-label {
     min-width: auto;
-    padding: 15px 20px;
+    padding: 12px 20px;
     font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .flash-info-content {
     padding: 15px 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .flash-text {
+    text-align: center;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .flash-info-container {
-    margin: 10px 15px;
+    margin: 12px 15px;
     width: calc(100% - 30px);
+    border-radius: 8px;
+    border-width: 1.5px;
   }
 
   .flash-info-label {
-    padding: 12px 15px;
-    font-size: 0.9rem;
+    padding: 10px 15px;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
   }
 
   .flash-info-content {
@@ -130,6 +167,103 @@
 
   .flash-text {
     font-size: 0.9rem;
+    line-height: 1.4;
+  }
+}
+
+/* Petits mobiles */
+@media (max-width: 480px) {
+  .flash-info-container {
+    margin: 10px 12px;
+    width: calc(100% - 24px);
+    border-radius: 6px;
+  }
+
+  .flash-info-label {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+  }
+
+  .flash-info-content {
+    padding: 10px 12px;
+  }
+
+  .flash-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 375px) {
+  .flash-info-container {
+    margin: 8px 10px;
+    width: calc(100% - 20px);
+  }
+
+  .flash-info-label {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .flash-info-content {
+    padding: 8px 10px;
+  }
+
+  .flash-text {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+}
+
+/* Écrans très larges */
+@media (min-width: 1600px) {
+  .flash-info-container {
+    max-width: 1400px;
+  }
+  
+  .flash-info-label {
+    min-width: 160px;
+    font-size: 1.2rem;
+    padding: 18px 25px;
+  }
+  
+  .flash-info-content {
+    padding: 25px 30px;
+  }
+  
+  .flash-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .flash-info-container {
+    flex-direction: row;
+    margin: 10px 15px;
+  }
+  
+  .flash-info-label {
+    min-width: 120px;
+    width: auto;
+  }
+  
+  .flash-info-content {
+    width: auto;
+  }
+  
+  .flash-text {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash-info-label::before {
+    animation: none;
+  }
+  
+  .flash-info-container:hover {
+    transform: none;
   }
 }
 </style>
