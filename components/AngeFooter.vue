@@ -53,20 +53,18 @@
                   <i class="fa-solid fa-id-badge contact-icon mt-1"></i>
                   <span class="contact-text">01 BP : 2244 Lomé TOGO</span>
                 </div>
-                <div class="contact-info-item d-flex align-items-center mb-4">
+                <div class="contact-info-item d-flex align-items-center mb-3">
                   <i class="fa-solid fa-envelope contact-icon"></i>
                   <span class="contact-text">angeenvironnement@gmail.com</span>
                 </div>
-                <div class="row mt-4" >
-                  <div class="col-12" >
-                    <div class="newsletter-section">
-                      <div class="newsletter-form">
-                        <input type="email" class="newsletter-input" placeholder="Votre email">
-                        <button class="newsletter-btn" type="button">
-                          <i class="fas fa-paper-plane"></i>
-                        </button>
-                      </div>
-                    </div>
+                
+                <!-- Newsletter placée juste après l'email -->
+                <div class="newsletter-section">
+                  <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Votre email">
+                    <button class="newsletter-btn" type="button">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -120,8 +118,6 @@
               </div>
             </div>
           </div>
-
-          
         </div>
       </div>
     </div>
@@ -273,34 +269,30 @@ export default {
   line-height: 1.4;
 }
 
-/* Newsletter - Longueur ajustée */
+/* Newsletter - Positionnée juste après l'email */
 .newsletter-section {
-  margin-top: 0;
-  padding-top: 10px;
-
+  margin-top: 15px; /* Espacement réduit après l'email */
+  padding-top: 0;
 }
 
 .newsletter-form {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  border-radius: 25px;
   overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
-  /* Prend toute la largeur disponible */
-  max-width: 100%;
-  /* Longueur augmentée */
-  margin-top: 10px;
-
+  max-width: 300px;
+  margin-top: 0; /* Supprimé le margin-top */
 }
 
 .newsletter-input {
   flex: 1;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 15px;
   font-size: 14px;
   background: #fff;
   outline: none;
-  width: 8px !important;
+  width: auto;
 
   &::placeholder {
     color: #999;
@@ -309,17 +301,20 @@ export default {
 }
 
 .newsletter-btn {
-  background: #4CAF50;
-  border: none;
-  color: white;
-  padding: 12px 20px;
+  background: transparent;
+  border: 2px solid #4CAF50;
+  color: #4CAF50;
+  padding: 12px 25px;
   transition: all 0.3s ease;
   cursor: pointer;
-  min-width: 50px;
+  min-width: 60px;
   flex-shrink: 0;
+  font-size: 16px;
 
   &:hover {
-    background: #45a049;
+    background: #4CAF50;
+    color: white;
+    transform: scale(1.05);
   }
 
   &:focus {
@@ -413,8 +408,7 @@ export default {
   }
 
   .newsletter-form {
-    max-width: 350px;
-    /* Ajustement pour écrans moyens */
+    max-width: 280px;
   }
 }
 
@@ -453,8 +447,7 @@ export default {
 
   .newsletter-form {
     max-width: 100%;
-    /* Prend toute la largeur sur tablettes */
-    margin: 10px auto 0;
+    margin: 0 auto; /* Centré sur tablettes */
   }
 }
 
@@ -474,12 +467,13 @@ export default {
   }
 
   .newsletter-input {
-    padding: 10px 15px;
+    padding: 10px 12px;
     font-size: 13px;
   }
 
   .newsletter-btn {
-    padding: 10px 15px;
+    padding: 10px 20px;
+    font-size: 14px;
   }
 
   .footer-li-link {
@@ -492,12 +486,12 @@ export default {
 
   .newsletter-section {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
   }
 
   .newsletter-form {
     max-width: 100%;
-    margin: 10px auto 0;
+    margin: 0 auto;
   }
 }
 
@@ -540,6 +534,11 @@ export default {
 
   .newsletter-form {
     max-width: 100%;
+  }
+  
+  .newsletter-btn {
+    padding: 10px 18px;
+    min-width: 55px;
   }
 }
 </style>
