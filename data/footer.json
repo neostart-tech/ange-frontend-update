@@ -45,10 +45,14 @@
             "navUrl": "#"
         }
     ],
-    "footerLinkTitleThree": "Liens Rapides",
-    "navListThree": [
+     "footerLinkTitlefour": "Liens rapides",
+    "navListfour": [
         {
-            "navTitle": "Ange",
+            "navTitle": "ANGE",
+            "navUrl": "/"
+        },
+        {
+            "navTitle": "CNCE",
             "navUrl": "/nous-decouvrir"
         },
         {
@@ -70,6 +74,41 @@
         {
             "navTitle": "FAQ",
             "navUrl": "/faq"
+        }
+    ],
+    "footerLinkTitleThree": "Navigation",
+    "navListThree": [
+         {
+            "navTitle": "Acceuil",
+            "navUrl": "/"
+        },
+        {
+            "navTitle": "Ange",
+            "navUrl": "/nous-decouvrir"
+        },
+        {
+            "navTitle": "Prestations",
+            "navUrl": "/prestation"
+        },
+        {
+            "navTitle": "Publications",
+            "navUrl": "/actualite"
+        },
+        {
+            "navTitle": "Procédures administratives",
+            "navUrl": "/procedure"
+        },
+        {
+            "navTitle": "Projests",
+            "navUrl": "/projet"
+        },
+        {
+            "navTitle": "Plaintes",
+            "navUrl": "/plainte"
+        },
+         {
+            "navTitle": "Acteurs",
+            "navUrl": "/acteur"
         }
     ]
 }

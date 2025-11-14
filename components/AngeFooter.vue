@@ -109,11 +109,11 @@
           <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 mt-30">
             <div class="footer-widget">
               <h4 class="footer-widget-title">
-                {{ footerData.footerLinkTitleTwo }}
+                {{ footerData.footerLinkTitlefour }}
               </h4>
               <div class="footer-widget-content">
                 <ul class="footer-links-list">
-                  <li v-for="(nav, index) in footerData.navListTwo" :key="index" class="footer-li-link">
+                  <li v-for="(nav, index) in footerData.navListfour" :key="index" class="footer-li-link">
                     <NuxtLink :to="nav.navUrl" class="link-show">{{ nav.navTitle }}</NuxtLink>
                   </li>
                 </ul>
