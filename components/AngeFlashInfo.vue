@@ -11,8 +11,9 @@
 </template>
 
 <style scoped>
-.flash-info-container {
+.container {
   display: flex;
+  flex-direction: row;
   align-items: stretch;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 2px solid #e3f2fd;
@@ -20,12 +21,12 @@
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  /* max-width: 1200px; */
-  /* margin: 20px auto; */
-  /* width: calc(100% - 40px); */
+  max-width: 1200px; 
+  margin: 20px auto; 
+  width: calc(100% - 40px); 
 }
 
-.flash-info-container:hover {
+.container:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border-color: #0b9dd1;
@@ -86,9 +87,8 @@
   text-align: left;
 }
 
-
 @media (max-width: 1200px) {
-  .flash-info-container {
+  .container {
     max-width: 1000px;
     margin: 20px 30px;
     width: calc(100% - 60px);
@@ -97,7 +97,7 @@
 
 /* Tablettes portrait */
 @media (max-width: 1024px) {
-  .flash-info-container {
+  .container {
     max-width: 900px;
     margin: 18px 25px;
     width: calc(100% - 50px);
@@ -119,7 +119,7 @@
 }
 
 @media (max-width: 768px) {
-  .flash-info-container {
+  .container {
     flex-direction: column;
     margin: 15px 20px;
     width: calc(100% - 40px);
@@ -148,7 +148,7 @@
 }
 
 @media (max-width: 576px) {
-  .flash-info-container {
+  .container {
     margin: 12px 15px;
     width: calc(100% - 30px);
     border-radius: 8px;
@@ -173,7 +173,7 @@
 
 /* Petits mobiles */
 @media (max-width: 480px) {
-  .flash-info-container {
+  .container {
     margin: 10px 12px;
     width: calc(100% - 24px);
     border-radius: 6px;
@@ -196,7 +196,7 @@
 }
 
 @media (max-width: 375px) {
-  .flash-info-container {
+  .container {
     margin: 8px 10px;
     width: calc(100% - 20px);
   }
@@ -218,7 +218,7 @@
 
 /* Écrans très larges */
 @media (min-width: 1600px) {
-  .flash-info-container {
+  .container {
     max-width: 1400px;
   }
   
@@ -238,7 +238,7 @@
 }
 
 @media (max-width: 768px) and (orientation: landscape) {
-  .flash-info-container {
+  .container {
     flex-direction: row;
     margin: 10px 15px;
   }
@@ -262,7 +262,7 @@
     animation: none;
   }
   
-  .flash-info-container:hover {
+  .container:hover {
     transform: none;
   }
 }

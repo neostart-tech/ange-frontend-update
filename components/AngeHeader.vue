@@ -297,7 +297,7 @@ export default {
   .d-xl-none .col-auto:last-child img {
     max-width: 65px !important;
   }
-  
+    
   .header-mobile-menu-toggle .icon-top,
   .header-mobile-menu-toggle .icon-middle,
   .header-mobile-menu-toggle .icon-bottom {
