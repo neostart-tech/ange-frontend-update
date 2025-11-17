@@ -164,7 +164,6 @@ defineExpose({
 
 <style scoped>
 .breadcrumbs-wrapper {
-  margin-top: 230px; /* Hauteur header + publicité */
   width: 100%;
 }
 
