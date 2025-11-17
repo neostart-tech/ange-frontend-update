@@ -103,6 +103,7 @@
   .container {
     max-width: 900px;
     margin: 18px 25px;
+    margin-bottom: -50px;
     width: calc(100% - 50px);
   }
   
@@ -127,6 +128,7 @@
 @media (max-width: 991px) {
   .container {
     margin-top: 200px;
+    margin-bottom: -50px;
     /* width: 0%;
     align-content: center !important; */
   }
@@ -135,7 +137,8 @@
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    margin: 15px 20px;
+    margin: 200px 20px;
+    margin-bottom: -20px;
     width: calc(100% - 40px);
     border-radius: 10px;
   }

@@ -52,30 +52,23 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .feux-vegetation-section {
   margin: 0;
-  width: 100vw;
+  width: 100%;
   position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
 }
 
 .feux-background {
-  background: 
-    /* linear-gradient(rgba(220, 245, 219, 0.9), rgba(220, 245, 219, 0.9)), */
-    url('/images/bg/bg-statistique.jpeg');
+  background: url('/images/bg/bg-statistique.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* border-radius: 0; */
-  padding: 50px 20px;
+  padding: 80px 20px;
   position: relative;
   overflow: hidden;
   width: 100%;
-  min-height: 30vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,7 +81,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background:#e0f9e06e;
+  background: #e0f9e0;
   opacity: 0.8;
   z-index: 1;
 }
@@ -100,6 +93,7 @@
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 /* Année - 16px */
@@ -107,7 +101,7 @@
   font-size: 16px;
   font-weight: 600;
   color: #007608;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -120,12 +114,13 @@
   margin-bottom: 60px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  line-height: 1.2;
 }
 
 .feux-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  gap: 40px;
   margin-bottom: 60px;
   width: 100%;
 }
@@ -138,32 +133,31 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .feux-stat-item:hover {
   transform: translateY(-5px);
 }
 
-/* Icône - width: 124px, height: 146px */
+/* Icône - responsive */
 .feux-icon {
-  width: 124px;
-  height: 146px;
+  width: 100px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .feux-icon i {
-  font-size: 80px;
+  font-size: 70px;
   color: #007608;
 }
 
-/* Valeur - width: 251px, height: 38px */
+/* Valeur - responsive */
 .feux-value {
-  width: 251px;
-  height: 38px;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 800;
   color: #007608;
   margin-bottom: 15px;
@@ -171,20 +165,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1.1;
+  min-height: 40px;
 }
 
-/* Description - width: 251px, height: 38px */
+/* Description - responsive */
 .feux-description {
-  width: 251px;
-  height: 38px;
   font-size: 14px;
   color: #007608;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.4;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  max-width: 280px;
+  min-height: 50px;
 }
 
 .feux-cta {
@@ -197,8 +193,7 @@
   gap: 10px;
   background: #007608;
   color: white;
-  padding: 12px 30px;
-  /* border-radius: 50px; */
+  padding: 15px 35px;
   text-decoration: none;
   font-weight: 600;
   font-size: 16px;
@@ -212,7 +207,6 @@
   background: transparent;
   color: #007608;
   transform: translateY(-3px);
-  /* box-shadow: 0 10px 25px rgba(0, 118, 8, 0.3); */
 }
 
 .feux-btn i {
@@ -224,91 +218,402 @@
   transform: translateX(5px);
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-  .feux-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-  }
-  
-  .feux-background {
-    padding: 60px 20px;
-  }
-  
-  .feux-title {
-    font-size: 28px;
-  }
-}
+/* ========== RESPONSIVE CORRECTIONS ========== */
 
-@media (max-width: 768px) {
+/* Grands écrans (≥1400px) */
+@media (min-width: 1400px) {
+  .feux-content {
+    max-width: 1320px;
+  }
+  
   .feux-stats-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .feux-background {
-    padding: 50px 20px;
-    min-height: auto;
-  }
-  
-  .feux-title {
-    font-size: 24px;
-    margin-bottom: 40px;
-  }
-  
-  .feux-value {
-    font-size: 28px;
-    width: 200px;
-  }
-  
-  .feux-description {
-    width: 200px;
-    font-size: 13px;
+    gap: 60px;
   }
   
   .feux-icon {
-    width: 100px;
-    height: 120px;
+    width: 124px;
+    height: 146px;
+  }
+  
+  .feux-icon i {
+    font-size: 80px;
+  }
+  
+  .feux-value {
+    font-size: 32px;
+  }
+}
+
+/* Desktop standard (1200px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1200px) {
+  .feux-stats-grid {
+    gap: 50px;
+  }
+  
+  .feux-icon {
+    width: 110px;
+    height: 130px;
+  }
+  
+  .feux-icon i {
+    font-size: 75px;
+  }
+}
+
+/* Tablette paysage (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+  .feux-background {
+    padding: 70px 20px;
+    min-height: 50vh;
+  }
+  
+  .feux-stats-grid {
+    gap: 35px;
+  }
+  
+  .feux-title {
+    font-size: 28px;
+    margin-bottom: 50px;
+  }
+  
+  .feux-icon {
+    width: 90px;
+    height: 110px;
+    margin-bottom: 20px;
   }
   
   .feux-icon i {
     font-size: 60px;
   }
+  
+  .feux-value {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+  
+  .feux-description {
+    font-size: 13px;
+    max-width: 220px;
+  }
 }
 
-@media (max-width: 480px) {
+/* Tablette portrait (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
   .feux-background {
-    padding: 40px 15px;
+    padding: 60px 20px;
+    min-height: auto;
+  }
+  
+  .feux-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 50px;
   }
   
   .feux-title {
-    font-size: 20px;
+    font-size: 26px;
+    margin-bottom: 45px;
+    padding: 0 20px;
+  }
+  
+  .feux-year {
+    font-size: 15px;
+  }
+  
+  .feux-icon {
+    width: 85px;
+    height: 100px;
+    margin-bottom: 18px;
+  }
+  
+  .feux-icon i {
+    font-size: 55px;
   }
   
   .feux-value {
     font-size: 24px;
-    width: 180px;
+    margin-bottom: 10px;
   }
   
   .feux-description {
-    width: 180px;
-    height: auto;
-    min-height: 38px;
-    font-size: 12px;
+    font-size: 13px;
+    max-width: 250px;
+    min-height: 60px;
   }
   
   .feux-btn {
-    padding: 10px 25px;
+    padding: 14px 32px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile paysage (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .feux-background {
+    padding: 50px 15px;
+  }
+  
+  .feux-content {
+    padding: 0 15px;
+  }
+  
+  .feux-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 45px;
+  }
+  
+  .feux-title {
+    font-size: 24px;
+    margin-bottom: 40px;
+    padding: 0 15px;
+  }
+  
+  .feux-year {
     font-size: 14px;
+    margin-bottom: 12px;
   }
   
   .feux-icon {
-    width: 80px;
-    height: 100px;
+    width: 75px;
+    height: 90px;
+    margin-bottom: 15px;
   }
   
   .feux-icon i {
     font-size: 50px;
+  }
+  
+  .feux-value {
+    font-size: 22px;
+    margin-bottom: 8px;
+    min-height: 35px;
+  }
+  
+  .feux-description {
+    font-size: 12px;
+    max-width: 200px;
+    min-height: 70px;
+    line-height: 1.3;
+  }
+  
+  .feux-cta {
+    margin-top: 35px;
+  }
+  
+  .feux-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile portrait (480px - 575px) */
+@media (max-width: 575px) and (min-width: 480px) {
+  .feux-background {
+    padding: 40px 12px;
+  }
+  
+  .feux-content {
+    padding: 0 12px;
+  }
+  
+  .feux-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    margin-bottom: 40px;
+  }
+  
+  .feux-title {
+    font-size: 22px;
+    margin-bottom: 35px;
+    padding: 0 10px;
+  }
+  
+  .feux-year {
+    font-size: 13px;
+    margin-bottom: 10px;
+  }
+  
+  .feux-icon {
+    width: 70px;
+    height: 85px;
+    margin-bottom: 15px;
+  }
+  
+  .feux-icon i {
+    font-size: 45px;
+  }
+  
+  .feux-value {
+    font-size: 20px;
+    margin-bottom: 8px;
+    min-height: 30px;
+  }
+  
+  .feux-description {
+    font-size: 12px;
+    max-width: 280px;
+    min-height: 50px;
+    line-height: 1.4;
+  }
+  
+  .feux-cta {
+    margin-top: 30px;
+  }
+  
+  .feux-btn {
+    padding: 12px 25px;
+    font-size: 14px;
+  }
+}
+
+/* Petit mobile (375px - 479px) */
+@media (max-width: 479px) and (min-width: 375px) {
+  .feux-background {
+    padding: 35px 10px;
+  }
+  
+  .feux-content {
+    padding: 0 10px;
+  }
+  
+  .feux-stats-grid {
+    gap: 30px;
+    margin-bottom: 35px;
+  }
+  
+  .feux-title {
+    font-size: 20px;
+    margin-bottom: 30px;
+    padding: 0;
+  }
+  
+  .feux-year {
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .feux-icon {
+    width: 65px;
+    height: 80px;
+    margin-bottom: 12px;
+  }
+  
+  .feux-icon i {
+    font-size: 40px;
+  }
+  
+  .feux-value {
+    font-size: 18px;
+    margin-bottom: 6px;
+    min-height: 25px;
+  }
+  
+  .feux-description {
+    font-size: 11px;
+    max-width: 250px;
+    min-height: 45px;
+    line-height: 1.3;
+  }
+  
+  .feux-cta {
+    margin-top: 25px;
+  }
+  
+  .feux-btn {
+    padding: 10px 22px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile extra small (< 375px) */
+@media (max-width: 374px) {
+  .feux-background {
+    padding: 30px 8px;
+  }
+  
+  .feux-content {
+    padding: 0 8px;
+  }
+  
+  .feux-stats-grid {
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+  
+  .feux-title {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+  
+  .feux-year {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+  
+  .feux-icon {
+    width: 60px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+  
+  .feux-icon i {
+    font-size: 35px;
+  }
+  
+  .feux-value {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .feux-description {
+    font-size: 10px;
+    max-width: 220px;
+    min-height: 40px;
+    line-height: 1.2;
+  }
+  
+  .feux-cta {
+    margin-top: 20px;
+  }
+  
+  .feux-btn {
+    padding: 8px 20px;
+    font-size: 12px;
+  }
+}
+
+/* Mode paysage sur mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .feux-background {
+    padding: 30px 15px;
+    min-height: auto;
+  }
+  
+  .feux-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .feux-icon {
+    width: 60px;
+    height: 70px;
+    margin-bottom: 10px;
+  }
+  
+  .feux-icon i {
+    font-size: 35px;
+  }
+  
+  .feux-value {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  
+  .feux-description {
+    font-size: 10px;
+    min-height: 35px;
   }
 }
 </style>

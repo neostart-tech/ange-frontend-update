@@ -94,7 +94,7 @@
 
             <!-- Quatrième colonne - Bas (Statistiques plaintes) -->
             <div class="stats-numbers-col">
-                <div class="stats-numbers-grid">
+                <div class="stats-numbers-grid mt-5">
                     <!-- Première ligne - 2 statistiques -->
                     <div class="stat-item">
                         <div class="indicator-card h-100" style=" border: 1px solid #40bc48;">
@@ -402,8 +402,7 @@ export default {
 }
 
 .indicator-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(11, 157, 209, 0.2);
+    transform: scale(1.1);
 }
 
 .counter-stat-env,
@@ -430,7 +429,6 @@ export default {
     backdrop-filter: blur(4px);
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
 
 /* Tablettes grandes (992px - 1200px) */
 @media (max-width: 1200px) {
