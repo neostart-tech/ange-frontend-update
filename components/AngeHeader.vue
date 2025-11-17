@@ -1,7 +1,18 @@
 <template>
-  <div>
-    <AngePublicite :class="{ 'is-hidden' : isSticky}" />
-    <div class="header-section" :class="{ 'is-sticky': isSticky, 'header-transparent': !isSticky }">
+  <div class="header-wrapper">
+    <!-- Publicité au-dessus du header -->
+    <AngePublicite 
+      :class="{ 'is-hidden': isSticky }" 
+      ref="publicite"
+      @height-changed="updateHeaderPosition"
+    /> 
+    
+    <!-- Header fixe -->
+    <div 
+      class="header-section" 
+      :class="{ 'is-sticky': isSticky, 'header-transparent': !isSticky }"
+      :style="headerStyle"
+    >
       <div class="header-inner">
         <div class="container">
           <!-- Version Desktop -->
@@ -10,7 +21,7 @@
             <div class="col-auto">
               <div class="header-logo">
                 <NuxtLink to="/">
-                  <img class="dark-logo" :src="logoSrc" alt="Logo ANGE" style="max-width: 100px" />
+                  <img class="dark-logo" :src="logoSrc" alt="Logo ANGE" />
                 </NuxtLink>
               </div>
             </div>
@@ -33,7 +44,7 @@
             <!-- Partie 4: Logo secondaire -->
             <div class="col-auto">
               <NuxtLink to="/">
-                <img src="/images/others/Blason-rt.jpg" alt="Blason RT" style="max-width: 100px;" />
+                <img src="/images/others/Blason-rt.jpg" alt="Blason RT" />
               </NuxtLink>
             </div>
           </div>
@@ -55,7 +66,7 @@
             <div class="col-auto">
               <div class="header-logo">
                 <NuxtLink to="/">
-                  <img class="dark-logo" :src="logoSrc" alt="Logo ANGE" style="max-width: 90px" />
+                  <img class="dark-logo" :src="logoSrc" alt="Logo ANGE" />
                 </NuxtLink>
               </div>
             </div>
@@ -63,7 +74,7 @@
             <!-- Blason à droite -->
             <div class="col-auto">
               <NuxtLink to="/">
-                <img src="/images/others/Blason-rt.jpg" alt="Blason RT" style="max-width: 80px;" />
+                <img src="/images/others/Blason-rt.jpg" alt="Blason RT" />
               </NuxtLink>
             </div>
           </div>
@@ -80,21 +91,41 @@ export default {
       isSticky: false,
       isStickyImage: false,
       logoSrc: "/images/logo/logo-ANGE.png",
+      publiciteHeight: 40,
+      headerHeight: 80,
     };
+  },
+
+  computed: {
+    headerStyle() {
+      if (this.isSticky) {
+        return { top: '0px' };
+      }
+      return { top: `${this.publiciteHeight}px` };
+    }
   },
 
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    this.updateHeaderPosition();
+    window.addEventListener('resize', this.updateHeaderPosition);
+    this.$nextTick(() => {
+      this.setupHeightObserver();
+    });
   },
 
   beforeDestroy() {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('resize', this.updateHeaderPosition);
+    if (this.resizeObserver) {
+      this.resizeObserver.disconnect();
+    }
   },
 
   methods: {
     handleScroll() {
       let scrollPos = window.scrollY;
-      if (scrollPos >= 100) { // Réduit à 100px pour que ça colle plus tôt
+      if (scrollPos >= 100) {
         this.isSticky = true;
         this.logoSrc = "/images/logo/tird.png";
         this.isStickyImage = true;
@@ -105,7 +136,39 @@ export default {
       }
     },
 
-    // offcanvas mobile menu
+    updateHeaderPosition() {
+      this.$nextTick(() => {
+        const publiciteElement = this.$refs.publicite?.$el;
+        if (publiciteElement && !this.isSticky) {
+          this.publiciteHeight = publiciteElement.offsetHeight;
+        } else {
+          this.publiciteHeight = 0;
+        }
+
+        const headerElement = this.$el.querySelector('.header-section');
+        if (headerElement) {
+          this.headerHeight = headerElement.offsetHeight;
+        }
+
+        this.updateBodyPadding();
+      });
+    },
+
+    updateBodyPadding() {
+      const totalHeight = this.isSticky ? this.headerHeight : this.publiciteHeight + this.headerHeight;
+      document.body.style.paddingTop = `${totalHeight}px`;
+    },
+
+    setupHeightObserver() {
+      const publiciteElement = this.$refs.publicite?.$el;
+      if (publiciteElement && 'ResizeObserver' in window) {
+        this.resizeObserver = new ResizeObserver(() => {
+          this.updateHeaderPosition();
+        });
+        this.resizeObserver.observe(publiciteElement);
+      }
+    },
+
     mobiletoggleClass(addRemoveClass, className) {
       const el = document.querySelector("#offcanvas-menu");
       if (addRemoveClass === "addClass") {
@@ -115,41 +178,56 @@ export default {
       }
     },
   },
+
+  watch: {
+    isSticky() {
+      this.updateHeaderPosition();
+    }
+  }
 };
 </script>
 
 <style scoped>
+.header-wrapper {
+  position: relative;
+}
+
 .header-section {
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 1001;
   transition: all 0.4s ease;
-  background:  rgba(255, 255, 255, 0.98);
-  padding: 15px 0;
+  background: rgba(255, 255, 255, 0.98);
+  padding: 15px 200px;
 }
 
 .header-section.is-sticky {
   background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(10px);
   box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
-  padding: 8px 0;
+  padding: 8px 0px;
+
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.is-hidden{
-  display: none !important;
-}
-
 .header-section.header-transparent {
-  background:  rgba(255, 255, 255, 0.98);
+  background: rgba(255, 255, 255, 0.98);
   box-shadow: none;
   border-bottom: none;
+
 }
 
 .header-inner {
   position: relative;
+}
+
+/* Container avec marges */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .contact-cta {
@@ -201,20 +279,40 @@ export default {
   background-color: white;
 }
 
-.header-mobile-menu-toggle .sticky-icon {
-  background-color: #007608;
-}
 
-.header-mobile-menu-toggle .toggle:hover .icon-top,
-.header-mobile-menu-toggle .toggle:hover .icon-middle,
-.header-mobile-menu-toggle .toggle:hover .icon-bottom {
-  background-color: #007608;
-}
 
-/* Tailles pour le blason - Desktop */
-.d-none.d-xl-flex .col-auto:last-child img {
-  max-width: 100px !important;
+/* ========== TAILLES DES LOGOS AVEC MARGES ========== */
+
+/* Logo ANGE Desktop */
+.d-none.d-xl-flex .col-auto:first-child img {
+  max-width: 100px;
   height: auto;
+  margin-left: 10px; /* Marge à gauche */
+}
+
+/* Blason Desktop */
+.d-none.d-xl-flex .col-auto:last-child img {
+  max-width: 100px;
+  height: auto;
+  margin-right: 10px; /* Marge à droite */
+}
+
+/* Logo ANGE Mobile */
+.d-xl-none .col-auto:nth-child(2) img {
+  max-width: 90px;
+  height: auto;
+}
+
+/* Blason Mobile */
+.d-xl-none .col-auto:last-child img {
+  max-width: 80px;
+  height: auto;
+  margin-right: 10px; /* Marge à droite */
+}
+
+/* Menu hamburger Mobile */
+.d-xl-none .col-auto:first-child {
+  margin-left: 10px; /* Marge à gauche */
 }
 
 /* Version Mobile - Disposition corrigée */
@@ -250,84 +348,256 @@ export default {
 
 /* Ajustement du logo en mode sticky */
 .header-section.is-sticky .header-logo img {
-  max-width: 90px !important;
   transition: all 0.3s ease;
 }
 
+.header-section.is-sticky .d-none.d-xl-flex .col-auto:first-child img {
+  max-width: 90px;
+}
+
 .header-section.is-sticky .d-none.d-xl-flex .col-auto:last-child img {
-  max-width: 90px !important;
+  max-width: 90px;
+}
+
+.header-section.is-sticky .d-xl-none .col-auto:nth-child(2) img {
+  max-width: 70px;
 }
 
 .header-section.is-sticky .d-xl-none .col-auto:last-child img {
-  max-width: 70px !important;
+  max-width: 70px;
 }
 
-/* Responsive pour la version mobile */
-@media (max-width: 1199px) {
-  .header-logo img {
-    max-width: 90px !important;
+/* Classe pour masquer la publicité */
+.is-hidden {
+  display: none !important;
+}
+
+/* ========== CORRECTIONS RESPONSIVE AVEC MARGES ========== */
+
+/* Desktop (1200px+) */
+@media (max-width: 1800px) {
+  .header-section {
+  padding: 15px 0px !important;
+}
+}
+
+
+
+@media (min-width: 1200px) {
+  .container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  
+  .d-none.d-xl-flex .col-auto:first-child img {
+    margin-left: 20px;
+  }
+  
+  .d-none.d-xl-flex .col-auto:last-child img {
+    margin-right: 20px;
   }
 }
 
-@media (max-width: 767px) {
+
+@media (max-width: 1800px) {
   .header-section {
-    padding: 10px 0;
+  
+  padding: 15px 100px;
+}
+}
+
+/* Tablet (768px - 1199px) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .header-section {
+    padding: 12px 0;
   }
   
   .header-section.is-sticky {
     padding: 6px 0;
   }
   
-  .header-logo img {
-    max-width: 80px !important;
+  .d-xl-none .col-auto:nth-child(2) img {
+    max-width: 85px;
   }
   
-  /* Blason mobile */
   .d-xl-none .col-auto:last-child img {
-    max-width: 70px !important;
+    max-width: 75px;
+    margin-right: 15px;
+  }
+  
+  .d-xl-none .col-auto:first-child {
+    margin-left: 15px;
   }
 }
 
-@media (max-width: 575px) {
-  .header-logo img {
-    max-width: 70px !important;
+/* Mobile (576px - 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
   
-  /* Blason mobile petit écran */
-  .d-xl-none .col-auto:last-child img {
-    max-width: 65px !important;
+  .header-section {
+    padding: 10px 0;
   }
-    
+  
+  .header-section.is-sticky {
+    padding: 5px 0;
+  }
+  
+  .d-xl-none .col-auto:nth-child(2) img {
+    max-width: 80px;
+  }
+  
+  .d-xl-none .col-auto:last-child img {
+    max-width: 70px;
+    margin-right: 12px;
+  }
+  
+  .d-xl-none .col-auto:first-child {
+    margin-left: 12px;
+  }
+  
   .header-mobile-menu-toggle .icon-top,
   .header-mobile-menu-toggle .icon-middle,
   .header-mobile-menu-toggle .icon-bottom {
     width: 22px;
-    height: 2px;
+    height: 2.5px;
   }
 }
 
-/* Pour les très petits écrans */
-@media (max-width: 375px) {
-  .header-logo img {
-    max-width: 65px !important;
+/* Petit mobile (480px - 575px) */
+@media (max-width: 575px) and (min-width: 480px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
   }
   
-  /* Blason mobile très petit écran */
+  .header-section {
+    padding: 8px 0;
+  }
+  
+  .header-section.is-sticky {
+    padding: 4px 0;
+  }
+  
+  .d-xl-none .col-auto:nth-child(2) img {
+    max-width: 75px;
+  }
+  
   .d-xl-none .col-auto:last-child img {
-    max-width: 60px !important;
+    max-width: 65px;
+    margin-right: 10px;
+  }
+  
+  .d-xl-none .col-auto:first-child {
+    margin-left: 10px;
+  }
+  
+  .header-mobile-menu-toggle .icon-top,
+  .header-mobile-menu-toggle .icon-middle,
+  .header-mobile-menu-toggle .icon-bottom {
+    width: 20px;
+    height: 2px;
+  }
+  
+  .contact-cta {
+    padding: 8px 16px;
+    font-size: 13px;
   }
 }
 
-/* Correction pour l'espace sous le header fixe */
-body {
-  padding-top: 80px; /* Ajustez cette valeur selon la hauteur de votre header */
+/* Très petit mobile (375px - 479px) */
+@media (max-width: 479px) and (min-width: 375px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .header-section {
+    padding: 6px 0;
+  }
+  
+  .header-section.is-sticky {
+    padding: 3px 0;
+  }
+  
+  .d-xl-none .col-auto:nth-child(2) img {
+    max-width: 70px;
+  }
+  
+  .d-xl-none .col-auto:last-child img {
+    max-width: 60px;
+    margin-right: 8px;
+  }
+  
+  .d-xl-none .col-auto:first-child {
+    margin-left: 8px;
+  }
+  
+  .header-mobile-menu-toggle .icon-top,
+  .header-mobile-menu-toggle .icon-middle,
+  .header-mobile-menu-toggle .icon-bottom {
+    width: 18px;
+    height: 2px;
+  }
+  
+  .contact-cta {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
 }
 
-/* Ajustement pour les écrans mobiles */
-@media (max-width: 767px) {
-  body {
-    padding-top: 70px;
+/* Mobile extra small (< 375px) */
+@media (max-width: 374px) {
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .header-section {
+    padding: 5px 0;
+  }
+  
+  .header-section.is-sticky {
+    padding: 2px 0;
+  }
+  
+  .d-xl-none .col-auto:nth-child(2) img {
+    max-width: 65px;
+  }
+  
+  .d-xl-none .col-auto:last-child img {
+    max-width: 55px;
+    margin-right: 6px;
+  }
+  
+  .d-xl-none .col-auto:first-child {
+    margin-left: 6px;
+  }
+  
+  .header-mobile-menu-toggle .icon-top,
+  .header-mobile-menu-toggle .icon-middle,
+  .header-mobile-menu-toggle .icon-bottom {
+    width: 16px;
+    height: 1.5px;
+  }
+  
+  .contact-cta {
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+/* Ajustement pour le mode paysage mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .header-section {
+    padding: 5px 0;
   }
 }
 </style>
-

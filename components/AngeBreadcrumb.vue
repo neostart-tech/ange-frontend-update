@@ -1,34 +1,31 @@
 <template>
-  <div class="breadcrumbs-section">
-    <div class="breadcrumbs-links">
-      <ul class="breadcrumbs-list">
-        <li 
-          v-for="(item, index) in breadcrumbsItems" 
-          :key="index"
-          class="breadcrumb-item"
-          :class="{ 'active': index === breadcrumbsItems.length - 1 }"
-        >
-          <span v-if="index === breadcrumbsItems.length - 1">
-            {{ item.name }}
-          </span>
-          <NuxtLink v-else :to="item.path">
-            {{ item.name }}
-          </NuxtLink>
-          <span 
-            v-if="index < breadcrumbsItems.length - 1" 
-            class="breadcrumb-separator"
-          >
-            >
-          </span>
-        </li>
-      </ul>
-      
-      <div class="breadcrumbs-divider"></div>
+  <div class="breadcrumbs-wrapper">
+    <div class="container">
+      <div class="breadcrumbs-section">
+        <div class="breadcrumbs-links">
+          <ul class="breadcrumbs-list">
+            <li v-for="(item, index) in breadcrumbsItems" :key="index" class="breadcrumb-item"
+              :class="{ 'active': index === breadcrumbsItems.length - 1 }">
+              <span v-if="index === breadcrumbsItems.length - 1">
+                {{ item.name }}
+              </span>
+              <NuxtLink v-else :to="item.path">
+                {{ item.name }}
+              </NuxtLink>
+              <span v-if="index < breadcrumbsItems.length - 1" class="breadcrumb-separator">
+                >
+              </span>
+            </li>
+          </ul>
 
-      <h1 class="page-title">{{ currentTitle }}</h1>
-      <p class="page-description">
-        {{ currentDescription }}
-      </p>
+          <div class="breadcrumbs-divider"></div>
+
+          <h1 class="page-title">{{ currentTitle }}</h1>
+          <p class="page-description">
+            {{ currentDescription }}
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -71,28 +68,28 @@ const currentDescription = ref('')
 
 // Computed properties pour les valeurs par défaut
 const defaultBreadcrumbs = computed(() => [
-  { name: 'Accueil', path: '' },
+  { name: 'Accueil', path: '/' },
   { name: props.activePageName || 'Page', path: '#' }
 ])
 
-const defaultTitle = computed(() => 
+const defaultTitle = computed(() =>
   props.pageTitle || props.activePageName || 'Titre de la page'
 )
 
-const defaultDescription = computed(() => 
+const defaultDescription = computed(() =>
   props.pageDescription || 'Description par défaut de la page'
 )
 
 // Fonction d'initialisation
 const initializeBreadcrumbs = () => {
   // Initialiser les breadcrumbs
-  breadcrumbsItems.value = props.breadcrumbs.length > 0 
-    ? props.breadcrumbs 
+  breadcrumbsItems.value = props.breadcrumbs.length > 0
+    ? props.breadcrumbs
     : defaultBreadcrumbs.value
-  
+
   // Initialiser le titre
   currentTitle.value = defaultTitle.value
-  
+
   // Initialiser la description
   currentDescription.value = defaultDescription.value
 }
@@ -166,6 +163,11 @@ defineExpose({
 </script>
 
 <style scoped>
+.breadcrumbs-wrapper {
+  margin-top: 230px; /* Hauteur header + publicité */
+  width: 100%;
+}
+
 .breadcrumbs-section {
   background: #e7f5fa;
   min-height: 300px;
@@ -173,6 +175,7 @@ defineExpose({
   align-items: center;
   position: relative;
   overflow: hidden;
+  margin: 20px 0;
 }
 
 .breadcrumbs-section::before {
@@ -190,8 +193,7 @@ defineExpose({
   position: relative;
   z-index: 2;
   width: 100%;
-  padding: 100px 100px;
-  margin-left: 200px;
+  padding: 60px 40px;
 }
 
 .breadcrumbs-list {
@@ -217,6 +219,7 @@ defineExpose({
 
 .breadcrumb-item.active {
   font-weight: 600;
+  color: #016a98;
 }
 
 .breadcrumb-item a {
@@ -237,14 +240,15 @@ defineExpose({
 
 .breadcrumbs-divider {
   height: 1px;
-  background:#e2ebee;
+  background: #e2ebee;
   margin: 25px 0 35px 0;
   width: 100%;
+  max-width: 200px;
 }
 
 .page-title {
   font-family: 'Playfair Display', 'Georgia', serif;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.2;
   margin: 0 0 20px 0;
@@ -253,7 +257,7 @@ defineExpose({
 
 .page-description {
   font-family: 'Inter', 'Segoe UI', sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.6;
   margin: 0;
@@ -262,47 +266,78 @@ defineExpose({
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .breadcrumbs-links {
-    padding: 40px 30px;
-    text-align: center;
-    margin-left: 0;
+@media (max-width: 1199px) {
+  .breadcrumbs-wrapper {
+    margin-top: 105px; /* Hauteur réduite pour tablette */
   }
   
-  .breadcrumbs-list {
-    justify-content: center;
-    margin-bottom: 25px;
+  .breadcrumbs-links {
+    padding: 50px 30px;
   }
   
   .page-title {
     font-size: 2.2rem;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .breadcrumbs-wrapper {
+    margin-top: 95px; /* Hauteur réduite pour mobile */
+  }
+
+  .breadcrumbs-links {
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .breadcrumbs-list {
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+
+  .breadcrumbs-divider {
+    margin: 20px auto 30px auto;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
   .page-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin: 0 auto;
   }
 }
 
 @media (max-width: 480px) {
-  .breadcrumbs-links {
-    padding: 30px 20px;
+  .breadcrumbs-wrapper {
+    margin-top: 90px; /* Hauteur réduite pour petit mobile */
   }
-  
+
+  .breadcrumbs-section {
+    min-height: 250px;
+    margin: 15px 0;
+  }
+
+  .breadcrumbs-links {
+    padding: 30px 15px;
+  }
+
   .breadcrumbs-list {
     gap: 8px;
   }
-  
+
   .breadcrumb-item {
     font-size: 14px;
   }
-  
+
   .page-title {
     font-size: 1.8rem;
+    margin-bottom: 15px;
   }
-  
+
   .page-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -319,6 +354,21 @@ defineExpose({
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Correction pour les très petits écrans */
+@media (max-width: 375px) {
+  .breadcrumbs-wrapper {
+    margin-top: 85px;
+  }
+  
+  .page-title {
+    font-size: 1.6rem;
+  }
+  
+  .page-description {
+    font-size: 0.9rem;
   }
 }
 </style>
