@@ -70,7 +70,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 0;
+  /* border-radius: 0; */
   padding: 50px 20px;
   position: relative;
   overflow: hidden;

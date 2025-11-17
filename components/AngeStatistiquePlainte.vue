@@ -6,7 +6,7 @@
       <Meta property="og:type" content="Agence National de Gestion de l'Environnement"/>
     </Head>
 
-    <div class="container">
+    <div class="container ">
       <div class="section-title text-center" data-aos="fade-up">
         <h2
             class="text-cnce fz-32"
