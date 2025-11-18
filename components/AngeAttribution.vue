@@ -30,7 +30,7 @@
 
       <!-- Colonne droite -->
       <div class="right">
-        <img ref="rightImg" src="/images/bg/bg_o1.jpg" alt="Image environnement">
+        <img ref="rightImg" src="/images/bg/about-4.png" alt="Image environnement">
       </div>
     </div>
   </section>
@@ -42,39 +42,39 @@ import { ref, onMounted, nextTick } from "vue";
 const attributions = [
   {
     title: "Coordination nationale",
-    desc: "L’élaboration et la coordination de la mise en œuvre du Programme national de gestion de l’environnement."
+    desc: "L'élaboration et la coordination de la mise en œuvre du Programme national de gestion de l'environnement."
   },
   {
     title: "Évaluations environnementales",
-    desc: "La promotion et la mise en œuvre du système national des évaluations environnementales, notamment les études d’impact, les évaluations environnementales stratégiques, les audits environnementaux."
+    desc: "La promotion et la mise en œuvre du système national des évaluations environnementales, notamment les études d'impact, les évaluations environnementales stratégiques, les audits environnementaux."
   },
   {
     title: "Intégration environnementale",
-    desc: "L’appui à l’intégration de la dimension environnementale dans les politiques, stratégies, programmes et projets de développement national et local."
+    desc: "L'appui à l'intégration de la dimension environnementale dans les politiques, stratégies, programmes et projets de développement national et local."
   },
   {
     title: "Outils techniques",
-    desc: "L’élaboration et la promotion des outils techniques d’analyse, de planification et d’intégration de l’environnement aux politiques, plans, programmes, projets et activités de développement."
+    desc: "L'élaboration et la promotion des outils techniques d'analyse, de planification et d'intégration de l'environnement aux politiques, plans, programmes, projets et activités de développement."
   },
   {
     title: "Appui technique local",
-    desc: "L’appui technique aux collectivités territoriales, aux organisations communautaires à la base, aux privés et aux ONG en matière de gestion de l’environnement."
+    desc: "L'appui technique aux collectivités territoriales, aux organisations communautaires à la base, aux privés et aux ONG en matière de gestion de l'environnement."
   },
   {
-    title: "Système d’information",
-    desc: "La mise en place et la gestion du système national d’information environnementale."
+    title: "Système d'information",
+    desc: "La mise en place et la gestion du système national d'information environnementale."
   },
   {
     title: "Rapport annuel",
-    desc: "La coordination de l’élaboration du rapport annuel sur l’état de l’environnement."
+    desc: "La coordination de l'élaboration du rapport annuel sur l'état de l'environnement."
   },
   {
     title: "Communication et formation",
-    desc: "Le développement et la mise en œuvre des actions d’information, d’éducation, de communication et de formation relatives à la protection et à la gestion des ressources naturelles et de l’environnement."
+    desc: "Le développement et la mise en œuvre des actions d'information, d'éducation, de communication et de formation relatives à la protection et à la gestion des ressources naturelles et de l'environnement."
   },
   {
     title: "Ressources et financement",
-    desc: "La recherche et la mobilisation des ressources financières et techniques nécessaires à l’exécution de ses missions spécifiques et des autres missions qui pourront lui être confiées."
+    desc: "La recherche et la mobilisation des ressources financières et techniques nécessaires à l'exécution de ses missions spécifiques et des autres missions qui pourront lui être confiées."
   }
 ];
 
@@ -117,7 +117,7 @@ onMounted(async () => {
 .row {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch; /* aligne les deux colonnes */
+  align-items: stretch;
   gap: 40px;
   margin-top: 40px;
 }
@@ -130,12 +130,13 @@ onMounted(async () => {
   flex: 1 1 40%;
   display: flex;
   justify-content: center;
-  align-items: center; /* centrer verticalement */
+  align-items: center;
 }
 
 .right img {
   width: 100%;
-  max-width: 480px;
+  max-width: 500px;
+  max-height: 650px;
   object-fit: cover;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -175,10 +176,24 @@ onMounted(async () => {
   line-height: 1.5;
 }
 
-/* --- RESPONSIVE --- */
+@media (max-width: 1400px) {
+  .right img {
+    max-width: 450px;
+    max-height: 600px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .right img {
+    max-width: 420px;
+    max-height: 550px;
+  }
+}
+
 @media (max-width: 992px) {
   .row {
     flex-direction: column;
+    gap: 30px;
   }
 
   .right {
@@ -186,8 +201,63 @@ onMounted(async () => {
     margin-bottom: 30px;
   }
 
+  .right img {
+    max-width: 400px; 
+    max-height: 350px; 
+    width: 80%; 
+    background: red;
+  }
+
   .main-title {
     font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .right img {
+    max-width: 350px; 
+    max-height: 300px;
+    width: 75%; 
+  }
+
+  .main-title {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  .right img {
+    max-width: 300px;
+    max-height: 250px; 
+    width: 70%; 
+  }
+
+  .main-title {
+    font-size: 18px;
+  }
+
+  .attributions-items .title h3 {
+    font-size: 16px;
+  }
+
+  .attributions-items .desc p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 375px) {
+  .right img {
+    max-width: 250px; 
+    max-height: 200px; 
+    width: 65%; 
+  }
+
+  .main-title {
+    font-size: 17px;
   }
 }
 </style>
