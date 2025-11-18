@@ -202,7 +202,6 @@ defineExpose({
   list-style: none;
   padding: 0;
   margin: 0 0 30px 0;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
   flex-wrap: wrap;
 }
 
@@ -246,7 +245,6 @@ defineExpose({
 }
 
 .page-title {
-  font-family: 'Playfair Display', 'Georgia', serif;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.2;
@@ -255,7 +253,6 @@ defineExpose({
 }
 
 .page-description {
-  font-family: 'Inter', 'Segoe UI', sans-serif;
   font-size: 1.1rem;
   font-weight: 400;
   line-height: 1.6;

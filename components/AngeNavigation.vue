@@ -162,7 +162,6 @@ export default {
   border-radius: 2px;
 }
 
-/* ===== SOUS-MENUS EN COLONNE ===== */
 .site-main-menu .has-children .sub-menu {
   position: absolute;
   top: 100%;

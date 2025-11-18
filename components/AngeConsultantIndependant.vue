@@ -1,5 +1,5 @@
 <template>
-    <div class="consultants-section container mt-5">
+    <div class="consultants-section container mt-5 mb-5">
         <div class="title mb-5 mt-5 text-center">
             <h5 class="subtitle">Consultants indépendants</h5>
             <h2 class="main-title">Bâtir un avenir durable par la gestion environnementale</h2>

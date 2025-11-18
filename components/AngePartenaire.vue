@@ -148,7 +148,7 @@ export default {
 <style scoped>
 .brand-section {
   background: #f8f9fa;
-  padding: 60px 0;
+  padding: 80px 0; 
 }
 
 .brand-wrapper {
@@ -161,7 +161,8 @@ export default {
 
 .brand-list {
   width: 100%;
-  max-width: 1200px;
+  height: 180px; 
+  max-width: 1400px; 
   margin: 0 auto;
 }
 
@@ -169,20 +170,22 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 120px;
-  padding: 15px;
+  height: 160px; 
+  padding: 25px; 
   background: transparent;
-  border-radius: 8px;
+  border-radius: 12px; 
   transition: all 0.3s ease;
 }
 
 .brand:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  background: white;
 }
 
 .brand-image {
   max-width: 100%;
-  max-height: 80px;
+  max-height: 120px; /* Augmenté la hauteur max */
+  min-height: 80px; /* Hauteur minimum */
   width: auto;
   height: auto;
   object-fit: contain;
@@ -190,13 +193,14 @@ export default {
 }
 
 .brand:hover .brand-image {
-  transform: scale(1.05);
+  transform: scale(1.1); /* Zoom légèrement augmenté */
 }
 
 /* Centrage amélioré pour Swiper */
 .swiper {
   width: 100%;
   margin: 0 auto;
+  padding: 20px 0; /* Padding ajouté */
 }
 
 .swiper-wrapper {
@@ -211,10 +215,96 @@ export default {
   height: auto;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments - TAILLES AUGMENTÉES */
 @media (max-width: 1399px) {
   .brand-list {
-    max-width: 1140px;
+    max-width: 1300px;
+    height: 170px;
+  }
+  
+  .brand {
+    height: 150px;
+    padding: 22px;
+  }
+  
+  .brand-image {
+    max-height: 110px;
+    min-height: 75px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .brand-section {
+    padding: 70px 0;
+  }
+  
+  .brand-list {
+    max-width: 1100px;
+    height: 160px;
+  }
+  
+  .brand {
+    height: 140px;
+    padding: 20px;
+  }
+  
+  .brand-image {
+    max-height: 100px;
+    min-height: 70px;
+  }
+}
+
+@media (max-width: 991px) {
+  .brand-section {
+    padding: 60px 0;
+  }
+  
+  .brand-list {
+    max-width: 900px;
+    height: 150px;
+  }
+  
+  .brand {
+    height: 130px;
+    padding: 18px;
+  }
+  
+  .brand-image {
+    max-height: 90px;
+    min-height: 65px;
+  }
+}
+
+@media (max-width: 767px) {
+  .brand-section {
+    padding: 50px 0;
+  }
+  
+  .brand-list {
+    max-width: 700px;
+    height: 140px;
+  }
+  
+  .brand {
+    height: 120px;
+    padding: 15px;
+  }
+  
+  .brand-image {
+    max-height: 80px;
+    min-height: 60px;
+  }
+}
+
+@media (max-width: 575px) {
+  .brand-section {
+    padding: 40px 0;
+  }
+  
+  .brand-list {
+    max-width: 100%;
+    padding: 0 20px;
+    height: 130px;
   }
   
   .brand {
@@ -223,17 +313,19 @@ export default {
   }
   
   .brand-image {
-    max-height: 75px;
+    max-height: 70px;
+    min-height: 55px;
   }
 }
 
-@media (max-width: 1199px) {
+@media (max-width: 374px) {
   .brand-section {
-    padding: 50px 0;
+    padding: 35px 0;
   }
   
   .brand-list {
-    max-width: 960px;
+    height: 120px;
+    padding: 0 15px;
   }
   
   .brand {
@@ -242,76 +334,15 @@ export default {
   }
   
   .brand-image {
-    max-height: 70px;
-  }
-}
-
-@media (max-width: 991px) {
-  .brand-section {
-    padding: 40px 0;
-  }
-  
-  .brand-list {
-    max-width: 720px;
-  }
-  
-  .brand {
-    height: 90px;
-    padding: 8px;
-  }
-  
-  .brand-image {
     max-height: 65px;
+    min-height: 50px;
   }
 }
 
-@media (max-width: 767px) {
-  .brand-section {
-    padding: 30px 0;
-  }
-  
-  .brand-list {
-    max-width: 540px;
-  }
-  
-  .brand {
-    height: 80px;
-    padding: 6px;
-  }
-  
-  .brand-image {
-    max-height: 60px;
-  }
-}
-
-@media (max-width: 575px) {
-  .brand-section {
-    padding: 25px 0;
-  }
-  
-  .brand-list {
-    max-width: 100%;
-    padding: 0 15px;
-  }
-  
-  .brand {
-    height: 70px;
-    padding: 5px;
-  }
-  
-  .brand-image {
-    max-height: 50px;
-  }
-}
-
-@media (max-width: 374px) {
-  .brand {
-    height: 65px;
-    padding: 4px;
-  }
-  
-  .brand-image {
-    max-height: 45px;
-  }
+/* Animation de chargement améliorée */
+.spinner-grow {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 5px;
 }
 </style>

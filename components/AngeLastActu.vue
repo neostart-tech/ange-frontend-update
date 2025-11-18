@@ -128,6 +128,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .section-header {
   margin-bottom: 40px;
 }
@@ -152,7 +153,7 @@ export default {
   font-weight: 700;
   margin-bottom: 12px;
   line-height: 1.2;
-  font-family: 'Work Sans', sans-serif;
+  // font-family: 'times new roman';
 }
 
 .section-subtitle {
@@ -509,7 +510,7 @@ export default {
 
 .blog-date {
   color: rgba(18, 18, 18, 0.8);
-  font-family: Raleway;
+  // font-family: 'times new roman', sans-serif;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 15px;
@@ -529,7 +530,7 @@ export default {
 
 .title a {
   color: #000;
-  font-family: "Work Sans";
+  // font-family: "times new roman", sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.4;
@@ -547,7 +548,7 @@ export default {
 
 .lire-suite-btn {
   color: #0a8fbe;
-  font-family: "Work Sans";
+  // font-family: "times new roman", sans-serif;
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;

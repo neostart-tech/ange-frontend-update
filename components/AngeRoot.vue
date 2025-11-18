@@ -7,3 +7,11 @@
     <AngeFooter />
   </div>
 </template>
+
+
+<style scoped>
+body {
+  font-family: 'times new roman' !important;
+}
+
+</style>

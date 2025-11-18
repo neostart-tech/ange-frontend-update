@@ -1,6 +1,5 @@
 <template>
   <div class="header-wrapper">
-    <!-- Publicité au-dessus du header -->
     <AngePublicite 
       :class="{ 'is-hidden': isSticky }" 
       ref="publicite"
@@ -26,7 +25,6 @@
               </div>
             </div>
 
-            <!-- Partie 2: Navigation principale -->
             <div class="col d-flex justify-content-center">
               <div class="menu-column-area">
                 <AngeNavigation :class="{ 'is-sticky': isSticky }" />
@@ -188,6 +186,7 @@ export default {
 </script>
 
 <style scoped>
+
 .header-wrapper {
   position: relative;
 }
@@ -269,7 +268,7 @@ export default {
   display: block;
   width: 25px;
   height: 3px;
-  background-color: #333;
+  background-color: transparent !important;
   transition: all 0.3s ease;
 }
 
@@ -278,11 +277,6 @@ export default {
 .header-section.header-transparent .header-mobile-menu-toggle .icon-bottom {
   background-color: white;
 }
-
-
-
-/* ========== TAILLES DES LOGOS AVEC MARGES ========== */
-
 /* Logo ANGE Desktop */
 .d-none.d-xl-flex .col-auto:first-child img {
   max-width: 100px;
@@ -307,7 +301,7 @@ export default {
 .d-xl-none .col-auto:last-child img {
   max-width: 80px;
   height: auto;
-  margin-right: 10px; /* Marge à droite */
+  margin-right: 10px; 
 }
 
 /* Menu hamburger Mobile */
@@ -372,7 +366,6 @@ export default {
   display: none !important;
 }
 
-/* ========== CORRECTIONS RESPONSIVE AVEC MARGES ========== */
 
 /* Desktop (1200px+) */
 @media (max-width: 1800px) {
