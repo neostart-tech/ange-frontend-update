@@ -45,20 +45,22 @@
       <li :class="{ 'active-link': isActiveProjects }" class="has-children">
         <NuxtLink to="#">Projets</NuxtLink>
         <ul class="sub-menu">
-          <li>
-            <NuxtLink to="/projet/pqat">PQAT</NuxtLink>
-          </li>
+         
           <li>
             <NuxtLink to="/projet/qedd">QEDD</NuxtLink>
           </li>
-          <li>
-            <NuxtLink to="/projet/cbit">CBIT</NuxtLink>
-          </li>
+        
           <li>
             <NuxtLink to="/projet/paseit">PASIET</NuxtLink>
           </li>
           <li>
             <NuxtLink to="/projet/pnade">PNADE</NuxtLink>
+          </li>
+           <li>
+            <NuxtLink to="/projet/pqat">PQAT</NuxtLink>
+          </li>
+            <li>
+            <NuxtLink to="/projet/cbit">CBIT</NuxtLink>
           </li>
         </ul>
       </li>
