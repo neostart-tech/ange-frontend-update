@@ -4,10 +4,10 @@
       <div class="feux-content">
         <!-- Année en petit -->
         <!-- <div class="feux-year">2024</div> -->
-        
+
         <!-- Titre principal -->
         <h2 class="feux-title">Statistiques des feux de végétation</h2>
-        
+
         <!-- Les trois statistiques -->
         <div class="feux-stats-grid">
           <!-- 2020-2021 -->
@@ -22,6 +22,17 @@
               Nombre de superficie brulée (km²) année 2020-2021
             </div>
           </div>
+          <div class="feux-stat-item" v-else>
+            <div class="feux-icon">
+              <i class="fa fa-fire-flame-curved"></i>
+            </div>
+            <div class="feux-value counter-stat-env">
+              {{ "6843,22" }}
+            </div>
+            <div class="feux-description">
+              Nombre de superficie brulée (km²) année 2020-2021
+            </div>
+          </div>
 
           <!-- 2021-2022 -->
           <div class="feux-stat-item" v-if="getStatistiqueByAnnee('2021-2022')">
@@ -29,12 +40,24 @@
               <i class="fa fa-fire-flame-curved"></i>
             </div>
             <div class="feux-value counter-stat-env">
-              {{ formatNumber(getStatistiqueByAnnee('2021-2022')?.valeur ) }}
+              {{ formatNumber(getStatistiqueByAnnee('2021-2022')?.valeur) }}
             </div>
             <div class="feux-description">
               Nombre de superficie brulée (km²) année 2021-2022
             </div>
           </div>
+          <div class="feux-stat-item" v-else>
+            <div class="feux-icon">
+              <i class="fa fa-fire-flame-curved"></i>
+            </div>
+            <div class="feux-value counter-stat-env">
+              {{ "15397,27" }}
+            </div>
+            <div class="feux-description">
+              Nombre de superficie brulée (km²) année 2021-2022
+            </div>
+          </div>
+
 
           <!-- 2022-2023 -->
           <div class="feux-stat-item" v-if="getStatistiqueByAnnee('2022-2023')">
@@ -43,6 +66,17 @@
             </div>
             <div class="feux-value counter-stat-env">
               {{ formatNumber(getStatistiqueByAnnee('2022-2023')?.valeur) }}
+            </div>
+            <div class="feux-description">
+              Nombre de superficie brulée (km²) année 2022-2023
+            </div>
+          </div>
+          <div class="feux-stat-item" v-else>
+            <div class="feux-icon">
+              <i class="fa fa-fire-flame-curved"></i>
+            </div>
+            <div class="feux-value counter-stat-env">
+              {{ "11568,68" }}
             </div>
             <div class="feux-description">
               Nombre de superficie brulée (km²) année 2022-2023
@@ -62,7 +96,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Call to action -->
         <div class="feux-cta">
           <NuxtLink to="feux-de-vegetation" class="feux-btn">
@@ -76,82 +110,82 @@
 
 <script>
 export default {
-    data() {
-        return {
-            isLoading: false,
-            statistique: [],
-        };
-    },
+  data() {
+    return {
+      isLoading: false,
+      statistique: [],
+    };
+  },
 
-    computed: {
-        hasData() {
-            return this.statistique && this.statistique.length > 0;
+  computed: {
+    hasData() {
+      return this.statistique && this.statistique.length > 0;
+    }
+  },
+
+  methods: {
+    // Récupérer les données
+    async fetchData() {
+      this.isLoading = true;
+      try {
+        const response = await this.$axios.get(`/feux-de-vegetation/liste`);
+        const data = await response.data.data;
+        if (data) {
+          this.statistique = data;
+          this.isLoading = false;
+
+          // Initialiser le compteur après le chargement des données
+          this.$nextTick(() => {
+            this.initCounter();
+          });
         }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        this.isLoading = false;
+      }
     },
 
-    methods: {
-        // Récupérer les données
-        async fetchData() {
-            this.isLoading = true;
-            try {
-                const response = await this.$axios.get(`/feux-de-vegetation/liste`);
-                const data = await response.data.data;
-                if (data) {
-                    this.statistique = data;
-                    this.isLoading = false;
-                    
-                    // Initialiser le compteur après le chargement des données
-                    this.$nextTick(() => {
-                        this.initCounter();
-                    });
-                }
-            } catch (error) {
-                console.error("Error fetching data:", error);
-                this.isLoading = false;
+    // Trouver une statistique par année
+    getStatistiqueByAnnee(annee) {
+      if (!this.hasData) return null;
+      return this.statistique.find(item => item.annee === annee);
+    },
+
+    // Formater les nombres (remplacer le point par une virgule)
+    formatNumber(value) {
+      if (!value) return '0';
+      return value.toString().replace('.', ',');
+    },
+
+    // Initialiser l'animation du compteur
+    initCounter() {
+      const counterElements = this.$el.querySelectorAll(".counter-stat-env");
+      const callback = (entries) => {
+        entries.forEach((entry) => {
+          const el = entry.target;
+          if (entry.isIntersecting && !el.classList.contains("is-visible")) {
+            // Utiliser counterUp si disponible, sinon afficher directement
+            if (typeof counterUp === 'function') {
+              counterUp(el, {
+                duration: 2000,
+                delay: 16,
+              });
             }
-        },
+            el.classList.add("is-visible");
+          }
+        });
+      };
 
-        // Trouver une statistique par année
-        getStatistiqueByAnnee(annee) {
-            if (!this.hasData) return null;
-            return this.statistique.find(item => item.annee === annee);
-        },
+      const observer = new IntersectionObserver(callback, { threshold: 0.5 });
+      counterElements.forEach((el) => {
+        observer.observe(el);
+      });
+    }
+  },
 
-        // Formater les nombres (remplacer le point par une virgule)
-        formatNumber(value) {
-            if (!value) return '0';
-            return value.toString().replace('.', ',');
-        },
-
-        // Initialiser l'animation du compteur
-        initCounter() {
-            const counterElements = this.$el.querySelectorAll(".counter-stat-env");
-            const callback = (entries) => {
-                entries.forEach((entry) => {
-                    const el = entry.target;
-                    if (entry.isIntersecting && !el.classList.contains("is-visible")) {
-                        // Utiliser counterUp si disponible, sinon afficher directement
-                        if (typeof counterUp === 'function') {
-                            counterUp(el, {
-                                duration: 2000,
-                                delay: 16,
-                            });
-                        }
-                        el.classList.add("is-visible");
-                    }
-                });
-            };
-            
-            const observer = new IntersectionObserver(callback, { threshold: 0.5 });
-            counterElements.forEach((el) => {
-                observer.observe(el);
-            });
-        }
-    },
-
-    mounted() {
-        this.fetchData();
-    },
+  mounted() {
+    this.fetchData();
+  },
 };
 </script>
 
@@ -329,20 +363,20 @@ export default {
   .feux-content {
     max-width: 1320px;
   }
-  
+
   .feux-stats-grid {
     gap: 60px;
   }
-  
+
   .feux-icon {
     width: 124px;
     height: 146px;
   }
-  
+
   .feux-icon i {
     font-size: 80px;
   }
-  
+
   .feux-value {
     font-size: 32px;
   }
@@ -353,12 +387,12 @@ export default {
   .feux-stats-grid {
     gap: 50px;
   }
-  
+
   .feux-icon {
     width: 110px;
     height: 130px;
   }
-  
+
   .feux-icon i {
     font-size: 75px;
   }
@@ -370,31 +404,31 @@ export default {
     padding: 70px 20px;
     min-height: 50vh;
   }
-  
+
   .feux-stats-grid {
     gap: 35px;
   }
-  
+
   .feux-title {
     font-size: 28px;
     margin-bottom: 50px;
   }
-  
+
   .feux-icon {
     width: 90px;
     height: 110px;
     margin-bottom: 20px;
   }
-  
+
   .feux-icon i {
     font-size: 60px;
   }
-  
+
   .feux-value {
     font-size: 26px;
     margin-bottom: 12px;
   }
-  
+
   .feux-description {
     font-size: 13px;
     max-width: 220px;
@@ -407,44 +441,44 @@ export default {
     padding: 60px 20px;
     min-height: auto;
   }
-  
+
   .feux-stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 40px;
     margin-bottom: 50px;
   }
-  
+
   .feux-title {
     font-size: 26px;
     margin-bottom: 45px;
     padding: 0 20px;
   }
-  
+
   .feux-year {
     font-size: 15px;
   }
-  
+
   .feux-icon {
     width: 85px;
     height: 100px;
     margin-bottom: 18px;
   }
-  
+
   .feux-icon i {
     font-size: 55px;
   }
-  
+
   .feux-value {
     font-size: 24px;
     margin-bottom: 10px;
   }
-  
+
   .feux-description {
     font-size: 13px;
     max-width: 250px;
     min-height: 60px;
   }
-  
+
   .feux-btn {
     padding: 14px 32px;
     font-size: 15px;
@@ -456,55 +490,55 @@ export default {
   .feux-background {
     padding: 50px 15px;
   }
-  
+
   .feux-content {
     padding: 0 15px;
   }
-  
+
   .feux-stats-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 30px;
     margin-bottom: 45px;
   }
-  
+
   .feux-title {
     font-size: 24px;
     margin-bottom: 40px;
     padding: 0 15px;
   }
-  
+
   .feux-year {
     font-size: 14px;
     margin-bottom: 12px;
   }
-  
+
   .feux-icon {
     width: 75px;
     height: 90px;
     margin-bottom: 15px;
   }
-  
+
   .feux-icon i {
     font-size: 50px;
   }
-  
+
   .feux-value {
     font-size: 22px;
     margin-bottom: 8px;
     min-height: 35px;
   }
-  
+
   .feux-description {
     font-size: 12px;
     max-width: 200px;
     min-height: 70px;
     line-height: 1.3;
   }
-  
+
   .feux-cta {
     margin-top: 35px;
   }
-  
+
   .feux-btn {
     padding: 12px 28px;
     font-size: 14px;
@@ -516,55 +550,55 @@ export default {
   .feux-background {
     padding: 40px 12px;
   }
-  
+
   .feux-content {
     padding: 0 12px;
   }
-  
+
   .feux-stats-grid {
     grid-template-columns: 1fr;
     gap: 35px;
     margin-bottom: 40px;
   }
-  
+
   .feux-title {
     font-size: 22px;
     margin-bottom: 35px;
     padding: 0 10px;
   }
-  
+
   .feux-year {
     font-size: 13px;
     margin-bottom: 10px;
   }
-  
+
   .feux-icon {
     width: 70px;
     height: 85px;
     margin-bottom: 15px;
   }
-  
+
   .feux-icon i {
     font-size: 45px;
   }
-  
+
   .feux-value {
     font-size: 20px;
     margin-bottom: 8px;
     min-height: 30px;
   }
-  
+
   .feux-description {
     font-size: 12px;
     max-width: 280px;
     min-height: 50px;
     line-height: 1.4;
   }
-  
+
   .feux-cta {
     margin-top: 30px;
   }
-  
+
   .feux-btn {
     padding: 12px 25px;
     font-size: 14px;
@@ -576,54 +610,54 @@ export default {
   .feux-background {
     padding: 35px 10px;
   }
-  
+
   .feux-content {
     padding: 0 10px;
   }
-  
+
   .feux-stats-grid {
     gap: 30px;
     margin-bottom: 35px;
   }
-  
+
   .feux-title {
     font-size: 20px;
     margin-bottom: 30px;
     padding: 0;
   }
-  
+
   .feux-year {
     font-size: 12px;
     margin-bottom: 8px;
   }
-  
+
   .feux-icon {
     width: 65px;
     height: 80px;
     margin-bottom: 12px;
   }
-  
+
   .feux-icon i {
     font-size: 40px;
   }
-  
+
   .feux-value {
     font-size: 18px;
     margin-bottom: 6px;
     min-height: 25px;
   }
-  
+
   .feux-description {
     font-size: 11px;
     max-width: 250px;
     min-height: 45px;
     line-height: 1.3;
   }
-  
+
   .feux-cta {
     margin-top: 25px;
   }
-  
+
   .feux-btn {
     padding: 10px 22px;
     font-size: 13px;
@@ -635,52 +669,52 @@ export default {
   .feux-background {
     padding: 30px 8px;
   }
-  
+
   .feux-content {
     padding: 0 8px;
   }
-  
+
   .feux-stats-grid {
     gap: 25px;
     margin-bottom: 30px;
   }
-  
+
   .feux-title {
     font-size: 18px;
     margin-bottom: 25px;
   }
-  
+
   .feux-year {
     font-size: 11px;
     margin-bottom: 6px;
   }
-  
+
   .feux-icon {
     width: 60px;
     height: 70px;
     margin-bottom: 10px;
   }
-  
+
   .feux-icon i {
     font-size: 35px;
   }
-  
+
   .feux-value {
     font-size: 16px;
     margin-bottom: 5px;
   }
-  
+
   .feux-description {
     font-size: 10px;
     max-width: 220px;
     min-height: 40px;
     line-height: 1.2;
   }
-  
+
   .feux-cta {
     margin-top: 20px;
   }
-  
+
   .feux-btn {
     padding: 8px 20px;
     font-size: 12px;
@@ -693,28 +727,28 @@ export default {
     padding: 30px 15px;
     min-height: auto;
   }
-  
+
   .feux-stats-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-bottom: 30px;
   }
-  
+
   .feux-icon {
     width: 60px;
     height: 70px;
     margin-bottom: 10px;
   }
-  
+
   .feux-icon i {
     font-size: 35px;
   }
-  
+
   .feux-value {
     font-size: 16px;
     margin-bottom: 5px;
   }
-  
+
   .feux-description {
     font-size: 10px;
     min-height: 35px;
