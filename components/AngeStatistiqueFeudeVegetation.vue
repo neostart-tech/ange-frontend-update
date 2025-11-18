@@ -3,40 +3,62 @@
     <div class="feux-background">
       <div class="feux-content">
         <!-- Année en petit -->
-        <div class="feux-year">2024</div>
+        <!-- <div class="feux-year">2024</div> -->
         
         <!-- Titre principal -->
         <h2 class="feux-title">Statistiques des feux de végétation</h2>
         
         <!-- Les trois statistiques -->
         <div class="feux-stats-grid">
-          <div class="feux-stat-item">
+          <!-- 2020-2021 -->
+          <div class="feux-stat-item" v-if="getStatistiqueByAnnee('2020-2021')">
             <div class="feux-icon">
               <i class="fa fa-fire-flame-curved"></i>
             </div>
-            <div class="feux-value">6843,21</div>
+            <div class="feux-value counter-stat-env">
+              {{ formatNumber(getStatistiqueByAnnee('2020-2021')?.valeur) }}
+            </div>
             <div class="feux-description">
               Nombre de superficie brulée (km²) année 2020-2021
             </div>
           </div>
 
-          <div class="feux-stat-item">
+          <!-- 2021-2022 -->
+          <div class="feux-stat-item" v-if="getStatistiqueByAnnee('2021-2022')">
             <div class="feux-icon">
               <i class="fa fa-fire-flame-curved"></i>
             </div>
-            <div class="feux-value">15397,27</div>
+            <div class="feux-value counter-stat-env">
+              {{ formatNumber(getStatistiqueByAnnee('2021-2022')?.valeur ) }}
+            </div>
             <div class="feux-description">
               Nombre de superficie brulée (km²) année 2021-2022
             </div>
           </div>
 
-          <div class="feux-stat-item">
+          <!-- 2022-2023 -->
+          <div class="feux-stat-item" v-if="getStatistiqueByAnnee('2022-2023')">
             <div class="feux-icon">
               <i class="fa fa-fire-flame-curved"></i>
             </div>
-            <div class="feux-value">11568,68</div>
+            <div class="feux-value counter-stat-env">
+              {{ formatNumber(getStatistiqueByAnnee('2022-2023')?.valeur) }}
+            </div>
             <div class="feux-description">
               Nombre de superficie brulée (km²) année 2022-2023
+            </div>
+          </div>
+
+          <!-- Fallback si aucune donnée -->
+          <div v-if="!hasData" class="feux-stat-item">
+            <div class="feux-icon">
+              <i class="fa fa-fire-flame-curved"></i>
+            </div>
+            <div class="feux-value">
+              Aucune donnée
+            </div>
+            <div class="feux-description">
+              Chargement des données...
             </div>
           </div>
         </div>
@@ -52,7 +74,89 @@
   </div>
 </template>
 
+<script>
+export default {
+    data() {
+        return {
+            isLoading: false,
+            statistique: [],
+        };
+    },
+
+    computed: {
+        hasData() {
+            return this.statistique && this.statistique.length > 0;
+        }
+    },
+
+    methods: {
+        // Récupérer les données
+        async fetchData() {
+            this.isLoading = true;
+            try {
+                const response = await this.$axios.get(`/feux-de-vegetation/liste`);
+                const data = await response.data.data;
+                if (data) {
+                    this.statistique = data;
+                    this.isLoading = false;
+                    
+                    // Initialiser le compteur après le chargement des données
+                    this.$nextTick(() => {
+                        this.initCounter();
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                this.isLoading = false;
+            }
+        },
+
+        // Trouver une statistique par année
+        getStatistiqueByAnnee(annee) {
+            if (!this.hasData) return null;
+            return this.statistique.find(item => item.annee === annee);
+        },
+
+        // Formater les nombres (remplacer le point par une virgule)
+        formatNumber(value) {
+            if (!value) return '0';
+            return value.toString().replace('.', ',');
+        },
+
+        // Initialiser l'animation du compteur
+        initCounter() {
+            const counterElements = this.$el.querySelectorAll(".counter-stat-env");
+            const callback = (entries) => {
+                entries.forEach((entry) => {
+                    const el = entry.target;
+                    if (entry.isIntersecting && !el.classList.contains("is-visible")) {
+                        // Utiliser counterUp si disponible, sinon afficher directement
+                        if (typeof counterUp === 'function') {
+                            counterUp(el, {
+                                duration: 2000,
+                                delay: 16,
+                            });
+                        }
+                        el.classList.add("is-visible");
+                    }
+                });
+            };
+            
+            const observer = new IntersectionObserver(callback, { threshold: 0.5 });
+            counterElements.forEach((el) => {
+                observer.observe(el);
+            });
+        }
+    },
+
+    mounted() {
+        this.fetchData();
+    },
+};
+</script>
+
 <style scoped>
+/* Vos styles CSS restent exactement les mêmes */
 .feux-vegetation-section {
   margin: 0;
   width: 100%;

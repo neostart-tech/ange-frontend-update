@@ -2,13 +2,69 @@
   <div class="container">
     <div class="flash-info-label">Flash info :</div>
     <div class="flash-info-content">
-      <div class="flash-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore
-        magna ali
+      <div class="flash-text-wrapper">
+        <marquee 
+          behavior="scroll" 
+          direction="left" 
+          scrollamount="10"
+          class="flash-marquee"
+        >
+          <span 
+            v-for="(info, index) in flashInfos" 
+            :key="index" 
+            class="flash-item"
+          >
+            {{ info.description_zone_pub }}
+            <span class="separator" v-if="index < flashInfos.length - 1"> • </span>
+          </span>
+        </marquee>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      flashInfos: [],
+      isLoading: false
+    };
+  },
+
+  methods: {
+    async fetchFlashInfos() {
+      this.isLoading = true;
+      try {
+        const response = await this.$axios.get(`/votre-endpoint-api`); // Remplacez par votre endpoint
+        const data = await response.data.data;
+        if (data && data.length > 0) {
+          this.flashInfos = data;
+        }
+      } catch (error) {
+        console.error("Error fetching flash infos:", error);
+        // Données de fallback basées sur votre JSON
+        this.flashInfos = [
+          {
+            "libelle_zone_pub": null,
+            "description_zone_pub": "L'ANGE informe les promoteurs de projets de développement que les demandes de certificat de conformité environnementale se font en ligne sur le : https://service-public.gouv.tg/ et www.ange.tg depuis le 1er octobre 2025."
+          },
+          {
+            "libelle_zone_pub": null,
+            "description_zone_pub": "L'agence nationale de gestion de l'environnement, au cœur de la gouvernance environnementale."
+          }
+        ];
+      } finally {
+        this.isLoading = false;
+      }
+    }
+  },
+
+  mounted() {
+    this.fetchFlashInfos();
+  }
+};
+</script>
 
 <style scoped>
 .container {
@@ -17,7 +73,6 @@
   align-items: stretch;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 2px solid #e3f2fd;
-  /* border-radius: 12px; */
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -25,6 +80,9 @@
   margin: 200px auto; 
   margin-bottom: -20px;
   width: calc(100% - 40px); 
+    background: red !important;
+    padding: 0;
+
 }
 
 .container:hover {
@@ -43,12 +101,12 @@
   letter-spacing: 1px;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Changé de center à flex-start */
+  justify-content: flex-start;
   min-width: 140px;
-  text-align: left; /* Changé de center à left */
+  text-align: left;
   position: relative;
   overflow: hidden;
-  padding-left: 15px; /* Réduction du padding gauche */
+  padding-left: 15px;
 }
 
 .flash-info-label::before {
@@ -78,18 +136,37 @@
   display: flex;
   align-items: center;
   background: white;
+  overflow: hidden;
 }
 
-.flash-text {
+.flash-text-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.flash-marquee {
+  width: 100%;
+  padding: 5px 0;
   color: #2c3e50;
   font-size: 1rem;
   line-height: 1.6;
-  margin: 0;
   font-weight: 500;
   text-align: left;
 }
 
+.flash-item {
+  white-space: nowrap;
+  display: inline-block;
+}
 
+.separator {
+  color: #146c53;
+  font-weight: bold;
+  margin: 0 20px;
+  font-size: 1.2rem;
+}
+
+/* Responsive */
 @media (max-width: 1200px) {
   .container {
     max-width: 1000px;
@@ -98,7 +175,6 @@
   }
 }
 
-/* Tablettes portrait */
 @media (max-width: 1024px) {
   .container {
     max-width: 900px;
@@ -109,28 +185,24 @@
   
   .flash-info-label {
     min-width: 130px;
-    padding: 14px 15px; /* Padding réduit */
-    padding-left: 12px; /* Padding gauche spécifique */
+    padding: 14px 15px;
+    padding-left: 12px;
     font-size: 1.05rem;
-    justify-content: flex-start; /* Maintenu */
   }
   
   .flash-info-content {
     padding: 18px 22px;
   }
   
-  .flash-text {
+  .flash-marquee {
     font-size: 0.98rem;
   }
 }
-
 
 @media (max-width: 991px) {
   .container {
     margin-top: 200px;
     margin-bottom: -50px;
-    /* width: 0%;
-    align-content: center !important; */
   }
 }
 
@@ -145,13 +217,13 @@
 
   .flash-info-label {
     min-width: auto;
-    padding: 12px 15px; /* Padding réduit */
-    padding-left: 15px; /* Padding gauche maintenu */
+    padding: 12px 15px;
+    padding-left: 15px;
     font-size: 1rem;
     width: 100%;
     box-sizing: border-box;
-    justify-content: flex-start; /* Maintenu */
-    text-align: left; /* Maintenu */
+    justify-content: center;
+    text-align: center;
   }
 
   .flash-info-content {
@@ -160,10 +232,14 @@
     box-sizing: border-box;
   }
   
-  .flash-text {
+  .flash-marquee {
     text-align: center;
     font-size: 0.95rem;
     line-height: 1.5;
+  }
+  
+  .separator {
+    margin: 0 15px;
   }
 }
 
@@ -176,24 +252,26 @@
   }
 
   .flash-info-label {
-    padding: 10px 12px; /* Padding réduit */
-    padding-left: 12px; /* Padding gauche spécifique */
+    padding: 10px 12px;
+    padding-left: 12px;
     font-size: 0.95rem;
     letter-spacing: 0.5px;
-    justify-content: flex-start; /* Maintenu */
   }
 
   .flash-info-content {
     padding: 12px 15px;
   }
 
-  .flash-text {
+  .flash-marquee {
     font-size: 0.9rem;
     line-height: 1.4;
   }
+  
+  .separator {
+    margin: 0 10px;
+  }
 }
 
-/* Petits mobiles */
 @media (max-width: 480px) {
   .container {
     margin: 10px 12px;
@@ -202,20 +280,23 @@
   }
 
   .flash-info-label {
-    padding: 8px 10px; /* Padding réduit */
-    padding-left: 10px; /* Padding gauche spécifique */
+    padding: 8px 10px;
+    padding-left: 10px;
     font-size: 0.9rem;
     letter-spacing: 0.3px;
-    justify-content: flex-start; /* Maintenu */
   }
 
   .flash-info-content {
     padding: 10px 12px;
   }
 
-  .flash-text {
+  .flash-marquee {
     font-size: 0.85rem;
     line-height: 1.4;
+  }
+  
+  .separator {
+    margin: 0 8px;
   }
 }
 
@@ -226,23 +307,25 @@
   }
 
   .flash-info-label {
-    padding: 8px 8px; /* Padding réduit */
-    padding-left: 8px; /* Padding gauche spécifique */
+    padding: 8px 8px;
+    padding-left: 8px;
     font-size: 0.85rem;
-    justify-content: flex-start; /* Maintenu */
   }
 
   .flash-info-content {
     padding: 8px 10px;
   }
 
-  .flash-text {
+  .flash-marquee {
     font-size: 0.8rem;
     line-height: 1.3;
   }
+  
+  .separator {
+    margin: 0 5px;
+  }
 }
 
-/* Écrans très larges */
 @media (min-width: 1600px) {
   .container {
     max-width: 1400px;
@@ -251,16 +334,15 @@
   .flash-info-label {
     min-width: 160px;
     font-size: 1.2rem;
-    padding: 18px 20px; /* Padding ajusté */
-    padding-left: 18px; /* Padding gauche spécifique */
-    justify-content: flex-start; /* Maintenu */
+    padding: 18px 20px;
+    padding-left: 18px;
   }
   
   .flash-info-content {
     padding: 25px 30px;
   }
   
-  .flash-text {
+  .flash-marquee {
     font-size: 1.1rem;
   }
 }
@@ -269,21 +351,20 @@
   .container {
     flex-direction: row;
     margin: 100px 15px;
-
   }
   
   .flash-info-label {
     min-width: 120px;
     width: auto;
-    justify-content: flex-start; /* Maintenu */
-    padding-left: 12px; /* Padding gauche spécifique */
+    justify-content: flex-start;
+    padding-left: 12px;
   }
   
   .flash-info-content {
     width: auto;
   }
   
-  .flash-text {
+  .flash-marquee {
     text-align: left;
   }
 }
@@ -295,6 +376,31 @@
   
   .container:hover {
     transform: none;
+  }
+  
+  .flash-marquee {
+    animation: none;
+    white-space: normal;
+  }
+}
+
+/* Alternative CSS si le marquee HTML n'est pas supporté */
+.no-marquee .flash-text-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.no-marquee .flash-marquee {
+  animation: scrollText 30s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes scrollText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 </style>

@@ -29,6 +29,7 @@
                   :loop="true"
                   :autoplay="{ delay: 2000, disableOnInteraction: false }"
                   :breakpoints="swiperOptions.breakpoints"
+                  :modules="modules"
                 >
                   <swiper-slide
                     class="brand"
@@ -56,15 +57,11 @@
 <script>
 import config from "~~/config";
 
-// Import correct pour Swiper v8+
+// Import correct pour Swiper v8+ - CORRIGÉ
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
-
-// Ou si ça ne marche pas, essayez cette syntaxe alternative :
-// import SwiperCore, { Autoplay } from 'swiper';
-// SwiperCore.use([Autoplay]);
 
 export default {
   components: {
@@ -77,6 +74,7 @@ export default {
       isLoading: false,
       partenaires: [],
       img_url_back: null,
+      modules: [Autoplay],
       swiperOptions: {
         breakpoints: {
           // Grands écrans (≥1400px)
@@ -156,10 +154,15 @@ export default {
 .brand-wrapper {
   width: 100%;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .brand-list {
   width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .brand {
@@ -168,15 +171,13 @@ export default {
   justify-content: center;
   height: 120px;
   padding: 15px;
-  background: white;
+  background: transparent;
   border-radius: 8px;
-  /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
   transition: all 0.3s ease;
 }
 
 .brand:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
 .brand-image {
@@ -192,8 +193,30 @@ export default {
   transform: scale(1.05);
 }
 
+/* Centrage amélioré pour Swiper */
+.swiper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.swiper-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1399px) {
+  .brand-list {
+    max-width: 1140px;
+  }
+  
   .brand {
     height: 110px;
     padding: 12px;
@@ -207,6 +230,10 @@ export default {
 @media (max-width: 1199px) {
   .brand-section {
     padding: 50px 0;
+  }
+  
+  .brand-list {
+    max-width: 960px;
   }
   
   .brand {
@@ -224,6 +251,10 @@ export default {
     padding: 40px 0;
   }
   
+  .brand-list {
+    max-width: 720px;
+  }
+  
   .brand {
     height: 90px;
     padding: 8px;
@@ -239,6 +270,10 @@ export default {
     padding: 30px 0;
   }
   
+  .brand-list {
+    max-width: 540px;
+  }
+  
   .brand {
     height: 80px;
     padding: 6px;
@@ -252,6 +287,11 @@ export default {
 @media (max-width: 575px) {
   .brand-section {
     padding: 25px 0;
+  }
+  
+  .brand-list {
+    max-width: 100%;
+    padding: 0 15px;
   }
   
   .brand {

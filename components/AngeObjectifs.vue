@@ -3,7 +3,7 @@
     <div class="content-wrapper">
       <div class="image-section">
         <img
-          src="/images/bg/bg-ange-03.jpg"
+          src="/images/bg/about-3.png"
           alt="Background ANGE"
           class="background-image"
         />

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 mb-5">
     <div class="title text-center">
       <h5 class="subtitle">Qui sommes-nous</h5>
       <h2 class="main-title">Textes fondateurs</h2>
@@ -8,9 +8,9 @@
         et de promotion du développement durable, la loi
         n° 2008-005 portant loi-cadre sur l'environnement au Togo, en son article 15 a
       </p>
-      <button class="btn-doc">
+      <a href="/documentation" class="btn-doc">
         Documenteque <i class="fa fa-arrow-right"></i>
-      </button>
+      </a>
     </div>
 
     <div class="cards-wrapper">

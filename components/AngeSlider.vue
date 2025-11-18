@@ -293,7 +293,7 @@ export default {
 
 .title {
   color: white;
-  font-size: 30px;
+  font-size: 20px !important;
   font-weight: 700;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.8), 
@@ -336,7 +336,7 @@ export default {
 
 .btn {
   padding: 12px 30px;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -471,7 +471,7 @@ export default {
   width: 100%;
   height: 180px;
   border: none;
-  border-radius: 15px;
+  border-radius: 0 !important;
   transition: all 0.3s ease;
 }
 

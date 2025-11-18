@@ -81,7 +81,7 @@
                     <div class="content-overlay"></div>
                     
                     <div class="stats-content">
-                        <div class="stats-year">2024</div>
+                        <div class="stats-year">{{plainteStatistique.annee ?? "2024"}}</div>
                         <h3 class="stats-title">Statistiques des plaintes reçues à l'ANGE</h3>
                         <p class="stats-description">
                             Dans un coin tranquille de la ville, une petite boutique de curiosités attire les passants avec
@@ -94,11 +94,11 @@
 
             <!-- Quatrième colonne - Bas (Statistiques plaintes) -->
             <div class="stats-numbers-col">
-                <div class="stats-numbers-grid mt-5">
+                <div class="stats-numbers-grid">
                     <!-- Première ligne - 2 statistiques -->
                     <div class="stat-item">
                         <div class="indicator-card h-100" style=" border: 1px solid #40bc48;">
-                            <h2 class="counter">05</h2>
+                            <h2 class="counter">{{ plainteStatistique.psm ?? "05" }}</h2>
                             <p class="font-weight-bold">
                                 Nombre de plainte pour le secteur des Mines
                             </p>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="stat-item">
                         <div class="indicator-card h-100" style=" border: 1px solid #40bc48;">
-                            <h2 class="counter">02</h2>
+                            <h2 class="counter">{{plainteStatistique.psagl ?? "01"}}</h2>
                             <p class="font-weight-bold">
                                 Nombre de plainte pour le secteur de l'Agroalimentaire
                             </p>
@@ -116,7 +116,7 @@
                     <!-- Deuxième ligne - 2 statistiques -->
                     <div class="stat-item">
                         <div class="indicator-card h-100" style=" border: 1px solid #40bc48;">
-                            <h2 class="counter">01</h2>
+                            <h2 class="counter">{{plainteStatistique.psagp ?? "01"}}</h2>
                             <p class="font-weight-bold">
                                 Nombre de plainte pour le secteur de l'Agropastorale
                             </p>
@@ -124,7 +124,7 @@
                     </div>
                     <div class="stat-item">
                         <div class="indicator-card h-100" style=" border: 1px solid #40bc48;">
-                            <h2 class="counter">01</h2>
+                            <h2 class="counter">{{plainteStatistique.psi ?? "01"}}</h2>
                             <p class="font-weight-bold">
                                 Nombre de plainte pour le secteur de l'Industrie
                             </p>
@@ -147,11 +147,26 @@ export default {
     data() {
         return {
             isLoading: false,
-            statistique: {}
+            statistique: {},
+            plainteStatistique: {},
         };
     },
 
     methods: {
+           async fetchPlaintStatistique() {
+      this.isLoading = true;
+      try {
+        const response = await this.$axios.get(`/plainte/get-plainte-statistique`);
+        const data = await response.data.data;
+        if (data) {
+          this.plainteStatistique = data;
+          console.log(this.plainteStatistique);
+          this.isLoading = false;
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
         async fetchData() {
             this.isLoading = true;
             try {
@@ -188,6 +203,7 @@ export default {
 
     mounted() {
         this.fetchData();
+        this.fetchPlaintStatistique();
         this.$nextTick(() => {
             const counterElements = this.$el.querySelectorAll(".counter");
             const callback = (entries) => {
@@ -235,7 +251,7 @@ export default {
 
 .stats-text-card {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-radius: 15px;
+    /* border-radius: 15px; */
     padding: 40px;
     flex: 1;
     display: flex;
@@ -347,7 +363,7 @@ export default {
     width: 150px; /* Largeur fixe */
     padding: 10px 20px;
     transition: all 0.3s ease;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     margin-top: auto;
     text-align: center;
 }
@@ -387,7 +403,7 @@ export default {
 
 .indicator-card {
     background: white;
-    border-radius: 5px;
+    /* border-radius: 5px; */
     padding: clamp(15px, 2vw, 25px);
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);

@@ -29,7 +29,7 @@
 
             <!-- Colonne droite -->
             <div class="right">
-                <img ref="rightImg" src="/images/bg/bg_o1.jpg" alt="Image environnement">
+                <img ref="rightImg" src="/images/bg/about-4.png" alt="Image environnement">
             </div>
         </div>
     </section>
@@ -78,6 +78,9 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.container {
+   overflow: hidden;
+}
 .subtitle {
     font-size: 13px;
     color: #007608;

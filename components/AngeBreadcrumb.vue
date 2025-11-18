@@ -13,7 +13,7 @@
                 {{ item.name }}
               </NuxtLink>
               <span v-if="index < breadcrumbsItems.length - 1" class="breadcrumb-separator">
-                >
+                
               </span>
             </li>
           </ul>
@@ -77,7 +77,7 @@ const defaultTitle = computed(() =>
 )
 
 const defaultDescription = computed(() =>
-  props.pageDescription || 'Description par défaut de la page'
+  props.pageDescription || ''
 )
 
 // Fonction d'initialisation
@@ -266,9 +266,7 @@ defineExpose({
 
 /* Responsive */
 @media (max-width: 1199px) {
-  .breadcrumbs-wrapper {
-    margin-top: 105px; /* Hauteur réduite pour tablette */
-  }
+ 
   
   .breadcrumbs-links {
     padding: 50px 30px;
@@ -280,9 +278,7 @@ defineExpose({
 }
 
 @media (max-width: 768px) {
-  .breadcrumbs-wrapper {
-    margin-top: 95px; /* Hauteur réduite pour mobile */
-  }
+
 
   .breadcrumbs-links {
     padding: 40px 20px;
@@ -309,9 +305,7 @@ defineExpose({
 }
 
 @media (max-width: 480px) {
-  .breadcrumbs-wrapper {
-    margin-top: 90px; /* Hauteur réduite pour petit mobile */
-  }
+
 
   .breadcrumbs-section {
     min-height: 250px;

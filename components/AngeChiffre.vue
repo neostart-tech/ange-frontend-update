@@ -17,17 +17,21 @@ export default {
   data() {
     return {
       isLoading: false,
-      statistique: {}
+      statistique: {},
     };
   },
 
   methods: {
+ 
     async fetchData() {
       this.isLoading = true;
       try {
         const response = await this.$axios.get(`/statistiques-eval-env`);
 
+
         const data = await response.data.data;
+        
+       
         if (data) {
           this.statistique = data;
           this.isLoading = false;

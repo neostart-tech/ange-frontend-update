@@ -19,14 +19,14 @@
         </div>
 
         <div class="boutons">
-          <button class="btn-primary">Tout lire</button>
-          <button class="btn-outline">Organigramme</button>
+          <a href="/mot-du-directeur" class="btn-primary">Tout lire</a>
+          <a href="/organigramme"  class="btn-outline">Organigramme</a>
         </div>
       </div>
 
       <!-- Côté droit (image) -->
       <div class="right-side">
-        <img src="/images/bg/bg-ange-03.jpg" alt="Mot du Directeur" />
+        <img src="/images/others/photoDG.jpg" alt="Mot du Directeur" />
       </div>
     </div>
   </div>
@@ -88,7 +88,7 @@
   color: #fff;
   border: none;
   padding: 10px 22px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   cursor: pointer;
   font-weight: 600;
   transition: background 0.3s ease;
@@ -103,7 +103,7 @@
   border: 1.5px solid #007608;
   color: #007608;
   padding: 10px 22px;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   cursor: pointer;
   font-weight: 600;
   transition: all 0.3s ease;

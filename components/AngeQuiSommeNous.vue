@@ -37,13 +37,13 @@
       <div class="enfant-2 droite">
         <div class="d-flex flex-column">
           <div class="img1 mb-3">
-            <img src="/images/others/batiment.jpg" alt="image" class="img-fluid"
+            <img src="/images/bg/about-1.png" alt="image" class="img-fluid"
               style="width: 331px; height: 187px; object-fit: cover;" />
           </div>
           <div class="img2 mb-0">
             <div class="img" style=" border-radius: 0px; ">
-              <img src="/images/others/batiment.jpg" alt="image" class="img-fluid"
-                style="width: 331px; height: 478px; object-fit: cover; border-radius: 0px; " />
+              <img src="/images/bg/about-2.png" alt="image" class="img-fluid"
+                style="width: 331px; height: 400px; object-fit: cover; border-radius: 0px; " />
             </div>
           </div>
           <div class="banner d-flex justify-center text-center flex-column"
@@ -192,13 +192,13 @@ defineExpose({
 }
 
 .img1 img, .img2 img {
-  border-radius: 8px;
+  border-radius: 0 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Banner styles */
 .banner {
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 !important;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   width: 331px !important;
   height: 150px !important;

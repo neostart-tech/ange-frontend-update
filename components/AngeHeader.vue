@@ -234,7 +234,7 @@ export default {
   background-color: #007608;
   color: white !important;
   padding: 10px 20px;
-  border-radius: 6px;
+  /* border-radius: 6px; */
   text-decoration: none;
   font-weight: 600;
   display: flex;

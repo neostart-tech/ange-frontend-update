@@ -2,7 +2,7 @@
   <section class="apropos-section container mb-5">
     <div class="content-wrapper">
       <div class="image-col">
-        <img src="/images/bg/bg-ange-04.jpg" alt="Le PNADE">
+        <img src="/images/bg/about-1.png" alt="Le PNADE">
       </div>
 
       <div class="text-col">
