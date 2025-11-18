@@ -90,6 +90,10 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.attributions-section {
+  margin-top: 20px; /* Marge supérieure réduite */
+}
+
 .subtitle {
   font-size: 13px;
   color: #007608;
@@ -119,7 +123,7 @@ onMounted(async () => {
   flex-wrap: wrap;
   align-items: stretch;
   gap: 40px;
-  margin-top: 40px;
+  margin-top: 30px; /* Marge réduite */
 }
 
 .left {
@@ -176,6 +180,7 @@ onMounted(async () => {
   line-height: 1.5;
 }
 
+/* --- RESPONSIVE AVEC MARGES RÉDUITES --- */
 @media (max-width: 1400px) {
   .right img {
     max-width: 450px;
@@ -191,21 +196,29 @@ onMounted(async () => {
 }
 
 @media (max-width: 992px) {
+  .attributions-section {
+    margin-top: 15px; /* Marge supérieure réduite sur tablette */
+  }
+
   .row {
     flex-direction: column;
-    gap: 30px;
+    gap: 25px; /* Gap réduit */
+    margin-top: 20px; /* Marge réduite */
+  }
+
+  .title {
+    margin-bottom: 30px !important; /* Marge réduite */
   }
 
   .right {
     order: -1;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Marge réduite */
   }
 
   .right img {
     max-width: 400px; 
     max-height: 350px; 
     width: 80%; 
-    background: red;
   }
 
   .main-title {
@@ -214,6 +227,23 @@ onMounted(async () => {
 }
 
 @media (max-width: 768px) {
+  .attributions-section {
+    margin-top: 10px; /* Marge supérieure encore réduite */
+  }
+
+  .row {
+    gap: 20px; /* Gap réduit */
+    margin-top: 15px; /* Marge réduite */
+  }
+
+  .title {
+    margin-bottom: 25px !important; /* Marge réduite */
+  }
+
+  .right {
+    margin-bottom: 15px; /* Marge réduite */
+  }
+
   .right img {
     max-width: 350px; 
     max-height: 300px;
@@ -230,6 +260,23 @@ onMounted(async () => {
 }
 
 @media (max-width: 576px) {
+  .attributions-section {
+    margin-top: 5px; /* Marge minimale */
+  }
+
+  .row {
+    gap: 15px; /* Gap minimal */
+    margin-top: 10px; /* Marge minimale */
+  }
+
+  .title {
+    margin-bottom: 20px !important; /* Marge minimale */
+  }
+
+  .right {
+    margin-bottom: 10px; /* Marge minimale */
+  }
+
   .right img {
     max-width: 300px;
     max-height: 250px; 
@@ -250,6 +297,23 @@ onMounted(async () => {
 }
 
 @media (max-width: 375px) {
+  .attributions-section {
+    margin-top: 0; /* Pas de marge supérieure */
+  }
+
+  .row {
+    gap: 10px; /* Gap très réduit */
+    margin-top: 5px; /* Marge très réduite */
+  }
+
+  .title {
+    margin-bottom: 15px !important; /* Marge très réduite */
+  }
+
+  .right {
+    margin-bottom: 5px; /* Marge très réduite */
+  }
+
   .right img {
     max-width: 250px; 
     max-height: 200px; 
