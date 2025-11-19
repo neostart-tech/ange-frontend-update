@@ -84,7 +84,7 @@
           </div>
 
           <!-- Fallback si aucune donnée -->
-          <div v-if="!hasData" class="feux-stat-item">
+          <!-- <div v-if="!hasData" class="feux-stat-item">
             <div class="feux-icon">
               <i class="fa fa-fire-flame-curved"></i>
             </div>
@@ -94,7 +94,7 @@
             <div class="feux-description">
               Chargement des données...
             </div>
-          </div>
+          </div> -->
         </div>
 
         <!-- Call to action -->

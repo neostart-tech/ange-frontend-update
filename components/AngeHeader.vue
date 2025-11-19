@@ -125,7 +125,7 @@ export default {
       let scrollPos = window.scrollY;
       if (scrollPos >= 100) {
         this.isSticky = true;
-        this.logoSrc = "/images/logo/tird.png";
+        this.logoSrc = "/images/logo/logo-ANGE.png";
         this.isStickyImage = true;
       } else {
         this.isSticky = false;

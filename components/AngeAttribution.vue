@@ -288,7 +288,7 @@ onMounted(async () => {
   }
 
   .attributions-items .title h3 {
-    font-size: 16px;
+    font-size: 16px; 
   }
 
   .attributions-items .desc p {

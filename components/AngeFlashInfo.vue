@@ -36,7 +36,7 @@ export default {
     async fetchFlashInfos() {
       this.isLoading = true;
       try {
-        const response = await this.$axios.get(`/votre-endpoint-api`); // Remplacez par votre endpoint
+        const response = await this.$axios.get(`/zone-publicitaire/liste`); 
         const data = await response.data.data;
         if (data && data.length > 0) {
           this.flashInfos = data;
