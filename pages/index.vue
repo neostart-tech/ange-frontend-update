@@ -9,7 +9,7 @@
     <AngeSlider />
      <AngeFlashInfo />
     <AngeChiffre class="section-padding-top about-section-padding-bottom-200" />
-    <AngeLastActu />
+    <AngeLastActu class="mt-5"/>
     <!-- <AngeSubscribe /> -->
     <AngePartenaire />
   </AngeRoot>
