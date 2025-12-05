@@ -1,0 +1,95 @@
+{
+    "footerAboutWidget": {
+        "logoSrc": "/images/logo/logo-ANGE.png",
+        "telephone": "0123456789",
+        "email": "demo@example.com",
+        "fbUrl": "https://www.facebook.com/profile.php?id=100068022197046",
+        "twitterUrl": "https://twitter.com/ange_togo",
+        "linkedinUrl": "https://www.linkedin.com/in/ange-togo-agence-nationale-de-gestion-de-l-environnement-7669962a7/"
+    },
+    "footerLinkTitleOne": "Liens Utiles",
+    "navListOne": [
+        {
+            "navTitle": "Ministère de l'environnement",
+            "navUrl": "https://environnement.gouv.tg"
+        },
+        {
+            "navTitle": "Ministère de l'Urbanisme ",
+            "navUrl": "https://urbanisme.gouv.tg/"
+        },
+        {
+            "navTitle": "Ministère de l'eau",
+            "navUrl": "https://eau.gouv.tg/"
+        },
+         {
+            "navTitle": "OTR Direction du cadastre",
+            "navUrl": "https://www.dadc.gouv.tg/"
+        },
+         {
+            "navTitle": "OTR impôt",
+            "navUrl": "https://www.otr.tg/index.php/fr/"
+        },
+         {
+            "navTitle": "CFE",
+            "navUrl": "https://www.cfetogo.tg/"
+        }
+    ],
+    "footerLinkTitleTwo": "Coordonnées",
+    "navListTwo": [
+        {
+            "navTitle": "01 BP: 2244 Lomé TOGO",
+            "navUrl": "#"
+        },
+        {
+            "navTitle": "Tel: (00228) 22 21 21 53",
+            "navUrl": "#"
+        }
+    ],
+     "footerLinkTitlefour": "Liens rapides",
+    "navListfour": [
+       
+       
+        {
+            "navTitle": "Consultants agréés",
+            "navUrl": "/consultants-agrees"
+        },
+        {
+            "navTitle": "Documentations",
+            "navUrl": "/documentation"
+        },
+        {
+            "navTitle": "Procédures administratives",
+            "navUrl": "/obtentions-des-autorisations"
+        },
+        {
+            "navTitle": "Plaintes",
+            "navUrl": "/plainte"
+        },
+        {
+            "navTitle": "FAQ",
+            "navUrl": "/faq"
+        }
+    ],
+    "footerLinkTitleThree": "Navigation",
+    "navListThree": [
+         {
+            "navTitle": "Accueil",
+            "navUrl": "/"
+        },
+       
+        {
+            "navTitle": "Prestations",
+            "navUrl": "/prestations"
+        },
+        {
+            "navTitle": "Publications",
+            "navUrl": "/actualite"
+        },
+       
+        {
+            "navTitle": "Plaintes",
+            "navUrl": "/plainte"
+        }
+       
+    ]
+}

@@ -1,0 +1,54 @@
+/* 07.01. Page Title CSS */
+
+.page-title-section {
+  position: relative;
+  height: 250px;
+  display: flex;
+  z-index: 9;
+  justify-content: center; /* Horizontal centering */
+  align-items: center; /* Vertical centering */
+  flex-wrap: wrap;
+  align-content: stretch;
+  padding-left: 15px;
+  text-align: center;
+  // Responsive
+  @media #{$laptop-device, $desktop-device, $tablet-device} {
+    height: 250px;
+  }
+  @media #{$large-mobile} {
+    height: 250px;
+  }
+}
+.page-breadcrumb {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the text horizontally */
+  justify-content: center; /* Center the text vertically */
+  width: 100%; /* Ensure it takes the full width */
+
+  span {
+    font-weight: 500;
+    // font-size: 28px; /* Adjust as needed */
+    color: $white; /* Assuming $white is defined in your SCSS */
+  }
+}
+
+.page-title {
+  & .title {
+    font-size: 28px;
+    line-height: 1.2;
+    color: $white;
+    margin: 0;
+    text-align: center;
+    @media #{$desktop-device} {
+      font-size: 42px;
+    }
+    @media #{$tablet-device} {
+      font-size: 34px;
+    }
+    @media #{$large-mobile} {
+      font-size: 23px;
+      line-height: 1.5;
+    }
+  }
+}

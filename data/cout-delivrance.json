@@ -1,0 +1,12 @@
+[
+    {
+        "numero": 1,
+        "designation": "Delivrance du CCE / CRE ",
+        "montant_reference": " 5% Cout d’ evaluation du rapport provisoire "
+    },
+    {
+        "numero": 2,
+        "designation": "Approbation environnementale",
+        "montant_reference": "150 000 F"
+    }
+]
