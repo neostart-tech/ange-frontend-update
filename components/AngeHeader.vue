@@ -365,13 +365,39 @@ export default {
 }
 
 /* Desktop (1200px+) */
-@media (max-width: 1800px) {
+@media (max-width: 2500px) {
   .header-section {
-    padding: 8px 0px !important;
+    padding: 8px 500px !important;
   }
+
+  
 }
 
-@media (min-width: 1200px) {
+@media (max-width: 2000px) {
+  .header-section {
+    padding: 8px 200px !important;
+  }
+
+  
+}
+
+@media (max-width: 1800px) {
+  .header-section {
+    padding: 8px 100px !important;
+  }
+
+  
+}
+
+@media (max-width: 1600px) {
+  .header-section {
+    padding: 8px 50px !important;
+  }
+
+  
+}
+
+@media (min-width: 1245px) {
   .container {
     padding-left: 40px;
     padding-right: 40px;
