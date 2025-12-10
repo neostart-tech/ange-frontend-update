@@ -82,11 +82,10 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 100px !important;
   margin-top: 40px !important;
 }
 
-/* ----------- Taille globale réduite ----------- */
 .content-wrapper {
   display: flex;
   height: 500px;

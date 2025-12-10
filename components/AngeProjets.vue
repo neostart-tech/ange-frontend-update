@@ -65,7 +65,9 @@ const projets = [
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 15px;
+  height:auto !important;
+  padding: 90px 50px !important;
+  padding-top: 20px !important;
 }
 
 .title {

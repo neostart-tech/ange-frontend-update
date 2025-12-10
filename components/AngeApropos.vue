@@ -1,15 +1,12 @@
 <template>
-   <AngeMotDuDirecteur/>
+  <AngeMotDuDirecteur/>
   <AngeQuiSommeNous/>
   <AngeRealisation/>
   <AngeMissionvaleurVision/>
   <AngeObjectifs class="mb-5"/>
-    <AngeTexteFondateur  class="mb-5"/>
-
+  <AngeTexteFondateur  class="mb-5"/>
   <AngeAttribtutionetCompetence class="mt-5"/>
   <AngeProjets class="mt-5"/>
-  
- 
   <AngePartenaire/>
  
 </template>
@@ -43,15 +40,11 @@ defineExpose({
 </script>
 
 <style scoped>
-body{
-    background: #f7f7f7 !important;
-    margin: 0;
-    padding: 0;
+  
 
-}
 .container {
-  max-width: 1200px;
-  margin: 0 ;
+  max-width: 100%;
+  margin: 0;
   padding: 0 ;
 }
 

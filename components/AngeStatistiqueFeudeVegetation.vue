@@ -190,7 +190,7 @@ export default {
 </script>
 
 <style scoped>
-/* Vos styles CSS restent exactement les mêmes */
+
 .feux-vegetation-section {
   margin: 0;
   width: 100%;

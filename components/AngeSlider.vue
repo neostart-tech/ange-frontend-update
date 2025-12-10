@@ -5,23 +5,23 @@
       <!-- Slider principal -->
       <div class="intro-slider">
         <swiper
-            :speed="4000"
-            :loop="true"
-            :effect="'fade'"
-            :navigation="{
-              nextEl: '.home-slider-next',
-              prevEl: '.home-slider-prev'
-            }"
-            :autoplay="{ delay: 10000 }"
+          :speed="4000"
+          :loop="true"
+          :effect="'fade'"
+          :navigation="{
+            nextEl: '.home-slider-next',
+            prevEl: '.home-slider-prev',
+          }"
+          :autoplay="{ delay: 10000 }"
         >
           <swiper-slide v-for="(banner, index) in sliderData" :key="index">
             <div
-                class="intro-section overlay bg-cover"
-                :style="{ backgroundImage: `url(${banner.bgImgSrc})` }"
+              class="intro-section overlay bg-cover"
+              :style="{ backgroundImage: `url(${banner.bgImgSrc})` }"
             >
               <div class="background-overlay"></div>
               <div class="content-overlay"></div>
-              
+
               <div class="container h-100">
                 <div class="row justify-content-center align-items-center h-100">
                   <div class="col-xl-8 col-lg-10 col-md-12 text-center">
@@ -36,7 +36,7 @@
               </div>
             </div>
           </swiper-slide>
-          
+
           <!-- Navigation buttons -->
           <div class="home-slider-prev swiper-button-prev main-slider-nav">
             <i class="fa fa-angle-left"></i>
@@ -51,11 +51,7 @@
       <div class="domains-iceberg-overlay">
         <div class="container-fluid">
           <div class="row justify-content-center domains-row">
-            <div
-                v-for="(domain, idx) in domains"
-                :key="idx"
-                class="domain-col"
-            >
+            <div v-for="(domain, idx) in domains" :key="idx" class="domain-col">
               <div class="domain-card-iceberg">
                 <div class="domain-card-body">
                   <div class="domain-icon">
@@ -78,8 +74,8 @@
 </template>
 
 <script>
-import {Swiper, SwiperSlide} from "swiper/vue";
-import SwiperCore, {Navigation, EffectFade, Autoplay,} from "swiper/core";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import SwiperCore, { Navigation, EffectFade, Autoplay } from "swiper/core";
 
 SwiperCore.use([Navigation, EffectFade, Autoplay]);
 
@@ -110,7 +106,7 @@ export default {
           heading: "ANGE, le service par excellence de gestion environnementale au Togo",
           bgImgSrc: "/images/bg/bg-ange-03.jpg",
           slug: "",
-          fromDatabase: false
+          fromDatabase: false,
         },
       ],
 
@@ -127,10 +123,11 @@ export default {
           link: "/obtentions-des-autorisations",
           linkText: "En savoir plus",
         },
-         {
+        {
           iconClass: "fa fa-user",
           title: "Demande de service en ligne",
-          link: "https://service-public.gouv.tg/service/672142cb7bacb864efe779f0/licences-agrements-certificats/demande-du-certificat-de-conformite-environnementale",
+          link:
+            "https://service-public.gouv.tg/service/672142cb7bacb864efe779f0/licences-agrements-certificats/demande-du-certificat-de-conformite-environnementale",
           linkText: "En savoir plus",
         },
         {
@@ -141,7 +138,8 @@ export default {
         },
       ],
 
-      secondSlideDescription: "Nous servons d'institution d'appui à la mise en œuvre de la politique nationale de l'environnement"
+      secondSlideDescription:
+        "Nous servons d'institution d'appui à la mise en œuvre de la politique nationale de l'environnement",
     };
   },
 
@@ -157,14 +155,15 @@ export default {
         const blogs = response.data.data;
 
         this.sliderData = [];
-        
+
         blogs.forEach((blog) => {
           this.sliderData.push({
             id: this.sliderData.length + 1,
             heading: blog.titre || "",
             slug: blog.slug,
-            bgImgSrc: this.img_url_back + "/" + blog.images[0].url || "/images/bg/bg_o3.jpg",
-            fromDatabase: true
+            bgImgSrc:
+              this.img_url_back + "/" + blog.images[0].url || "/images/bg/bg_o3.jpg",
+            fromDatabase: true,
           });
         });
 
@@ -172,11 +171,12 @@ export default {
           this.sliderData = [
             {
               id: 1,
-              heading: "ANGE, le service par excellence de gestion environnementale au Togo",
+              heading:
+                "ANGE, le service par excellence de gestion environnementale au Togo",
               bgImgSrc: "/images/bg/bg-ange-03.jpg",
               slug: "",
-              fromDatabase: false
-            }
+              fromDatabase: false,
+            },
           ];
         }
       } catch (error) {
@@ -184,18 +184,19 @@ export default {
         this.sliderData = [
           {
             id: 1,
-            heading: "ANGE, le service par excellence de gestion environnementale au Togo",
+            heading:
+              "ANGE, le service par excellence de gestion environnementale au Togo",
             bgImgSrc: "/images/bg/bg-ange-03.jpg",
             slug: "",
-            fromDatabase: false
-          }
+            fromDatabase: false,
+          },
         ];
       }
     },
 
     getSecondSlideDescription() {
       return this.secondSlideDescription;
-    }
+    },
   },
 };
 </script>
@@ -204,7 +205,7 @@ export default {
 .position-relative {
   position: relative;
   width: 100%;
-  padding-top: 0px; 
+  padding-top: 0px;
 }
 
 .hero-container {
@@ -217,8 +218,7 @@ export default {
 .intro-slider {
   position: relative;
   width: 100%;
-  height: 400px !important; 
-
+  height: 400px !important;
 }
 
 .intro-section {
@@ -239,9 +239,9 @@ export default {
   right: 0;
   bottom: 0;
   background: linear-gradient(
-    135deg, 
-    rgba(0, 0, 0, 0.6) 0%, 
-    rgba(0, 0, 0, 0.4) 50%, 
+    135deg,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
     rgba(0, 0, 0, 0.6) 100%
   );
   z-index: 1;
@@ -320,18 +320,16 @@ export default {
   flex-wrap: nowrap; /* Par défaut : pas de wrap */
   gap: 15px;
   width: 100%;
-  margin:  0 ;
+  margin: 0;
   margin-top: -340px;
   padding: 0 15px;
   box-sizing: border-box;
-   
 }
 
 .domain-col {
   flex: 1;
   min-width: 0;
-  max-width: 25%; 
- 
+  max-width: 25%;
 }
 
 /* Cartes des domaines */
@@ -348,11 +346,11 @@ export default {
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  width: 100%; 
+  width: 100%;
 }
 
 .domain-card-iceberg::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -486,37 +484,37 @@ export default {
   .hero-container {
     height: 550px;
   }
-  
+
   .intro-slider {
     height: 550px;
   }
-  
+
   .domains-iceberg-overlay {
     bottom: -70px;
   }
-  
+
   .container-fluid {
     max-width: 1320px; /* Bootstrap xxl */
     padding: 0 20px;
   }
-  
+
   .domains-row {
     padding: 0 20px;
   }
-  
+
   .domain-card-iceberg {
     height: 180px;
   }
-  
+
   .domain-card-body {
     padding: 20px 15px;
   }
-  
+
   .domain-title {
     font-size: 16px;
     -webkit-line-clamp: 4;
   }
-  
+
   .title {
     font-size: 2.2rem !important;
   }
@@ -527,37 +525,35 @@ export default {
   .hero-container {
     height: 500px;
   }
-  
+
   .intro-slider {
     height: 500px;
   }
-  
+
   .domains-iceberg-overlay {
     bottom: -60px;
-    
   }
-  
+
   .container-fluid {
     max-width: 1140px; /* Bootstrap xl */
     padding: 0 15px;
   }
-  
+
   .domains-row {
     gap: 20px;
     flex-wrap: nowrap; /* 4 sur même ligne */
     padding: 0 15px;
   }
-  
+
   .domain-col {
     flex: 0 0 calc(25% - 20px);
     max-width: calc(25% - 20px);
   }
-  
+
   .domain-card-iceberg {
     height: 170px;
-  
   }
-  
+
   .domain-title {
     font-size: 15px;
     -webkit-line-clamp: 3;
@@ -569,69 +565,67 @@ export default {
   .hero-container {
     height: 450px;
   }
-  
+
   .intro-slider {
     height: 450px;
   }
-  
+
   .domains-iceberg-overlay {
     bottom: -55px;
   }
-  
+
   .container-fluid {
     max-width: 960px; /* Bootstrap lg */
     padding: 0 15px;
   }
-  
+
   .domains-row {
     gap: 15px;
     flex-wrap: nowrap; /* 4 sur même ligne */
     padding: 0 15px;
-     margin-top:100px !important;
+    margin-top: 100px !important;
   }
-  
+
   .domain-col {
     flex: 0 0 calc(25% - 15px);
     max-width: calc(25% - 15px);
-    
   }
-  
+
   .domain-card-iceberg {
     height: 160px;
-     
   }
-  
+
   .domain-card-body {
     padding: 15px 10px;
   }
-  
+
   .domain-title {
     font-size: 14px;
     -webkit-line-clamp: 3;
     margin-bottom: 12px;
   }
-  
+
   .domain-icon {
     font-size: 1.6rem;
     margin-bottom: 8px;
   }
-  
+
   .title {
     font-size: 1.8rem !important;
   }
-  
+
   .description {
     font-size: 1rem;
   }
-  
+
   .link-gradient {
     font-size: 0.85rem;
   }
-  
+
   .home-slider-prev {
     left: 10px;
   }
-  
+
   .home-slider-next {
     right: 10px;
   }
@@ -643,13 +637,13 @@ export default {
     margin-bottom: 0;
     height: auto; /* Hauteur automatique */
   }
-  
+
   .intro-slider {
     height: 400px; /* Hauteur réduite sur tablette */
     position: relative;
     margin-bottom: 30px; /* Espace entre slider et cartes */
   }
-  
+
   .domains-iceberg-overlay {
     position: relative; /* IMPORTANT: plus en absolute */
     bottom: 0;
@@ -657,68 +651,67 @@ export default {
     margin-bottom: 30px;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .container-fluid {
     max-width: 720px; /* Bootstrap md */
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .domains-row {
     flex-wrap: wrap; /* IMPORTANT: wrap activé */
     gap: 15px;
-      margin-top: -150px;
-
+    margin-top: -150px;
 
     justify-content: center;
     padding: 0; /* Reset padding sur tablette */
   }
-  
+
   .domain-col {
-    flex: 0 0 calc(50% - 15px); 
+    flex: 0 0 calc(50% - 15px);
     max-width: calc(50% - 15px);
   }
-  
+
   .domain-card-iceberg {
     height: 160px;
   }
-  
+
   .domain-card-body {
     padding: 15px 12px;
   }
-  
+
   .domain-title {
     font-size: 14px;
     -webkit-line-clamp: 3;
     margin-bottom: 12px;
   }
-  
+
   .domain-icon {
     font-size: 1.7rem;
     margin-bottom: 10px;
   }
-  
+
   .title {
     font-size: 1.7rem !important;
   }
-  
+
   .description {
     font-size: 1rem;
   }
-  
+
   .link-gradient {
     font-size: 0.85rem;
   }
-  
+
   .swiper-button-prev,
   .swiper-button-next {
     width: 45px;
     height: 45px;
   }
-  
+
   .home-slider-prev {
     left: 10px;
   }
-  
+
   .home-slider-next {
     right: 10px;
   }
@@ -729,16 +722,16 @@ export default {
   .hero-container {
     height: auto;
   }
-  
+
   .intro-slider {
     height: 380px;
     margin-bottom: 25px;
   }
-  
+
   .position-relative {
     padding-top: 40px;
   }
-  
+
   .domains-iceberg-overlay {
     position: relative;
     bottom: 0;
@@ -746,67 +739,67 @@ export default {
     margin-bottom: 25px;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .container-fluid {
     max-width: 540px; /* Bootstrap sm */
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .domains-row {
     flex-wrap: wrap;
     gap: 12px;
     padding: 0; /* Reset padding */
   }
-  
+
   .domain-col {
     flex: 0 0 calc(50% - 12px);
     max-width: calc(50% - 12px);
   }
-  
+
   .domain-card-iceberg {
     height: 150px;
   }
-  
+
   .domain-card-body {
     padding: 12px 10px;
   }
-  
+
   .domain-title {
     font-size: 13px;
     -webkit-line-clamp: 3;
     margin-bottom: 10px;
     line-height: 1.3;
   }
-  
+
   .domain-icon {
     font-size: 1.5rem;
     margin-bottom: 8px;
   }
-  
+
   .title {
     font-size: 1.6rem !important;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .description {
     font-size: 0.95rem;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .link-gradient {
     font-size: 0.8rem;
   }
-  
+
   .swiper-button-prev,
   .swiper-button-next {
     width: 40px;
     height: 40px;
   }
-  
+
   .home-slider-prev {
     left: 8px;
   }
-  
+
   .home-slider-next {
     right: 8px;
   }
@@ -817,16 +810,16 @@ export default {
   .hero-container {
     height: auto;
   }
-  
+
   .intro-slider {
     height: 350px;
     margin-bottom: 20px;
   }
-  
+
   .position-relative {
     padding-top: 30px;
   }
-  
+
   .domains-iceberg-overlay {
     position: relative;
     bottom: 0;
@@ -834,35 +827,35 @@ export default {
     margin-bottom: 20px;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .container-fluid {
     max-width: 100%;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .domains-row {
     flex-wrap: wrap;
     gap: 10px;
     flex-direction: column; /* 1 colonne */
     padding: 0; /* Reset padding */
   }
-  
+
   .domain-col {
     flex: 0 0 100%; /* 1 carte par ligne = 100% */
     max-width: 100%;
   }
-  
+
   .domain-card-iceberg {
     height: 140px;
   }
-  
+
   .domain-card-body {
     padding: 15px 20px;
     flex-direction: row; /* Layout horizontal sur mobile */
     align-items: center;
     text-align: left;
   }
-  
+
   .domain-icon {
     font-size: 1.6rem;
     margin-bottom: 0;
@@ -871,7 +864,7 @@ export default {
     width: 40px;
     text-align: center;
   }
-  
+
   .domain-title {
     font-size: 14px;
     -webkit-line-clamp: 2; /* 2 lignes max en layout horizontal */
@@ -879,27 +872,27 @@ export default {
     flex-grow: 1;
     padding-right: 10px;
   }
-  
+
   .domain-link {
     margin-top: 0;
     flex-shrink: 0;
   }
-  
+
   .link-gradient {
     font-size: 0.85rem;
     white-space: nowrap;
   }
-  
+
   .title {
     font-size: 1.5rem !important;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   .description {
     font-size: 0.9rem;
     padding: 0 15px; /* MARGES SYMÉTRIQUES */
   }
-  
+
   /* Masquer navigation sur mobile */
   .swiper-button-prev,
   .swiper-button-next {
@@ -918,110 +911,105 @@ export default {
 
     background:red;
   } */
-  
+
   .domains-iceberg-overlay {
     padding: 0 12px; /* MARGES SYMÉTRIQUES réduites */
   }
-  
+
   .container-fluid {
     padding: 0 12px; /* MARGES SYMÉTRIQUES réduites */
   }
 
-  .domains-row{
+  .domains-row {
     margin-top: 50px;
   }
-  
 
   .domain-card-iceberg {
     height: 130px;
-    margin-bottom:10px;
+    margin-bottom: 10px;
   }
-  
+
   .domain-card-body {
     padding: 12px 15px;
   }
-  
+
   .domain-icon {
     font-size: 1.4rem;
     margin-right: 12px;
     width: 35px;
   }
-  
+
   .domain-title {
     font-size: 13px;
     -webkit-line-clamp: 2;
   }
-  
+
   .link-gradient {
     font-size: 0.8rem;
   }
-  
+
   .title {
     font-size: 1.4rem !important;
-    padding: 0 12px; 
+    padding: 0 12px;
   }
-  
+
   .description {
     font-size: 0.85rem;
-    padding: 0 12px; 
+    padding: 0 12px;
   }
 }
 
 /* Très petits mobiles (≤375px) */
 @media (max-width: 375px) {
-.position-relative {
-  padding-top:0px
-}
+  .position-relative {
+    padding-top: 0px;
+  }
 
   .intro-slider {
     height: 300px;
   }
-  
-  .domains-iceberg-overlay {
-    padding: 0 10px; 
 
+  .domains-iceberg-overlay {
+    padding: 0 10px;
   }
-  
+
   .container-fluid {
     padding: 0 10px; /* MARGES SYMÉTRIQUES minimales */
   }
-  
+
   .domain-card-iceberg {
     height: 120px;
-    margin-top:-120px;
-    margin-bottom:60px;
+    margin-top: -120px;
+    margin-bottom: 60px;
   }
 
-
-  
-  .domains-row{
+  .domains-row {
     margin-top: 40px;
   }
-  
-  
+
   .domain-card-body {
     padding: 10px 12px;
   }
-  
+
   .domain-icon {
     font-size: 1.3rem;
     margin-right: 10px;
     width: 30px;
   }
-  
+
   .domain-title {
     font-size: 12px;
   }
-  
+
   .link-gradient {
     font-size: 0.75rem;
   }
-  
+
   .title {
     font-size: 1.3rem !important;
     padding: 0 10px; /* MARGES SYMÉTRIQUES minimales */
   }
-  
+
   .description {
     display: none;
   }

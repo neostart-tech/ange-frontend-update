@@ -37,6 +37,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin:0px !important;
+
   padding: 60px 20px;
   background: #f7f7f7;
 }

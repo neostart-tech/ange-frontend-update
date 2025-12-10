@@ -104,6 +104,7 @@ defineExpose({
   margin: 0 ;
   padding: 0 ;
     position: relative;
+    padding:20px 120px !important;
 }
 
 .grande-div {

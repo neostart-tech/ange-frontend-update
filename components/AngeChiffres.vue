@@ -230,10 +230,12 @@ export default {
 <style scoped>
 .stats-main-container {
     max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 20px;
+    margin: 0;
+    margin-bottom:100px;
+    padding: 0;
     width: 100%;
     box-sizing: border-box;
+    /* margin-left:100px; */
 }
 
 .stats-grid {
@@ -253,11 +255,12 @@ export default {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     /* border-radius: 15px; */
     padding: 40px;
+    padding-left: 120px;
     flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 100%;
+    width: 90%;
     box-sizing: border-box;
 }
 
@@ -385,7 +388,7 @@ export default {
 
 .stats-numbers-col {
     display: flex;
-    width: 100%;
+    width: 80%;
 }
 
 .stats-numbers-grid {

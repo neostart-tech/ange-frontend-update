@@ -27,7 +27,7 @@
               data-bs-toggle="modal"
               :data-bs-target="`#bd-example-modal-lg-${index}`"
           >
-            <i class="fa fa-eye"></i>&nbsp;Visulaliser
+            <i class="fa fa-eye"></i>&nbsp;Visualiser
           </a>
           <div
               class="modal fade bd-example-modal-xl"

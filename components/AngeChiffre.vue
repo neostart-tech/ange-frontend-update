@@ -1,13 +1,12 @@
 <template>
  
-  <div class="section-padding-t90-b100">
-    <div class="container">
+    <div class="container" >
 
 
       <AngeChiffres />
 
     </div>
-  </div>
+
 </template>
 
 <script>
@@ -92,9 +91,21 @@ export default {
 </script>
 
 <style scoped>
+  .container{
+    max-width:2500px !important;
+    padding:0px !important;
+    margin-left:0px !important;
+    position:relative !important;
+    top:100px !important;
+     bottom:100px !important;
+   padding-left:0px !important;
+    box-sizing:border-box;
+    /* background:red !important; */
+  }
 .indicator-card {
   background-color: #f8f9fa;
   border-radius: 10px;
+  
   padding: 20px;
   text-align: center;
   margin-bottom: 20px;

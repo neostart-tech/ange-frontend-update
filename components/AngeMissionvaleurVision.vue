@@ -1,5 +1,5 @@
 <template>
-    <section style="">
+    <section style="section-container">
     <div class="container">
         <div class="row d-flex justify-content-between">
             <div class="col-item">
@@ -42,7 +42,7 @@
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 60px 20px;
+    padding: 60px 120px;
     background: #e0f9e0;
 }
 

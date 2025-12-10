@@ -123,7 +123,7 @@ onUnmounted(() => {
 
 <style scoped>
 .container {
-  padding: 60px 20px;
+  padding: 0px ;
   height: 200px;
   display: flex;
   justify-content: center;
@@ -136,7 +136,7 @@ onUnmounted(() => {
   align-items: center;
   width: 100%;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 0px;
 }
 
 .stat-item {

@@ -79,7 +79,7 @@ export default {
   transition: all 0.3s ease;
   max-width: 1200px; 
   margin: 200px auto; 
-  width: calc(100% - 40px); 
+  width: calc(100% - 260px); 
     padding: 0;
     margin-top:-70px !important;
     margin-bottom: -70px;

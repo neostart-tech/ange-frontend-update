@@ -11,7 +11,7 @@
       :breadcrumbs="breadcrumbs" 
     />
 
-    <div class="container mt-5 mb-5">
+    <div class="container aboutSection mt-5 mb-5">
       <div class="row">
         <div class="col-12">
           <AngeApropos />
@@ -48,3 +48,20 @@ defineExpose({
   updatePageData
 })
 </script>
+
+<style scoped>  
+
+.container {
+  max-width: 2000px;
+  margin: 0 !important;
+  padding:0px;
+    position: relative;
+    box-sizing: border-box !important;
+      padding-left: 0px;
+
+   
+}
+
+
+
+</style>

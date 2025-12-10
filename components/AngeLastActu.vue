@@ -129,6 +129,11 @@ export default {
 
 <style lang="scss" scoped>
 
+.section-padding-t90-b100{
+  position: relative !important;
+  top: 120px !important;
+}
+
 .section-header {
   margin-bottom: 40px;
   margin-top:-120px;
