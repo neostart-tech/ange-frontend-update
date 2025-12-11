@@ -478,9 +478,48 @@ export default {
 }
 
 /* RESPONSIVE DESIGN */
+@media (min-width: 2000px) {
+  .hero-container {
+    max-height: 1050px !important;
+  }
 
+  .intro-slider {
+    max-height: 1050px !important;
+  }
+
+  .domains-iceberg-overlay {
+    bottom: -70px;
+  }
+
+  .container-fluid {
+    max-width: 1320px; /* Bootstrap xxl */
+    padding: 0 20px;
+  }
+
+  .domains-row {
+    padding: 0 20px;
+  }
+
+  .domain-card-iceberg {
+    height: 180px;
+  }
+
+  .domain-card-body {
+    padding: 20px 15px;
+  }
+
+  .domain-title {
+    font-size: 16px;
+    -webkit-line-clamp: 4;
+  }
+
+  .title {
+    font-size: 2.2rem !important;
+  }
+}
 /* Desktop Large (≥1400px) - SUPERPOSITION ICEBERG */
 @media (min-width: 1400px) {
+  
   .hero-container {
     height: 550px;
   }
@@ -521,7 +560,7 @@ export default {
 }
 
 /* Desktop (≥1200px) - SUPERPOSITION ICEBERG */
-@media (min-width: 1200px) {
+@media (min-width: 1245px) {
   .hero-container {
     height: 500px;
   }
@@ -552,6 +591,7 @@ export default {
 
   .domain-card-iceberg {
     height: 170px;
+    margin-top: 50px;
   }
 
   .domain-title {
@@ -561,7 +601,7 @@ export default {
 }
 
 /* Desktop moyen (992px - 1199px) - SUPERPOSITION ICEBERG */
-@media (max-width: 1199px) and (min-width: 992px) {
+@media (max-width: 1245px) and (min-width: 992px) {
   .hero-container {
     height: 450px;
   }
@@ -583,7 +623,8 @@ export default {
     gap: 15px;
     flex-wrap: nowrap; /* 4 sur même ligne */
     padding: 0 15px;
-    margin-top: 100px !important;
+    margin-top: -100px !important;
+    
   }
 
   .domain-col {
@@ -632,7 +673,7 @@ export default {
 }
 
 /* TABLETTE (768px - 991px) - PAS DE SUPERPOSITION, 2x2 GRID */
-@media (max-width: 991px) and (min-width: 768px) {
+@media (max-width: 992px) and (min-width: 768px) {
   .hero-container {
     margin-bottom: 0;
     height: auto; /* Hauteur automatique */
@@ -661,12 +702,14 @@ export default {
     flex-wrap: wrap; /* IMPORTANT: wrap activé */
     gap: 15px;
     margin-top: -150px;
+    
 
     justify-content: center;
     padding: 0; /* Reset padding sur tablette */
   }
 
   .domain-col {
+    
     flex: 0 0 calc(50% - 15px);
     max-width: calc(50% - 15px);
   }
@@ -749,6 +792,7 @@ export default {
     flex-wrap: wrap;
     gap: 12px;
     padding: 0; /* Reset padding */
+    margin-top: -100px;
   }
 
   .domain-col {
@@ -836,6 +880,7 @@ export default {
   .domains-row {
     flex-wrap: wrap;
     gap: 10px;
+    margin-top: -120px;
     flex-direction: column; /* 1 colonne */
     padding: 0; /* Reset padding */
   }
@@ -905,12 +950,12 @@ export default {
     height: 320px;
   }
 
-  /* .domain-card-iceberg{
-    display:flex;
-    flex-direction: row;
+   .domain-card-iceberg{
+    display:flex !important;
+    flex-direction: row !important;
+    justify-content: start;
 
-    background:red;
-  } */
+  } 
 
   .domains-iceberg-overlay {
     padding: 0 12px; /* MARGES SYMÉTRIQUES réduites */
@@ -921,13 +966,15 @@ export default {
   }
 
   .domains-row {
-    margin-top: 50px;
+    margin-top: -80px;
   }
 
   .domain-card-iceberg {
-    height: 130px;
+    height: 200px !important;
     margin-bottom: 10px;
+   
   }
+/* zeett */
 
   .domain-card-body {
     padding: 12px 15px;
@@ -984,7 +1031,8 @@ export default {
   }
 
   .domains-row {
-    margin-top: 40px;
+    margin-top: -40px;
+    gap: 80px;
   }
 
   .domain-card-body {

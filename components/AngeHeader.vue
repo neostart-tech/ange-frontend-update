@@ -189,6 +189,7 @@ export default {
 <style scoped>
 .header-wrapper {
   position: relative;
+
 }
 
 .header-section {
@@ -200,6 +201,7 @@ export default {
   background: rgba(255, 255, 255, 0.98);
   padding: 8px 0px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
 }
 
 .header-section.is-sticky {
@@ -209,14 +211,25 @@ export default {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.header-section.is-sticky .container{
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+     padding-left: 250px;
+  padding-right: 250px;
+}
+
 .header-section.header-transparent {
   background: rgba(255, 255, 255, 0.98);
   box-shadow: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
 }
 
 .header-inner {
   position: relative;
+
 }
 
 /* Container avec marges */
@@ -225,6 +238,7 @@ export default {
   max-width: 100%;
   padding-left: 20px;
   padding-right: 20px;
+  
 }
 
 .contact-cta {
@@ -239,6 +253,8 @@ export default {
   white-space: nowrap;
   font-size: 14px;
   border: 2px solid #007608;
+
+
 }
 
 .contact-cta:hover {
@@ -257,6 +273,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  
 }
 
 .header-mobile-menu-toggle .icon-top,
@@ -313,6 +330,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  
 }
 
 .d-xl-none .col-auto {
@@ -399,9 +417,17 @@ export default {
 
 @media (min-width: 1245px) {
   .container {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
+
+  .header-section.is-sticky .container{
+
+     padding-left: 100px;
+  padding-right: 100px;
+}
+
+
   
   .d-none.d-xl-flex .col-auto:first-child img {
     margin-left: 20px;
@@ -520,6 +546,11 @@ export default {
   .header-section.is-sticky {
     padding: 3px 0;
   }
+
+
+  .header-section.is-sticky .container{
+    padding: 3px 20px !important;
+  }
   
   .d-xl-none .col-auto:nth-child(2) img {
     max-width: 70px;
@@ -550,13 +581,20 @@ export default {
 /* Mobile extra small (< 375px) */
 @media (max-width: 374px) {
   .container {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    /* background-color: red !important; */
   }
   
   .header-section,
   .header-section.is-sticky {
     padding: 2px 0;
+  }
+
+
+  .header-section.is-sticky .container{
+        padding: 2px 1px;
+
   }
   
   .d-xl-none .col-auto:nth-child(2) img {
@@ -571,6 +609,9 @@ export default {
   .d-xl-none .col-auto:first-child {
     margin-left: 6px;
   }
+
+
+ 
   
   .header-mobile-menu-toggle .icon-top,
   .header-mobile-menu-toggle .icon-middle,

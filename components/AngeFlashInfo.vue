@@ -167,12 +167,34 @@ export default {
   font-size: 1.2rem;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
+@media (max-width: 2000px) {
+  .container {
+    max-width: 2500px !important;
+    margin: 20px 30px;
+    margin-left: 100px !important;
+    width: calc(100% - 200px) !important;
+    margin-top:30px !important;
+    margin-bottom:-20px;
+  }
+}
+@media (max-width: 1400px) {
   .container {
     max-width: 1000px;
     margin: 20px 30px;
-    width: calc(100% - 60px);
+    margin-left: 100px !important;
+    width: calc(100% - 200px) !important;
+    margin-top:90px !important;
+    margin-bottom:-90px;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1245px) {
+  .container {
+    max-width: 1000px;
+    margin: 20px 30px;
+    margin-left: 120px;
+    width: calc(100% - 0px);
     margin-top:90px !important;
     margin-bottom:-90px;
   }
