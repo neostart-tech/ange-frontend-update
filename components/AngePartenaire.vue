@@ -63,10 +63,10 @@
 import config from "~~/config";
 
 // Import correct pour Swiper v8+ - CORRIGÉ
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/autoplay';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay } from "swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
 
 export default {
   components: {
@@ -85,44 +85,44 @@ export default {
           // Grands écrans (≥1400px)
           1400: {
             slidesPerView: 6,
-            spaceBetween: 40
+            spaceBetween: 40,
           },
           // Desktop (1200px - 1399px)
           1200: {
             slidesPerView: 5,
-            spaceBetween: 35
+            spaceBetween: 35,
           },
           // Tablette paysage (992px - 1199px)
           992: {
             slidesPerView: 4,
-            spaceBetween: 30
+            spaceBetween: 30,
           },
           // Tablette portrait (768px - 991px)
           768: {
             slidesPerView: 3,
-            spaceBetween: 25
+            spaceBetween: 25,
           },
           // Mobile paysage (576px - 767px)
           576: {
             slidesPerView: 2,
-            spaceBetween: 20
+            spaceBetween: 20,
           },
           // Mobile portrait (480px - 575px)
           480: {
             slidesPerView: 2,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
           // Petit mobile (375px - 479px)
           375: {
             slidesPerView: 1,
-            spaceBetween: 15
+            spaceBetween: 15,
           },
           // Mobile extra small (< 375px)
           320: {
             slidesPerView: 1,
-            spaceBetween: 10
-          }
-        }
+            spaceBetween: 10,
+          },
+        },
       },
     };
   },
@@ -145,13 +145,13 @@ export default {
     handleImageLoad(event) {
       // Appliquer un traitement d'image via CSS
       const img = event.target;
-      img.style.backgroundColor = 'transparent';
+      img.style.backgroundColor = "transparent";
     },
 
     handleImageError(event) {
-      console.error('Erreur de chargement image:', event.target.src);
-      event.target.src = '/images/placeholder-logo.png';
-    }
+      console.error("Erreur de chargement image:", event.target.src);
+      event.target.src = "/images/placeholder-logo.png";
+    },
   },
 
   mounted() {
@@ -165,7 +165,7 @@ export default {
 .brand-section {
   background: #f8f9fa;
   padding: 15px 0 25px 0;
-  margin-top: -80px;
+  margin-top: 80px;
   position: relative;
   z-index: 2;
 }
@@ -213,7 +213,6 @@ export default {
   position: relative;
   overflow: hidden;
   padding: 15px;
-  
 }
 
 /* TECHNIQUE AGGRESSIVE POUR SUPPRIMER LES FONDS BLANCS */
@@ -225,31 +224,28 @@ export default {
   height: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
-  
+
   /* MÉTHODE 1: Filtres avancés pour supprimer le blanc */
-  filter: 
-    brightness(1.08) 
-    contrast(1.15)
-    saturate(1.1)
-    drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  
+  filter: brightness(1.08) contrast(1.15) saturate(1.1)
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+
   /* MÉTHODE 2: Forcer la transparence */
   background: transparent !important;
   background-color: transparent !important;
-  
+
   /* MÉTHODE 3: Mix blend mode radical */
   mix-blend-mode: darken;
-  
+
   /* MÉTHODE 4: Isolation pour contrôle */
   isolation: isolate;
-  
+
   /* MÉTHODE 5: Supprimer tout style inline */
   style: "";
 }
 
 /* Solution de secours pour images récalcitrantes */
 .image-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -261,7 +257,7 @@ export default {
 
 /* Couche supplémentaire pour cacher les bords blancs */
 .image-container::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -10px;
@@ -273,7 +269,6 @@ export default {
 
 .brand:hover .brand-image {
   transform: scale(1.1);
-  
 }
 
 /* Centrage amélioré pour Swiper */
@@ -325,29 +320,20 @@ export default {
 .brand-image[src*=".jpg"],
 .brand-image[src*=".jpeg"] {
   mix-blend-mode: darken;
-  filter: 
-    brightness(1.1) 
-    contrast(1.2)
-    saturate(1.05)
-    drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: brightness(1.1) contrast(1.2) saturate(1.05)
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 /* Pour les PNG (supposés avec transparence) */
 .brand-image[src*=".png"] {
   mix-blend-mode: normal;
-  filter: 
-    drop-shadow(0 2px 4px rgba(0,0,0,0.1))
-    brightness(1.05)
-    contrast(1.1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) brightness(1.05) contrast(1.1);
 }
 
 /* Pour les SVG */
 .brand-image[src*=".svg"] {
   mix-blend-mode: normal;
-  filter: 
-    brightness(1.05)
-    contrast(1.1)
-    drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  filter: brightness(1.05) contrast(1.1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 /* Responsive adjustments */
@@ -356,17 +342,17 @@ export default {
     margin-top: -70px;
     padding: 12px 0 22px 0;
   }
-  
+
   .brand-list {
     max-width: 1300px;
     height: 170px;
   }
-  
+
   .brand {
     height: 150px;
     padding: 18px;
   }
-  
+
   .brand-image {
     max-height: 120px;
     min-height: 85px;
@@ -378,17 +364,17 @@ export default {
     margin-top: -50px;
     padding: 10px 0 20px 0;
   }
-  
+
   .brand-list {
     max-width: 1100px;
     height: 160px;
   }
-  
+
   .brand {
     height: 140px;
     padding: 16px;
   }
-  
+
   .brand-image {
     max-height: 110px;
     min-height: 80px;
@@ -400,17 +386,17 @@ export default {
     margin-top: -30px;
     padding: 8px 0 18px 0;
   }
-  
+
   .brand-list {
     max-width: 900px;
     height: 150px;
   }
-  
+
   .brand {
     height: 130px;
     padding: 14px;
   }
-  
+
   .brand-image {
     max-height: 100px;
     min-height: 75px;
@@ -422,22 +408,22 @@ export default {
     margin-top: -15px;
     padding: 5px 0 15px 0;
   }
-  
+
   .brand-list {
     max-width: 700px;
     height: 140px;
   }
-  
+
   .brand {
     height: 120px;
     padding: 12px;
   }
-  
+
   .brand-image {
     max-height: 90px;
     min-height: 70px;
   }
-  
+
   .image-container {
     padding: 10px;
   }
@@ -448,27 +434,27 @@ export default {
     margin-top: -8px;
     padding: 3px 0 12px 0;
   }
-  
+
   .brand-list {
     max-width: 100%;
     padding: 0 10px;
     height: 130px;
   }
-  
+
   .brand {
     height: 110px;
     padding: 10px;
   }
-  
+
   .brand-image {
     max-height: 80px;
     min-height: 65px;
   }
-  
+
   .image-container {
     padding: 8px;
   }
-  
+
   .swiper {
     padding: 10px 0;
   }
@@ -479,22 +465,22 @@ export default {
     margin-top: -5px;
     padding: 2px 0 10px 0;
   }
-  
+
   .brand-list {
     height: 120px;
     padding: 0 8px;
   }
-  
+
   .brand {
     height: 100px;
     padding: 8px;
   }
-  
+
   .brand-image {
     max-height: 75px;
     min-height: 60px;
   }
-  
+
   .image-container {
     padding: 6px;
   }
@@ -506,15 +492,15 @@ export default {
     margin-top: -90px;
     padding: 20px 0 30px 0;
   }
-  
+
   .brand-list {
     height: 200px;
   }
-  
+
   .brand {
     height: 180px;
   }
-  
+
   .brand-image {
     max-height: 150px;
     min-height: 110px;

@@ -81,8 +81,8 @@ export default {
   margin: 200px auto; 
   width: calc(100% - 260px); 
     padding: 0;
-    margin-top:-70px !important;
-    margin-bottom: -70px;
+    margin-top:-90px !important;
+    margin-bottom: -90px;
 
 }
 

@@ -10,17 +10,19 @@
 
         <div class="desc">
           <p>
-            Chers usagers, acteurs de protection de l’environnement et de promotion du développement durable,
-            la loi n° 2008-005 portant loi-cadre sur l'environnement au Togo, en son article 15 alinéa 2,
-            définit la vision stratégique de l’Agence Nationale de Gestion de l’Environnement (ANGE) :
-            « Elle sert d’institution d’appui à la mise en œuvre de la politique nationale de l’environnement
-            telle que définie par le gouvernement dans le cadre du plan national de développement ».
+            Chers usagers, acteurs de protection de l’environnement et de promotion du
+            développement durable, la loi n° 2008-005 portant loi-cadre sur
+            l'environnement au Togo, en son article 15 alinéa 2, définit la vision
+            stratégique de l’Agence Nationale de Gestion de l’Environnement (ANGE) : «
+            Elle sert d’institution d’appui à la mise en œuvre de la politique nationale
+            de l’environnement telle que définie par le gouvernement dans le cadre du plan
+            national de développement ».
           </p>
         </div>
 
         <div class="boutons">
           <a href="/mot-du-directeur" class="btn-primary">Tout lire</a>
-          <a href="/organigramme"  class="btn-outline">Organigramme</a>
+          <a href="/organigramme" class="btn-outline">Organigramme</a>
         </div>
       </div>
 
@@ -37,9 +39,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin:0px !important;
+  margin: 0px !important;
 
-  padding: 60px 20px;
+  padding: 60px 100px;
   background: #f7f7f7;
 }
 
@@ -47,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 1200px; 
+  max-width: 1200px;
   width: 100%;
   gap: 50px;
 }

@@ -1,15 +1,15 @@
 <template>
-  <div class="section-padding-t90-b100" >
+  <div class="section-padding-t90-b100">
     <div class="container">
       <!-- Section Title avec bouton aligné à droite -->
       <div class="section-header" data-aos="fade-up">
         <div class="section-title-wrapper">
           <div class="section-title-content">
-            <h2 class="section-main-title">
-              Actualités
-            </h2>
-            <p class="section-subtitle">Restez informé des dernières nouvelles et développements en matière
-              d'environnement au Togo</p>
+            <h2 class="section-main-title">Actualités</h2>
+            <p class="section-subtitle">
+              Restez informé des dernières nouvelles et développements en matière
+              d'environnement au Togo
+            </p>
           </div>
           <div class="section-button">
             <NuxtLink to="/actualite" class="btn btn-primary ange-btn-documentation">
@@ -42,8 +42,12 @@
           <div class="work">
             <div class="thumbnail">
               <NuxtLink :to="`/actualite/${blog.slug}`" class="image">
-                <img class="w-100" :src="`${img_url_back}/${blog.images[0].url}`" :alt="blog.titre"
-                  style="width: 100%; height: 230px; object-fit: cover" />
+                <img
+                  class="w-100"
+                  :src="`${img_url_back}/${blog.images[0].url}`"
+                  :alt="blog.titre"
+                  style="width: 100%; height: 230px; object-fit: cover"
+                />
               </NuxtLink>
             </div>
             <div class="info">
@@ -54,13 +58,18 @@
 
               <!-- Titre -->
               <h3 class="title">
-                <NuxtLink :to="`/actualite/${blog.slug}`" class="hover-actu-last">{{ blog.short_titre }}
+                <NuxtLink :to="`/actualite/${blog.slug}`" class="hover-actu-last"
+                  >{{ blog.short_titre }}
                 </NuxtLink>
               </h3>
 
               <!-- Bouton Lire la suite -->
               <div class="blog-read-more">
-                <NuxtLink style="color: #0a8fbe;" :to="`/actualite/${blog.slug}`" class="lire-suite-btn">
+                <NuxtLink
+                  style="color: #0a8fbe"
+                  :to="`/actualite/${blog.slug}`"
+                  class="lire-suite-btn"
+                >
                   En savoir plus &nbsp;
                   <i class="fa-solid fa-arrow-right"></i>
                 </NuxtLink>
@@ -110,14 +119,14 @@ export default {
     },
 
     formatDate(dateString) {
-      if (!dateString) return '';
+      if (!dateString) return "";
       const date = new Date(dateString);
-      return date.toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
+      return date.toLocaleDateString("fr-FR", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
       });
-    }
+    },
   },
 
   mounted() {
@@ -128,15 +137,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-.section-padding-t90-b100{
+.section-padding-t90-b100 {
   position: relative !important;
   top: 120px !important;
+  margin-bottom: 100px !important;
 }
 
 .section-header {
   margin-bottom: 40px;
-  margin-top:-120px;
+  margin-top: -120px;
 }
 
 .section-title-wrapper {
@@ -350,8 +359,6 @@ export default {
     margin-bottom: 30px;
   }
 
- 
-
   .section-title-wrapper {
     gap: 15px;
   }
@@ -419,8 +426,7 @@ export default {
 @media (max-width: 374px) {
   .section-header {
     margin-bottom: 20px;
-         margin-top:-70px;
-
+    margin-top: -70px;
   }
 
   .section-title-wrapper {
