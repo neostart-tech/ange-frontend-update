@@ -558,7 +558,6 @@ export default {
 }
 /* Desktop Large (≥1400px) - SUPERPOSITION ICEBERG */
 @media (min-width: 1400px) {
-  
   .hero-container {
     height: 550px;
   }
@@ -599,7 +598,6 @@ export default {
 }
 
 /* Desktop (≥1200px) - SUPERPOSITION ICEBERG */
-@media (min-width: 1245px) {
 @media (min-width: 1245px) {
   .hero-container {
     height: 500px;
@@ -642,7 +640,6 @@ export default {
 }
 
 /* Desktop moyen (992px - 1199px) - SUPERPOSITION ICEBERG */
-@media (max-width: 1245px) and (min-width: 992px) {
 @media (max-width: 1245px) and (min-width: 992px) {
   .hero-container {
     height: 450px;
@@ -715,7 +712,6 @@ export default {
 
 /* TABLETTE (768px - 991px) - PAS DE SUPERPOSITION, 2x2 GRID */
 @media (max-width: 992px) and (min-width: 768px) {
-@media (max-width: 992px) and (min-width: 768px) {
   .hero-container {
     margin-bottom: 0;
     height: auto; /* Hauteur automatique */
@@ -744,14 +740,12 @@ export default {
     flex-wrap: wrap; /* IMPORTANT: wrap activé */
     gap: 15px;
     margin-top: -150px;
-    
 
     justify-content: center;
     padding: 0; /* Reset padding sur tablette */
   }
 
   .domain-col {
-    
     flex: 0 0 calc(50% - 15px);
     max-width: calc(50% - 15px);
   }
@@ -1017,7 +1011,6 @@ export default {
     height: 200px !important;
     height: 200px !important;
     margin-bottom: 10px;
-   
   }
   /* zeett */
 
