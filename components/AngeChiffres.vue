@@ -445,12 +445,21 @@ export default {
     backdrop-filter: blur(4px);
 }
 
+@media (max-width: 2000px) {
+    .stats-main-container {
+        padding: 0 220px !important;
+    }
+}
+@media (max-width: 1400px) {
+    .stats-main-container {
+        padding: 0 140px !important;
+    }
+}
 
-/* Tablettes grandes (992px - 1200px) */
 @media (max-width: 1200px) {
     .stats-main-container {
         margin: 30px auto;
-        padding: 0 90px !important;
+        padding: 0 130px !important;
         margin-bottom: 50px;
     }
     

@@ -475,11 +475,17 @@ export default {
   border-color: rgba(255, 255, 255, 0.6);
   transform: scale(1.1);
 }
+@media (max-width: 2000px) {
+  .domains-row {
+   margin-top: -380px !important;
 
+    
+  }
+}
 
 
 /* Desktop Large (≥1400px)  */
-@media (min-width: 1400px) {
+@media (max-width: 1400px) {
   .hero-container {
     height: 550px;
   }
@@ -503,6 +509,10 @@ export default {
 
   .domains-row {
     padding: 0 20px;
+    margin-top: -300px !important;
+    /* margin-bottom: 100px  !important; */
+
+    
   }
 
   /* CARTES RECTANGULAIRES - Alignement à gauche */
@@ -570,7 +580,6 @@ export default {
   }
 }
 
-/* Desktop moyen (992px - 1199px) */
 @media (max-width: 1245px) and (min-width: 992px) {
   .hero-container {
     height: 450px;
@@ -594,6 +603,7 @@ export default {
     flex-wrap: nowrap;
     padding: 0 15px;
     margin-top: -100px !important;
+    
   }
 
   .domain-col {
@@ -665,9 +675,10 @@ export default {
   .domains-row {
     flex-wrap: wrap;
     gap: 15px;
-    margin-top: 0 !important; /* Reset du margin-top */
+    margin-top: 0px !important; 
     justify-content: center;
     padding: 0;
+   
   }
 
   .domain-col {

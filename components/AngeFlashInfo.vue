@@ -170,21 +170,22 @@ export default {
 @media (max-width: 2000px) {
   .container {
     max-width: 2500px !important;
-    margin: 20px 30px;
-    margin-left: 100px !important;
-    width: calc(100% - 200px) !important;
-    margin-top:30px !important;
-    margin-bottom:-20px;
+    margin: 0px 30px;
+    margin-left: 270px !important;
+    width: calc(100% - 500px) !important;
+    margin-top:0px !important;
+    margin-bottom:-70px;
 
   }
 }
+
 @media (max-width: 1400px) {
   .container {
     max-width: 1000px;
-    margin: 20px 30px;
-    margin-left: 100px !important;
-    width: calc(100% - 200px) !important;
-    margin-top:90px !important;
+    margin: 100px 100px;
+    margin-left: 180px !important;
+    width: calc(100% - 320px) !important;
+    margin-top:50px !important;
     margin-bottom:-90px;
             background-color: red !important;
 
@@ -197,11 +198,11 @@ export default {
   .container {
     max-width: 1000px;
     margin: 20px 30px;
-    margin-left: 120px;
-    width: calc(100% - 200px) !important;
+    margin-left: 160px !important;
+    width: calc(100% - 290px) !important;
     margin-top:90px !important;
     margin-bottom:-90px;
-    height: 80px !important;
+    height: 50px !important;
   
   }
 }
