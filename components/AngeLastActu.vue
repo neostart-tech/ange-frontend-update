@@ -328,6 +328,7 @@ export default {
 
   .section-main-title {
     font-size: 26px;
+    margin-top: 30px;
     margin-bottom: 8px;
   }
 
@@ -366,6 +367,7 @@ export default {
   .section-main-title {
     font-size: 24px;
     margin-bottom: 6px;
+      margin-top: 30px;
   }
 
   .section-subtitle {
@@ -398,6 +400,7 @@ export default {
 
   .section-main-title {
     font-size: 22px;
+      margin-top: 30px;
   }
 
   .section-subtitle {

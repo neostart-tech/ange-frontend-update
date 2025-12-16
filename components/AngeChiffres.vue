@@ -230,12 +230,10 @@ export default {
 <style scoped>
 .stats-main-container {
     max-width: 1400px;
-    margin: 0;
-    margin-bottom:100px;
-    padding: 0;
+    margin: 40px auto;
+    padding: 0 20px;
     width: 100%;
     box-sizing: border-box;
-    /* margin-left:100px; */
 }
 
 .stats-grid {
@@ -255,12 +253,11 @@ export default {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     /* border-radius: 15px; */
     padding: 40px;
-    padding-left: 120px;
     flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 90%;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -388,7 +385,7 @@ export default {
 
 .stats-numbers-col {
     display: flex;
-    width: 80%;
+    width: 100%;
 }
 
 .stats-numbers-grid {
@@ -453,7 +450,8 @@ export default {
 @media (max-width: 1200px) {
     .stats-main-container {
         margin: 30px auto;
-        padding: 0 15px;
+        padding: 0 90px !important;
+        margin-bottom: 50px;
     }
     
     .stats-grid {
@@ -471,6 +469,10 @@ export default {
 
 /* Tablettes (768px - 992px) */
 @media (max-width: 992px) {
+      .stats-main-container {
+       padding: 0 40px;
+        margin-bottom: 50px;
+    }
     .stats-grid {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -485,13 +487,19 @@ export default {
     .stats-text-card {
         padding: 25px;
     }
+
+    .indicator-card {
+        padding: 20px 15px;
+        height: 150px !important;
+    }
 }
 
 /* Mobiles paysage (576px - 768px) */
 @media (max-width: 768px) {
     .stats-main-container {
         margin: 20px auto;
-        padding: 0 15px;
+       padding: 0 40px;
+        margin-bottom: 50px;
     }
     
     .stats-grid {
@@ -509,6 +517,7 @@ export default {
     
     .indicator-card {
         padding: 20px 15px;
+        height: 120px !important;
     }
     
     /* Bouton légèrement plus petit sur tablette */
@@ -523,7 +532,8 @@ export default {
 @media (max-width: 576px) {
     .stats-main-container {
         margin: 15px auto;
-        padding: 0 10px;
+        padding: 0 40px;
+        margin-bottom: 50px;
     }
     
     .stats-grid {
@@ -540,6 +550,7 @@ export default {
     
     .indicator-card {
         padding: 15px 10px;
+        height: 120px !important;
     }
     
     /* Bouton taille réduite mais dans la plage 100-200px */
@@ -554,8 +565,10 @@ export default {
 @media (max-width: 480px) {
     .stats-main-container {
         margin: 10px auto;
-        padding: 0 8px;
+        padding: 0 40px;
+        margin-bottom: 50px;
     }
+
     
     .stats-grid {
         gap: 10px;
@@ -563,7 +576,6 @@ export default {
     
     .stats-text-card {
         padding: 12px;
-        border-radius: 10px;
     }
     
     .stats-numbers-grid {
@@ -572,7 +584,7 @@ export default {
     
     .indicator-card {
         padding: 12px 8px;
-        border-radius: 8px;
+        height: 120px !important;
     }
     
     .counter-stat-env,
@@ -591,6 +603,8 @@ export default {
         padding: 7px 14px;
     }
 }
+
+
 
 /* Garantir que tout reste dans les limites */
 .stats-main-container,

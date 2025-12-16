@@ -443,7 +443,7 @@ export default {
   }
 
   .feux-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-bottom: 50px;
   }
@@ -496,7 +496,7 @@ export default {
   }
 
   .feux-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-bottom: 45px;
   }
@@ -556,7 +556,9 @@ export default {
   }
 
   .feux-stats-grid {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
+        grid-template-columns: repeat(3, 1fr);
+
     gap: 35px;
     margin-bottom: 40px;
   }

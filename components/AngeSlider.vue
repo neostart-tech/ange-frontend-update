@@ -332,32 +332,21 @@ export default {
   max-width: 25%;
 }
 
-/* Cartes des domaines */
+/* Cartes des domaines - ALIGNEMENT À GAUCHE */
 .domain-card-iceberg {
   background: #0b9dd1;
   color: white;
   border: none;
   border-radius: 0;
   transition: all 0.3s ease;
-  height: 160px !important;
+  height: 140px !important; /* Hauteur augmentée pour mieux contenir */
   display: flex;
-  align-items: center;
+  align-items: flex-start; 
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   position: relative;
   cursor: pointer;
-  width: 100%;
-}
-
-.domain-card-iceberg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #00a8ff, #00ffaa, #00a8ff);
-  z-index: 1;
+  width: 260px !important; /* Changement: 100% au lieu de 250px fixe */
 }
 
 .domain-card-iceberg:hover {
@@ -365,66 +354,76 @@ export default {
   box-shadow: 0 15px 30px rgba(11, 157, 209, 0.5);
 }
 
+/* CORRECTION : Alignement du contenu à gauche */
 .domain-card-body {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 15px 12px;
-  text-align: center;
+  padding: 25px 20px !important; /* Padding augmenté */
+  text-align: left !important; /* IMPORTANT : Alignement à gauche */
   width: 100%;
   position: relative;
   z-index: 2;
+  align-items: flex-start !important; /* Alignement à gauche */
+  justify-content: space-between; /* Distribuer l'espace */
 }
 
 .domain-icon {
-  font-size: 1.8rem;
+  font-size: 1.8rem !important; /* Taille augmentée */
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 10px;
+  margin-bottom: 15px !important; /* Plus d'espace sous l'icône */
   transition: all 0.3s ease;
   flex-shrink: 0;
-}
-
-.domain-card-iceberg:hover .domain-icon {
-  transform: scale(1.1);
+  text-align: left !important; /* Alignement à gauche */
+  width: 100%; /* Prendre toute la largeur */
+  display: flex;
+  justify-content: flex-start;
 }
 
 .domain-title {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 15px;
-  color: white;
-  flex-grow: 1;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+  color: white !important;
+  font-size: 16px !important; /* Taille augmentée */
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin-bottom: 15px !important;
+  text-align: left !important; /* IMPORTANT : Alignement à gauche */
+  width: 100% !important; /* Prendre toute la largeur */
+  display: block !important; /* FORCER l'affichage */
+  visibility: visible !important; /* FORCER la visibilité */
+  opacity: 1 !important; /* FORCER l'opacité */
+  flex-grow: 1; /* Permet au titre de prendre l'espace disponible */
+  overflow: visible !important; /* S'assurer que le texte est visible */
 }
 
 .domain-link {
-  margin-top: auto;
+  margin-top: auto !important; /* Pousser le lien vers le bas */
   flex-shrink: 0;
+  width: 100% !important; /* Prendre toute la largeur */
+  text-align: left !important; /* Alignement à gauche */
+  display: flex;
+  justify-content: flex-start;
 }
 
 .link-gradient {
-  font-weight: bold;
+  font-weight: bold !important;
   background: white;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease !important;
+  white-space: nowrap !important;
+  text-align: left !important;
 }
 
 .link-gradient:hover {
-  text-decoration: underline;
-  transform: translateX(5px);
+  text-decoration: underline !important;
+  transform: translateX(5px) !important;
 }
 
 /* Navigation buttons */
@@ -477,86 +476,9 @@ export default {
   transform: scale(1.1);
 }
 
-/* RESPONSIVE DESIGN */
-@media (min-width: 2000px) {
-  .hero-container {
-    max-height: 1050px !important;
-  }
 
-  .intro-slider {
-    max-height: 1050px !important;
-  }
 
-  .domains-iceberg-overlay {
-    bottom: -70px;
-  }
-
-  .container-fluid {
-    max-width: 1320px; /* Bootstrap xxl */
-    padding: 0 20px;
-  }
-
-  .domains-row {
-    padding: 0 20px;
-  }
-
-  .domain-card-iceberg {
-    height: 180px;
-  }
-
-  .domain-card-body {
-    padding: 20px 15px;
-  }
-
-  .domain-title {
-    font-size: 16px;
-    -webkit-line-clamp: 4;
-  }
-
-  .title {
-    font-size: 2.2rem !important;
-  }
-}
-@media (min-width: 2000px) {
-  .hero-container {
-    max-height: 1050px !important;
-  }
-
-  .intro-slider {
-    max-height: 1050px !important;
-  }
-
-  .domains-iceberg-overlay {
-    bottom: -70px;
-  }
-
-  .container-fluid {
-    max-width: 1320px; /* Bootstrap xxl */
-    padding: 0 20px;
-  }
-
-  .domains-row {
-    padding: 0 20px;
-  }
-
-  .domain-card-iceberg {
-    height: 180px;
-  }
-
-  .domain-card-body {
-    padding: 20px 15px;
-  }
-
-  .domain-title {
-    font-size: 16px;
-    -webkit-line-clamp: 4;
-  }
-
-  .title {
-    font-size: 2.2rem !important;
-  }
-}
-/* Desktop Large (≥1400px) - SUPERPOSITION ICEBERG */
+/* Desktop Large (≥1400px)  */
 @media (min-width: 1400px) {
   .hero-container {
     height: 550px;
@@ -566,34 +488,39 @@ export default {
     height: 550px;
   }
 
+  .intro-section {
+    height: 400px;
+  }
+
   .domains-iceberg-overlay {
     bottom: -70px;
   }
 
   .container-fluid {
-    max-width: 1320px; /* Bootstrap xxl */
-    padding: 0 20px;
+    max-width: 1320px;
+    padding: 0px 20px;
   }
 
   .domains-row {
     padding: 0 20px;
   }
 
+  /* CARTES RECTANGULAIRES - Alignement à gauche */
   .domain-card-iceberg {
-    height: 180px;
+    height: 180px !important;
+    min-height: 180px;
   }
 
   .domain-card-body {
-    padding: 20px 15px;
+    padding: 25px 20px !important;
   }
 
   .domain-title {
-    font-size: 16px;
-    -webkit-line-clamp: 4;
+    font-size: 16px !important;
   }
 
   .title {
-    font-size: 2.2rem !important;
+    font-size: 1.4rem !important;
   }
 }
 
@@ -612,13 +539,13 @@ export default {
   }
 
   .container-fluid {
-    max-width: 1140px; /* Bootstrap xl */
+    max-width: 1140px;
     padding: 0 15px;
   }
 
   .domains-row {
     gap: 20px;
-    flex-wrap: nowrap; /* 4 sur même ligne */
+    flex-wrap: nowrap;
     padding: 0 15px;
   }
 
@@ -628,18 +555,22 @@ export default {
   }
 
   .domain-card-iceberg {
-    height: 170px;
+    height: 200px !important;
     margin-top: 50px;
-    margin-top: 50px;
+ 
   }
 
+  .domain-card-body {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  
   .domain-title {
-    font-size: 15px;
-    -webkit-line-clamp: 3;
+    font-size: 16px !important;
   }
 }
 
-/* Desktop moyen (992px - 1199px) - SUPERPOSITION ICEBERG */
+/* Desktop moyen (992px - 1199px) */
 @media (max-width: 1245px) and (min-width: 992px) {
   .hero-container {
     height: 450px;
@@ -654,13 +585,13 @@ export default {
   }
 
   .container-fluid {
-    max-width: 960px; /* Bootstrap lg */
+    max-width: 960px;
     padding: 0 15px;
   }
 
   .domains-row {
     gap: 15px;
-    flex-wrap: nowrap; /* 4 sur même ligne */
+    flex-wrap: nowrap;
     padding: 0 15px;
     margin-top: -100px !important;
   }
@@ -671,34 +602,29 @@ export default {
   }
 
   .domain-card-iceberg {
-    height: 160px;
+    height: 170px !important;
+       width: 210px !important;
   }
 
   .domain-card-body {
-    padding: 15px 10px;
+    padding: 20px 15px !important;
   }
 
   .domain-title {
-    font-size: 14px;
-    -webkit-line-clamp: 3;
-    margin-bottom: 12px;
+    font-size: 15px !important;
   }
 
   .domain-icon {
-    font-size: 1.6rem;
-    margin-bottom: 8px;
+    font-size: 1.6rem !important;
+    margin-bottom: 10px !important;
   }
 
   .title {
     font-size: 1.8rem !important;
   }
 
-  .description {
-    font-size: 1rem;
-  }
-
   .link-gradient {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
   }
 
   .home-slider-prev {
@@ -710,39 +636,38 @@ export default {
   }
 }
 
-/* TABLETTE (768px - 991px) - PAS DE SUPERPOSITION, 2x2 GRID */
+
 @media (max-width: 992px) and (min-width: 768px) {
   .hero-container {
     margin-bottom: 0;
-    height: auto; /* Hauteur automatique */
+    height: auto;
   }
 
   .intro-slider {
-    height: 400px; /* Hauteur réduite sur tablette */
+    height: 400px;
     position: relative;
-    margin-bottom: 30px; /* Espace entre slider et cartes */
+    margin-bottom: 30px;
   }
 
   .domains-iceberg-overlay {
-    position: relative; /* IMPORTANT: plus en absolute */
+    position: relative;
     bottom: 0;
     margin-top: 0;
     margin-bottom: 30px;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
   .container-fluid {
-    max-width: 720px; /* Bootstrap md */
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    max-width: 720px;
+    padding: 0 15px;
   }
 
   .domains-row {
-    flex-wrap: wrap; /* IMPORTANT: wrap activé */
+    flex-wrap: wrap;
     gap: 15px;
-    margin-top: -150px;
-
+    margin-top: 0 !important; /* Reset du margin-top */
     justify-content: center;
-    padding: 0; /* Reset padding sur tablette */
+    padding: 0;
   }
 
   .domain-col {
@@ -751,34 +676,35 @@ export default {
   }
 
   .domain-card-iceberg {
-    height: 160px;
+    height: 170px !important;
+    width: 100% !important;
   }
 
   .domain-card-body {
-    padding: 15px 12px;
+    padding: 20px 15px !important;
+    text-align: left !important;
+    flex-direction: column !important; /* IMPORTANT: layout vertical */
   }
 
   .domain-title {
-    font-size: 14px;
-    -webkit-line-clamp: 3;
-    margin-bottom: 12px;
+    font-size: 15px !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+    visibility: visible !important;
   }
 
   .domain-icon {
-    font-size: 1.7rem;
-    margin-bottom: 10px;
+    font-size: 1.7rem !important;
+    margin-bottom: 10px !important;
+    text-align: left !important;
   }
 
   .title {
     font-size: 1.7rem !important;
   }
 
-  .description {
-    font-size: 1rem;
-  }
-
   .link-gradient {
-    font-size: 0.85rem;
+    font-size: 0.85rem !important;
   }
 
   .swiper-button-prev,
@@ -796,7 +722,9 @@ export default {
   }
 }
 
-/* MOBILE PAYSAGE (600px - 767px) - PAS DE SUPERPOSITION, 2x2 GRID COMPACT */
+/* =========================================== */
+/* MOBILE PAYSAGE (600px - 767px) - 2 COLONNES */
+/* =========================================== */
 @media (max-width: 767px) and (min-width: 600px) {
   .hero-container {
     height: auto;
@@ -816,20 +744,19 @@ export default {
     bottom: 0;
     margin-top: 0;
     margin-bottom: 25px;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
   .container-fluid {
-    max-width: 540px; /* Bootstrap sm */
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    max-width: 540px;
+    padding: 0 15px;
   }
 
   .domains-row {
     flex-wrap: wrap;
     gap: 12px;
-    padding: 0; /* Reset padding */
-    margin-top: -100px;
-    margin-top: -100px;
+    padding: 0;
+    margin-top: 0 !important;
   }
 
   .domain-col {
@@ -838,37 +765,37 @@ export default {
   }
 
   .domain-card-iceberg {
-    height: 150px;
+    height: 180px !important; /* Hauteur augmentée */
+    width: 100% !important;
   }
 
   .domain-card-body {
-    padding: 12px 10px;
+    padding: 20px 15px !important;
+    text-align: left !important;
+    flex-direction: column !important; /* Layout vertical */
   }
 
   .domain-title {
-    font-size: 13px;
-    -webkit-line-clamp: 3;
-    margin-bottom: 10px;
-    line-height: 1.3;
+    font-size: 14px !important;
+    margin-bottom: 10px !important;
+    line-height: 1.3 !important;
+    display: block !important;
+    visibility: visible !important;
   }
 
   .domain-icon {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+    font-size: 1.6rem !important;
+    margin-bottom: 12px !important;
+    text-align: left !important;
   }
 
   .title {
     font-size: 1.6rem !important;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
-  }
-
-  .description {
-    font-size: 0.95rem;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
   .link-gradient {
-    font-size: 0.8rem;
+    font-size: 0.85rem !important;
   }
 
   .swiper-button-prev,
@@ -886,15 +813,17 @@ export default {
   }
 }
 
-/* MOBILE PORTRAIT (≤599px) - PAS DE SUPERPOSITION, 1 COLONNE */
+
 @media (max-width: 599px) {
   .hero-container {
     height: auto;
+    padding-bottom: 20px;
   }
 
   .intro-slider {
-    height: 350px;
+    height: 320px !important;
     margin-bottom: 20px;
+    margin-top: -30px !important;
   }
 
   .position-relative {
@@ -906,74 +835,102 @@ export default {
     bottom: 0;
     margin-top: 0;
     margin-bottom: 20px;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
   .container-fluid {
     max-width: 100%;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
+  /* Les cartes empilées verticalement */
   .domains-row {
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: -120px;
-    margin-top: -120px;
-    flex-direction: column; /* 1 colonne */
-    padding: 0; /* Reset padding */
+    display: flex;
+    flex-direction: column; /* Empilement vertical */
+    flex-wrap: nowrap;
+    gap: 15px; 
+    margin-top: 0 !important;
+    padding: 0;
+    width: 100%;
   }
 
   .domain-col {
-    flex: 0 0 100%; /* 1 carte par ligne = 100% */
-    max-width: 100%;
+    flex: 0 0 100% !important; /* Pleine largeur */
+    max-width: 100% !important; /* Pleine largeur */
+    width: 100% !important;
   }
 
+  /* CARTES MOBILE - DESIGN VERTICAL AMÉLIORÉ */
   .domain-card-iceberg {
-    height: 140px;
+    height: auto !important; /* Hauteur automatique */
+    min-height: 160px !important; /* Hauteur minimale */
+    width: 100% !important;
+    display: flex;
+    margin: 0 auto 1px auto; /* Centrage et espacement */
   }
 
+  /* LAYOUT VERTICAL POUR MOBILE (empilé) */
   .domain-card-body {
-    padding: 15px 20px;
-    flex-direction: row; /* Layout horizontal sur mobile */
-    align-items: center;
-    text-align: left;
+    padding: 20px 15px !important;
+    flex-direction: column !important; /* Layout vertical */
+    align-items: flex-start !important; /* Alignement à gauche */
+    text-align: left !important;
+    justify-content: flex-start !important;
+    width: 100%;
+    height: auto;
   }
 
   .domain-icon {
-    font-size: 1.6rem;
-    margin-bottom: 0;
-    margin-right: 15px;
-    flex-shrink: 0;
-    width: 40px;
-    text-align: center;
+    font-size: 1.6rem !important;
+    margin-bottom: 12px !important;
+    margin-right: 0 !important;
+    text-align: left !important;
+    width: 100%;
   }
 
+  /* CORRECTION : Titre bien visible */
   .domain-title {
-    font-size: 14px;
-    -webkit-line-clamp: 2; /* 2 lignes max en layout horizontal */
-    margin-bottom: 0;
-    flex-grow: 1;
-    padding-right: 10px;
+    text-align: left !important;
+    font-size: 15px !important; /* Taille augmentée */
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: white !important;
+    width: 100%;
+    overflow: visible !important;
+    white-space: normal !important;
+    word-wrap: break-word !important;
+    /* Pas de limite de lignes sur mobile */
+    -webkit-line-clamp: unset !important;
+    -webkit-box-orient: unset !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .domain-link {
-    margin-top: 0;
+    margin-top: 10px !important; /* Espace au-dessus du lien */
     flex-shrink: 0;
+    text-align: left !important;
+    align-self: flex-start !important;
+    width: 100%;
   }
 
   .link-gradient {
-    font-size: 0.85rem;
-    white-space: nowrap;
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
   }
 
   .title {
     font-size: 1.5rem !important;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
   .description {
     font-size: 0.9rem;
-    padding: 0 15px; /* MARGES SYMÉTRIQUES */
+    padding: 0 15px;
   }
 
   /* Masquer navigation sur mobile */
@@ -983,58 +940,57 @@ export default {
   }
 }
 
+
 @media (max-width: 480px) {
   .intro-slider {
-    height: 320px;
-  }
+    height: 220px !important;
+    margin-top: -30px !important;
 
-  .domain-card-iceberg {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: start;
   }
 
   .domains-iceberg-overlay {
-    padding: 0 12px; /* MARGES SYMÉTRIQUES réduites */
+    padding: 0 12px;
   }
 
   .container-fluid {
-    padding: 0 12px; /* MARGES SYMÉTRIQUES réduites */
+    padding: 0 12px;
   }
 
   .domains-row {
-    margin-top: -80px;
-    margin-top: -80px;
+    gap: 12px;
+
+
   }
 
   .domain-card-iceberg {
-    height: 200px !important;
-    height: 200px !important;
-    margin-bottom: 10px;
+    min-height: 150px !important;
+    margin-bottom: 0 !important;
   }
-  /* zeett */
 
   .domain-card-body {
-    padding: 12px 15px;
+    padding: 18px 15px !important;
   }
 
   .domain-icon {
-    font-size: 1.4rem;
-    margin-right: 12px;
-    width: 35px;
+    font-size: 1.5rem !important;
+    margin-bottom: 10px !important;
   }
 
   .domain-title {
-    font-size: 13px;
-    -webkit-line-clamp: 2;
+    font-size: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .domain-link {
+    margin-top: 8px !important;
   }
 
   .link-gradient {
-    font-size: 0.8rem;
+    font-size: 0.85rem !important;
   }
 
   .title {
-    font-size: 1.4rem !important;
+    font-size: 1rem !important;
     padding: 0 12px;
   }
 
@@ -1044,7 +1000,7 @@ export default {
   }
 }
 
-/* Très petits mobiles (≤375px) */
+
 @media (max-width: 375px) {
   .position-relative {
     padding-top: 0px;
@@ -1059,43 +1015,38 @@ export default {
   }
 
   .container-fluid {
-    padding: 0 10px; /* MARGES SYMÉTRIQUES minimales */
+    padding: 0 10px;
   }
 
   .domain-card-iceberg {
-    height: 120px;
-    margin-top: -120px;
-    margin-bottom: 60px;
+    min-height: 140px !important;
   }
 
   .domains-row {
-    margin-top: -40px;
-    gap: 80px;
-    margin-top: -40px;
-    gap: 80px;
+    gap: 10px;
   }
 
   .domain-card-body {
-    padding: 10px 12px;
+    padding: 15px 12px !important;
   }
 
   .domain-icon {
-    font-size: 1.3rem;
-    margin-right: 10px;
-    width: 30px;
+    font-size: 1.4rem !important;
+    margin-bottom: 8px !important;
   }
 
   .domain-title {
-    font-size: 12px;
+    font-size: 13px !important;
+    margin-bottom: 10px !important;
   }
 
   .link-gradient {
-    font-size: 0.75rem;
+    font-size: 0.8rem !important;
   }
 
   .title {
     font-size: 1.3rem !important;
-    padding: 0 10px; /* MARGES SYMÉTRIQUES minimales */
+    padding: 0 10px;
   }
 
   .description {
@@ -1103,20 +1054,29 @@ export default {
   }
 }
 
-/* Amélioration du contenu dans les cartes */
-.domain-card-body {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Suppression des marges négatives problématiques */
+@media (max-width: 991px) {
+  .domains-row {
+    margin-top: 0 !important;
+  }
+  
+  .position-relative {
+    overflow: visible;
+  }
 }
 
-/* Pour le layout horizontal sur mobile */
-@media (max-width: 599px) {
+/* Assurer que le titre est toujours visible */
+.domain-title {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important;
+}
+
+/* Forcer le layout vertical sur tous les écrans mobiles */
+@media (max-width: 767px) {
   .domain-card-body {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column !important;
   }
 }
 
@@ -1124,13 +1084,6 @@ export default {
 .domain-title {
   word-break: break-word;
   hyphens: auto;
-}
-
-/* Correction pour s'assurer que le conteneur principal n'a pas de hauteur fixe sur mobile/tablette */
-@media (max-width: 991px) {
-  .position-relative {
-    overflow: visible;
-  }
 }
 
 /* Assure que tous les éléments ont la même marge */

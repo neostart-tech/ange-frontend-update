@@ -419,12 +419,13 @@ export default {
   .container {
     padding-left: 30px;
     padding-right: 30px;
+
   }
 
   .header-section.is-sticky .container{
+     padding-left: 30px;
+  padding-right: 30px;
 
-     padding-left: 100px;
-  padding-right: 100px;
 }
 
 
@@ -436,6 +437,15 @@ export default {
   .d-none.d-xl-flex .col-auto:last-child img {
     margin-right: 20px;
   }
+}
+
+@media (max-width: 1245px) and (min-width: 1199px) {
+
+   .header-section.is-sticky .container{
+     padding-left: 80px;
+  padding-right: 80px;
+
+}
 }
 
 /* Tablet (768px - 1199px) */
@@ -455,7 +465,7 @@ export default {
   }
   
   .d-xl-none .col-auto:last-child img {
-    max-width: 75px;
+    max-width: 100px !important;
     margin-right: 15px;
   }
   
@@ -504,11 +514,15 @@ export default {
     padding-right: 15px;
   }
   
+  
   .header-section,
   .header-section.is-sticky {
     padding: 4px 0;
   }
-  
+
+  .header-section.is-sticky .container {
+    padding: 4px 0;
+  }
   .d-xl-none .col-auto:nth-child(2) img {
     max-width: 75px;
   }

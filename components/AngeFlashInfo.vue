@@ -185,6 +185,7 @@ export default {
     width: calc(100% - 200px) !important;
     margin-top:90px !important;
     margin-bottom:-90px;
+
   }
 }
 
@@ -194,9 +195,11 @@ export default {
     max-width: 1000px;
     margin: 20px 30px;
     margin-left: 120px;
-    width: calc(100% - 0px);
+    width: calc(100% - 200px) !important;
     margin-top:90px !important;
     margin-bottom:-90px;
+    height: 80px !important;
+  
   }
 }
 
@@ -206,6 +209,7 @@ export default {
     margin: 18px 25px;
     margin-bottom: -50px;
     width: calc(100% - 50px);
+height:60px !important;
   }
   
   .flash-info-label {
@@ -229,18 +233,20 @@ export default {
     margin-top: 50px !important;
     margin-bottom: -80px;
     height:70px;
+        background-color: red !important;
+
   }
 }
 
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    margin: 200px 20px;
-    margin-bottom: -20px;
-    width: calc(100% - 40px);
-    border-radius: 10px;
-    margin-top:40px !important;
-    height:120px;
+    margin: 0px 50px !important;
+    margin-bottom: -90px !important;
+    width: calc(100% - 100px) !important;
+    margin-top:0px !important;
+    height:100px !important;
+
   }
 
   .flash-info-label {
@@ -273,10 +279,12 @@ export default {
 
 @media (max-width: 576px) {
   .container {
-    margin: 12px 15px;
-    width: calc(100% - 30px);
-    border-radius: 8px;
+    margin: 12px 40px !important;
+    width: calc(100% - 100px) !important;
     border-width: 1.5px;
+    margin-bottom: -80px !important;
+    height: 100px !important;
+    
   }
 
   .flash-info-label {
@@ -302,12 +310,12 @@ export default {
 
 @media (max-width: 480px) {
   .container {
-    margin: 10px 12px;
-    width: calc(100% - 24px);
+    margin: 10px 38px !important;
+    width: calc(100% - 80px) !important;
     height:100px !important;
-    border-radius: 6px;
     margin-top:0px !important;
     margin-bottom:-50px !important;
+
   }
 
   .flash-info-label {
