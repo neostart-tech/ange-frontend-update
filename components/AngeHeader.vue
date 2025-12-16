@@ -450,6 +450,7 @@ export default {
 
 /* Tablet (768px - 1199px) */
 @media (max-width: 1199px) and (min-width: 768px) {
+  
   .container {
     padding-left: 30px;
     padding-right: 30px;
@@ -458,6 +459,12 @@ export default {
   .header-section,
   .header-section.is-sticky {
     padding: 6px 0;
+    
+  }
+
+   .header-section.is-sticky .container{
+    padding-left: 100px !important;
+    padding-right: 100px !important;
   }
   
   .d-xl-none .col-auto:nth-child(2) img {
@@ -484,6 +491,11 @@ export default {
   .header-section,
   .header-section.is-sticky {
     padding: 5px 0;
+  }
+
+     .header-section.is-sticky .container{
+    padding-left: 100px !important;
+    padding-right: 100px !important;
   }
   
   .d-xl-none .col-auto:nth-child(2) img {
