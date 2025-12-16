@@ -21,7 +21,7 @@
                         <div class="adresses">
                             <p><i class="fa fa-map-marker"></i>575, rue de l'Entente (Ex rue de l'OCAM)</p>
                             <p><i class="fa-solid fa-phone"></i> +228 22 21 21 53 </p>
-                            <p><i class="fa fa-envelope"></i> angeenvironnement@gmail.com</p>
+                            <!-- <p><i class="fa fa-envelope"></i> angeenvironnement@gmail.com</p> -->
                             <p><i class="fa fa-envelope"></i> contact@ange.tg</p>
 
                         </div>

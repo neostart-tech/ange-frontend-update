@@ -175,6 +175,7 @@ export default {
     width: calc(100% - 200px) !important;
     margin-top:30px !important;
     margin-bottom:-20px;
+
   }
 }
 @media (max-width: 1400px) {
@@ -185,6 +186,8 @@ export default {
     width: calc(100% - 200px) !important;
     margin-top:90px !important;
     margin-bottom:-90px;
+            background-color: red !important;
+
 
   }
 }

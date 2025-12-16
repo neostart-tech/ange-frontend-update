@@ -69,10 +69,10 @@
                   <span class="contact-text">01 BP : 2244 Lomé TOGO</span>
                 </div>
 
-                <div class="contact-info-item d-flex align-items-center mb-3">
+                <!-- <div class="contact-info-item d-flex align-items-center mb-3">
                   <i class="fa-solid fa-envelope contact-icon"></i>
                   <span class="contact-text">angeenvironnement@gmail.com</span>
-                </div>
+                </div> -->
                  <div class="contact-info-item d-flex align-items-center mb-3">
                   <i class="fa-solid fa-envelope contact-icon"></i>
                   <span class="contact-text">contact@ange.tg</span>
