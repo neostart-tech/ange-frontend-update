@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <!-- Système de tabulation -->
+    <!-- Système de tabulation - COPIE EXACTE -->
     <div class="tabs-container" ref="tabsContainer">
-      <!-- Version Desktop -->
+      <!-- Version Desktop - IDENTIQUE -->
       <div class="desktop-tabs" v-if="!isMobile">
         <div class="tabs-header">
-          <!-- Indicateur de progression -->
+          <!-- Indicateur de progression - IDENTIQUE -->
           <div class="tabs-progress">
             <div 
               class="progress-bar" 
@@ -13,7 +13,7 @@
             ></div>
           </div>
           
-          <!-- Navigation des onglets -->
+          <!-- Navigation des onglets - IDENTIQUE -->
           <div class="tabs-navigation">
             <button 
               class="nav-btn prev"
@@ -60,11 +60,11 @@
         </div>
       </div>
 
-      <!-- Version Mobile -->
+      <!-- Version Mobile - IDENTIQUE -->
       <div class="mobile-tabs" v-if="isMobile">
-        <!-- En-tête mobile -->
+        <!-- En-tête mobile - IDENTIQUE -->
         <div class="mobile-header">
-          <!-- Indicateur de progression -->
+          <!-- Indicateur de progression - IDENTIQUE -->
           <div class="mobile-progress">
             <div class="progress-info">
               <span class="current-step">Étape {{ activeTab + 1 }} : {{ tabs[activeTab].title }}</span>
@@ -78,7 +78,7 @@
             </div>
           </div>
 
-          <!-- Navigation mobile (haut) -->
+          <!-- Navigation mobile (haut) - IDENTIQUE -->
           <div class="mobile-navigation-simple top-nav">
             <button 
               class="mobile-nav-btn prev"
@@ -105,32 +105,47 @@
         </div>
       </div>
 
-      <!-- Contenu des onglets avec animation -->
+      <!-- Contenu des onglets avec animation - IDENTIQUE -->
       <div class="tab-content-wrapper">
         <transition :name="transitionName" mode="out-in">
           <div 
             :key="activeTab"
             class="tab-content"
           >
-            <!-- Onglet 1 : À propos -->
-            <div v-if="activeTab === 0">
-              <Angeapropospasiet/>
+            <!-- Onglet 1 : Contexte & Justification -->
+            <div v-if="activeTab === 0" class="tab-pane">
+              <Angecbitcontextjustification/>
             </div>
 
             <!-- Onglet 2 : Objectifs -->
-            <div v-else-if="activeTab === 1">
-              <AngeObjectifpasiet/>
+            <div v-else-if="activeTab === 1" class="tab-pane">
+              <AngecbitObjectifs/>
             </div>
 
-            <!-- Onglet 3 : Limites et défis -->
-            <div v-else-if="activeTab === 2">
-              <Angepasietlimiteetdefis/>
+            <!-- Onglet 3 : Activités -->
+            <div v-else-if="activeTab === 2" class="tab-pane">
+              <AngecbitActivite/>
+            </div>
+
+            <!-- Onglet 4 : Informations Projet -->
+            <div v-else-if="activeTab === 3" class="tab-pane">
+              <AngecbitProjectInfo/>
+            </div>
+
+            <!-- Onglet 5 : Résultats -->
+            <div v-else-if="activeTab === 4" class="tab-pane">
+              <AngecbitResultat/>
+            </div>
+
+            <!-- Onglet 6 : Perspectives -->
+            <div v-else-if="activeTab === 5" class="tab-pane">
+              <Angecbitperpective/>
             </div>
           </div>
         </transition>
       </div>
 
-      <!-- Navigation mobile (bas) -->
+      <!-- Navigation mobile (bas) - IDENTIQUE -->
       <div class="mobile-tabs" v-if="isMobile">
         <div class="mobile-footer">
           <div class="mobile-navigation-simple bottom-nav">
@@ -165,9 +180,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
+// Configuration des onglets - 6 comme dans votre structure
 const tabs = ref([
   {
-    title: "À propos du PASIET",
+    title: "Contexte & Justification",
     completed: false
   },
   {
@@ -175,7 +191,19 @@ const tabs = ref([
     completed: false
   },
   {
-    title: "Limites & Défis",
+    title: "Activités",
+    completed: false
+  },
+  {
+    title: "Informations Projet",
+    completed: false
+  },
+  {
+    title: "Résultats",
+    completed: false
+  },
+  {
+    title: "Perspectives",
     completed: false
   }
 ])
@@ -185,6 +213,7 @@ const transitionName = ref('slide-next')
 const isMobile = ref(false)
 const tabsContainer = ref(null)
 
+// Fonctions IDENTIQUES
 const checkMobile = () => {
   isMobile.value = window.innerWidth < 1024
 }
@@ -208,18 +237,21 @@ const switchTab = (index) => {
 }
 
 const nextTab = () => {
+  console.log('Next tab clicked, current tab:', activeTab.value) // Debug
   if (activeTab.value < tabs.value.length - 1) {
     switchTab(activeTab.value + 1)
   }
 }
 
 const previousTab = () => {
+  console.log('Previous tab clicked, current tab:', activeTab.value) // Debug
   if (activeTab.value > 0) {
     switchTab(activeTab.value - 1)
   }
 }
 
 onMounted(() => {
+  console.log('Component mounted') // Debug
   checkMobile()
   window.addEventListener('resize', checkMobile)
 })
@@ -230,6 +262,8 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* STYLES IDENTIQUES AU PREMIER COMPOSANT */
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -312,6 +346,7 @@ onUnmounted(() => {
   opacity: 0.3;
   cursor: not-allowed;
   background: #f8faf9;
+  pointer-events: none;
 }
 
 .tabs-wrapper {
@@ -331,7 +366,7 @@ onUnmounted(() => {
   border-radius: 12px;
   transition: all 0.3s ease;
   position: relative;
-  min-width: 200px;
+  min-width: 180px;
   justify-content: flex-start;
   flex-shrink: 0;
   border: 1px solid transparent;
@@ -383,7 +418,7 @@ onUnmounted(() => {
   color: #2d3748;
   transition: color 0.3s ease;
   white-space: nowrap;
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.3px;
 }
 
@@ -408,8 +443,12 @@ onUnmounted(() => {
   min-height: 500px;
 }
 
-.tab-content > div {
+.tab-pane {
   height: 100%;
+  width: 100%;
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
 }
 
 /* ===== VERSION MOBILE ===== */
@@ -494,6 +533,7 @@ onUnmounted(() => {
   min-height: 56px;
   font-weight: 600;
   font-size: 15px;
+  user-select: none;
 }
 
 .mobile-nav-btn.prev {
@@ -510,6 +550,12 @@ onUnmounted(() => {
   transform: translateY(-2px);
 }
 
+.mobile-nav-btn.prev:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .mobile-nav-btn.next {
   background: #007608;
   color: white;
@@ -523,17 +569,17 @@ onUnmounted(() => {
   transform: translateY(-2px);
 }
 
-.mobile-nav-btn:disabled {
+.mobile-nav-btn.next:disabled {
   opacity: 0.4;
   cursor: not-allowed;
-  transform: none !important;
+  pointer-events: none;
 }
 
 .nav-text {
   margin: 0 12px;
 }
 
-/* Animations */
+/* Animations - IDENTIQUES */
 .slide-next-enter-active,
 .slide-next-leave-active,
 .slide-prev-enter-active,
@@ -580,6 +626,10 @@ onUnmounted(() => {
   .tab-content {
     padding: 24px;
     min-height: 400px;
+  }
+  
+  .tab-item {
+    min-width: 160px;
   }
 }
 
@@ -660,8 +710,51 @@ onUnmounted(() => {
   }
 }
 
-/* Style pour les listes */
+/* Styles pour s'assurer que le contenu s'affiche */
+.tab-content > div {
+  height: 100%;
+  display: block !important;
+  opacity: 1 !important;
+}
+
+.tab-pane {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Style pour les listes - IDENTIQUE */
 li::marker {
   font-weight: bold !important;
+}
+
+/* Debug styles - pour voir si les boutons fonctionnent */
+.debug-active {
+  outline: 2px solid red !important;
+}
+
+/* S'assurer que les boutons sont cliquables */
+button {
+  position: relative;
+  z-index: 10;
+}
+
+/* Correction pour les boutons désactivés */
+button:disabled {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+}
+
+/* S'assurer que les boutons actifs sont cliquables */
+button:not(:disabled) {
+  pointer-events: auto !important;
+  cursor: pointer !important;
 }
 </style>
