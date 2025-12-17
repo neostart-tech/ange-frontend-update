@@ -573,8 +573,8 @@ export default {
 /* Très petits mobiles (< 480px) */
 @media (max-width: 480px) {
     .stats-main-container {
-        margin: 10px auto;
-        padding: 0 40px;
+        margin: 30px auto;
+        padding: 0 30px !important;
         margin-bottom: 50px;
     }
 

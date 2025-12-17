@@ -670,6 +670,7 @@ export default {
   .container-fluid {
     max-width: 720px;
     padding: 0 15px;
+    margin-top: -100px;
   }
 
   .domains-row {
@@ -733,9 +734,6 @@ export default {
   }
 }
 
-/* =========================================== */
-/* MOBILE PAYSAGE (600px - 767px) - 2 COLONNES */
-/* =========================================== */
 @media (max-width: 767px) and (min-width: 600px) {
   .hero-container {
     height: auto;
@@ -965,6 +963,7 @@ export default {
 
   .container-fluid {
     padding: 0 12px;
+    margin-top: 100px;
   }
 
   .domains-row {
@@ -1027,14 +1026,18 @@ export default {
 
   .container-fluid {
     padding: 0 10px;
+        margin-top: 100px;
+
   }
 
   .domain-card-iceberg {
     min-height: 140px !important;
+    margin-bottom: 10px !important;
   }
 
   .domains-row {
     gap: 10px;
+
   }
 
   .domain-card-body {

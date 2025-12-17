@@ -12,14 +12,40 @@
         transparence climatique (IRCT / CBIT Capacity Building Initiative for Transparency)"
       ></Meta>
     </Head>
-    <AngeBreadcrumb
-      activePageName="IRCT / CBIT"
-      backgroundUrl="/images/bg/bg-ange-03.jpg"
-      :others="[
-        { title: 'Accueil', url: '/' },
-        { title: 'Projet', url: '#' },
-      ]"
+   <AngeBreadcrumb 
+      :page-title="pageData.title"
+      :page-description="pageData.description"
+      :breadcrumbs="breadcrumbs" 
     />
     <AngeCbit />
   </AngeRoot>
 </template>
+<script setup>
+import { ref } from 'vue'
+
+// Données réactives
+const pageData = ref({
+  title: 'CBIT',
+  description: "Capacity-Building Initiative for Transparency(Initiative de Renforcement des Capacités pour la Transparence) "
+})
+
+const breadcrumbs = ref([
+  { name: 'Accueil', path: '/' },
+  { name: 'CBIT', path: '/projet/cbit' }
+])
+
+// Fonctions si besoin
+const updatePageData = (newTitle, newDescription) => {
+  pageData.value.title = newTitle
+  pageData.value.description = newDescription
+}
+
+// Exposer des données/méthodes au template si nécessaire
+defineExpose({
+  pageData,
+  breadcrumbs,
+  updatePageData
+})
+
+
+</script>

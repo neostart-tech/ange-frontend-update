@@ -109,17 +109,18 @@ defineExpose({ updateBreadcrumbs, updateTitle, updateDescription, addBreadcrumb,
 </script>
 
 <style scoped>
-.container { margin-bottom: 0px;margin-top:-20px}
+.container { margin-bottom: 0px;margin-top:-20px;}
 .breadcrumbs-wrapper { 
   width: 100%;
 margin:0px !important;
   box-sizing: border-box !important;
   background:#e7f5fa !important;
   padding:0px !important;
+  
 }
 /* .breadcrumbs-section {width: 100%; background: #e7f5fa; min-height: 300px; display: flex; align-items: center; position: relative; overflow: hidden; margin:0; } */
 .breadcrumbs-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: v-bind('props.backgroundUrl') center/cover; opacity: 0.3; }
-.breadcrumbs-links { position: relative; z-index: 2; width: 100%; padding: 60px 40px; display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+.breadcrumbs-links { position: relative; z-index: 2; width: 100%; padding: 60px 0px; display: flex; justify-content: space-between; align-items: center; gap: 40px;width: 100%; }
 .breadcrumbs-left { flex: 1; }
 .breadcrumbs-list { display: flex; align-items: center; gap: 12px; list-style: none; padding: 0; margin: 0 0 30px 0; flex-wrap: wrap; }
 .breadcrumb-item { display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 500; color: #000; transition: color 0.3s ease; }
@@ -127,7 +128,7 @@ margin:0px !important;
 .breadcrumb-item a { color: #000; text-decoration: none; transition: color 0.3s ease; }
 .breadcrumb-item a:hover { color: #016a98; }
 .breadcrumb-separator { color: #000; font-size: 14px; font-weight: 300; }
-.breadcrumbs-divider { height: 1px; background: #e2ebee; margin: 25px 0 35px 0; width: 100%; max-width: 200px; }
+.breadcrumbs-divider { height: 1px; background: #e2ebee; margin: 25px 0 35px 0; width: 100%; max-width: 2000px; }
 .page-title { font-size: 2.5rem; font-weight: 700; line-height: 1.2; margin: 0 0 20px 0; color: #000; }
 .page-description { font-size: 1.1rem; font-weight: 400; line-height: 1.6; margin: 0; color: #000; max-width: 600px; }
 
