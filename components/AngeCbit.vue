@@ -6,6 +6,7 @@
          <AngecbitObjectifs/>
           <AngecbitActivite/>
           <AngecbitProjectInfo/>
+          <AngecbitResultat/>
      </div>
   
   </div>
