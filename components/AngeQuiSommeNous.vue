@@ -251,7 +251,8 @@ defineExpose({
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 15px;
+    padding: 0 20px !important; 
+    margin-top: -100px !important ;
   }
   
   .grande-div {
@@ -260,13 +261,28 @@ defineExpose({
   
   .content {
     flex-direction: column;
-    gap: 20px;
+    gap: 20px !important;
   }
+
+    .content  p:nth-child(1) {
+      margin-top: -50px !important;
+    }
   
   .title h1 {
     font-size: 1.4rem;
-    padding-bottom: 15px;
+    padding-bottom: 50px;
   }
+
+   .title h1::after {
+  content: '';
+  position: absolute;
+  bottom: 14px !important;
+  left: 0;
+  width: 20%;
+  height: 3px;
+  background: #000;
+  z-index: 2;
+}
   
   .title::after,
   .title h1::after {
@@ -307,6 +323,14 @@ defineExpose({
 }
 
 @media (max-width: 480px) {
+   .container {
+  max-width: 1200px;
+  margin: 0 ;
+  margin-top: -100px !important;
+  padding: 0 ;
+    position: relative;
+    padding:0px 20px !important;
+}
    .title {
   padding-bottom: 35px;
   margin-bottom:-30px
@@ -361,6 +385,15 @@ defineExpose({
 }
 
 @media (max-width: 375px) {
+
+  .container {
+  max-width: 1200px;
+  margin: 0 ;
+  margin-top: -100px !important;
+  padding: 0 ;
+    position: relative;
+    padding:0px 20px !important;
+}
   .title {
   padding-bottom: 35px;
   margin-bottom:-30px
