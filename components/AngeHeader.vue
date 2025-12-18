@@ -446,13 +446,14 @@ export default {
   padding-right: 80px;
 
 }
+ 
 }
 
 /* Tablet (768px - 1199px) */
 @media (max-width: 1199px) and (min-width: 768px) {
   
   .container {
-    padding-left: 30px;
+    padding-left: 90px;
     padding-right: 30px;
   }
   

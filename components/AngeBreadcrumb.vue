@@ -173,7 +173,9 @@ margin:0px !important;
 .download-icon { width: 22px; height: 22px; flex-shrink: 0; }
 
 /* Responsive */
-@media (max-width: 1199px) { .download-section { min-width: 320px; max-width: 380px; padding: 30px; } }
+@media (max-width: 1245px) {  .breadcrumbs-links {padding-left: 40px;}} 
+
+@media (max-width: 1199px) { .download-section { min-width: 320px; max-width: 380px; padding: 30px; } .breadcrumbs-links {padding-left: -10px !important;} }
 @media (max-width: 992px) { .breadcrumbs-links { flex-direction: column; align-items: flex-start; gap: 40px; } .download-section { align-self: flex-start; min-width: 100%; max-width: 100%; } }
 @media (max-width: 768px) { .download-btn { min-width: 220px; padding: 12px 24px; font-size: 0.95rem; } }
 @media (max-width: 480px) { .download-section { padding: 25px; } .download-btn { min-width: 200px; font-size: 0.9rem; padding: 10px 20px; } }
