@@ -234,6 +234,8 @@
 @media (max-width: 576px) {
   .container {
     padding: 0 10px;
+      padding: 0 20px !important;
+
   }
 
   .icone {
@@ -250,4 +252,27 @@
     font-size: 0.85rem;
   }
 }
+
+@media (max-width: 480px) {
+ .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px !important;
+  margin-top: 40px !important;
+}
+
+}
+
+@media (max-width: 375px) {
+ .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px !important;
+  margin-top: 40px !important;
+}
+
+}
+
+
+
 </style>
