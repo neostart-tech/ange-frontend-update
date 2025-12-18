@@ -484,7 +484,6 @@ export default {
 }
 
 
-/* Desktop Large (≥1400px)  */
 @media (max-width: 1400px) {
   .hero-container {
     height: 550px;
@@ -518,11 +517,14 @@ export default {
   /* CARTES RECTANGULAIRES - Alignement à gauche */
   .domain-card-iceberg {
     height: 180px !important;
-    min-height: 180px;
+  max-height: 170px !important;
+    /* background-color: red; */
+    width: 300px !important;
   }
 
   .domain-card-body {
     padding: 25px 20px !important;
+
   }
 
   .domain-title {
