@@ -82,7 +82,7 @@
           <div class="mobile-navigation-simple top-nav">
             <button 
               class="mobile-nav-btn prev"
-              @click="previousTab"
+              @click.stop="previousTab"
               :disabled="activeTab === 0"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -93,7 +93,7 @@
             
             <button 
               class="mobile-nav-btn next"
-              @click="nextTab"
+              @click.stop="nextTab"
               :disabled="activeTab === tabs.length - 1"
             >
               <span class="nav-text">Suivant</span>
@@ -151,7 +151,7 @@
           <div class="mobile-navigation-simple bottom-nav">
             <button 
               class="mobile-nav-btn prev"
-              @click="previousTab"
+              @click.stop="previousTab"
               :disabled="activeTab === 0"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -162,7 +162,7 @@
             
             <button 
               class="mobile-nav-btn next"
-              @click="nextTab"
+              @click.stop="nextTab"
               :disabled="activeTab === tabs.length - 1"
             >
               <span class="nav-text">Suivant</span>
@@ -230,32 +230,44 @@ const scrollToTop = () => {
 }
 
 const switchTab = (index) => {
-  const direction = index > activeTab.value ? 'next' : 'prev'
-  transitionName.value = `slide-${direction}`
-  activeTab.value = index
-  scrollToTop()
+  console.log('Switch tab to:', index); // Debug
+  if (index < 0 || index >= tabs.value.length) return;
+  
+  const direction = index > activeTab.value ? 'next' : 'prev';
+  transitionName.value = `slide-${direction}`;
+  activeTab.value = index;
+  scrollToTop();
 }
 
-const nextTab = () => {
+const nextTab = (event) => {
+  console.log('Next tab clicked'); // Debug
+  if (event) event.stopPropagation();
   if (activeTab.value < tabs.value.length - 1) {
-    switchTab(activeTab.value + 1)
+    switchTab(activeTab.value + 1);
   }
 }
 
-const previousTab = () => {
+const previousTab = (event) => {
+  console.log('Previous tab clicked'); // Debug
+  if (event) event.stopPropagation();
   if (activeTab.value > 0) {
-    switchTab(activeTab.value - 1)
+    switchTab(activeTab.value - 1);
   }
 }
 
 onMounted(() => {
-  checkMobile()
-  window.addEventListener('resize', checkMobile)
-})
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+  
+  // Debug: vérifiez que les fonctions sont bien définies
+  console.log('Component mounted');
+  console.log('tabs count:', tabs.value.length);
+  console.log('activeTab:', activeTab.value);
+});
 
 onUnmounted(() => {
-  window.removeEventListener('resize', checkMobile)
-})
+  window.removeEventListener('resize', checkMobile);
+});
 </script>
 
 <style scoped>
@@ -275,6 +287,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   min-height: 600px;
+  position: relative;
 }
 
 /* ===== VERSION DESKTOP ===== */
@@ -341,6 +354,10 @@ onUnmounted(() => {
   opacity: 0.3;
   cursor: not-allowed;
   background: #f8faf9;
+}
+
+.nav-btn:not(:disabled) {
+  cursor: pointer;
 }
 
 .tabs-wrapper {
@@ -571,6 +588,10 @@ onUnmounted(() => {
   transform: none !important;
 }
 
+.mobile-nav-btn:not(:disabled) {
+  cursor: pointer;
+}
+
 .nav-text {
   margin: 0 12px;
 }
@@ -747,5 +768,22 @@ li::marker {
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* Correction pour les boutons cliquables */
+button {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+  outline: 2px solid #007608;
+  outline-offset: 2px;
+}
+
+/* Ajouter un indicateur visuel pour les clics */
+.nav-btn:active:not(:disabled),
+.mobile-nav-btn:active:not(:disabled) {
+  transform: scale(0.98);
 }
 </style>
