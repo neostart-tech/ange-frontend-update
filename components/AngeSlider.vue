@@ -479,6 +479,12 @@ export default {
   .domains-row {
     margin-top: -380px !important;
   }
+
+  .domain-card-iceberg {
+    height: 100px !important;
+    width: 280px !important;  
+  
+  }
 }
 
 @media (max-width: 1400px) {
@@ -514,7 +520,7 @@ export default {
     height: 180px !important;
     max-height: 170px !important;
     /* background-color: red; */
-    width: 300px !important;
+    width: 280px !important;
   }
 
   .domain-card-body {
@@ -606,8 +612,8 @@ export default {
   }
 
   .domain-card-iceberg {
-    height: 170px !important;
-    width: 210px !important;
+    height: 180px !important;
+    width: 250px !important;
   }
 
   .domain-card-body {
