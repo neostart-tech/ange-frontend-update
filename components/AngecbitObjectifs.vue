@@ -154,7 +154,7 @@
           </div>
           
           <div class="footer-info">
-            <p>Ministère de l'Environnement et des Ressources Forestières</p>
+            <p>Ministère de l’Environnement, des Ressources Forestières, de la Protection Côtière et du Changement Climatique</p>
             <p class="footer-subtext">Système National d'Information Climatique</p>
           </div>
           

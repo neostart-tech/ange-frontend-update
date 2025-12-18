@@ -223,6 +223,40 @@ defineExpose({
 }
 
 /* Responsive */
+@media (max-width: 2000px) {
+  .container {
+    padding: 0 350px !important;     
+
+}
+  
+}
+@media (max-width: 1800px) {
+  .container {
+    padding: 0 350px !important;     
+
+}
+  
+}
+
+@media (max-width: 1800px) {
+  .container {
+    padding: 0 250px !important;   
+    
+
+}
+  
+}
+
+@media (max-width: 1600px) {
+  .container {
+    padding: 0 150px !important;   
+    
+
+}
+  
+}
+
+
 @media (max-width: 1200px) {
   .grande-div {
     gap: 30px;
@@ -234,6 +268,12 @@ defineExpose({
 }
 
 @media (max-width: 992px) {
+  
+   .container {
+    padding: 0 80px !important;
+    margin-top: -100px !important;
+  }
+  
   .grande-div {
     flex-direction: column;
     gap: 40px;
@@ -251,8 +291,8 @@ defineExpose({
 
 @media (max-width: 768px) {
   .container {
-    padding: 0 20px !important; 
-    margin-top: -100px !important ;
+    padding: 0 20px !important  ;
+    margin-top: -100px !important;
   }
   
   .grande-div {
@@ -261,32 +301,17 @@ defineExpose({
   
   .content {
     flex-direction: column;
-    gap: 20px !important;
+    gap: 20px;
   }
-
-    .content  p:nth-child(1) {
-      margin-top: -50px !important;
-    }
   
   .title h1 {
     font-size: 1.4rem;
-    padding-bottom: 50px;
+    padding-bottom: 15px;
   }
-
-   .title h1::after {
-  content: '';
-  position: absolute;
-  bottom: 14px !important;
-  left: 0;
-  width: 20%;
-  height: 3px;
-  background: #000;
-  z-index: 2;
-}
   
   .title::after,
   .title h1::after {
-    bottom: 15px;
+    bottom: -20px;
   }
   
   /* Images prennent toute la largeur sur mobile */
@@ -323,18 +348,19 @@ defineExpose({
 }
 
 @media (max-width: 480px) {
+
    .container {
-  max-width: 1200px;
-  margin: 0 ;
-  margin-top: -100px !important;
-  padding: 0 ;
-    position: relative;
-    padding:0px 20px !important;
-}
+    padding: 0 20px !important;
+    margin-top: -100px !important;
+  }
+  
    .title {
   padding-bottom: 35px;
   margin-bottom:-30px
 }
+
+
+
   .title h1::after {
   content: '';
   position: absolute;
@@ -385,15 +411,6 @@ defineExpose({
 }
 
 @media (max-width: 375px) {
-
-  .container {
-  max-width: 1200px;
-  margin: 0 ;
-  margin-top: -100px !important;
-  padding: 0 ;
-    position: relative;
-    padding:0px 20px !important;
-}
   .title {
   padding-bottom: 35px;
   margin-bottom:-30px

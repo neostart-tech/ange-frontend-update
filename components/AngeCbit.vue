@@ -138,9 +138,9 @@
             </div>
 
             <!-- Onglet 6 : Perspectives -->
-            <div v-else-if="activeTab === 5" class="tab-pane">
+            <!-- <div v-else-if="activeTab === 5" class="tab-pane">
               <Angecbitperpective/>
-            </div>
+            </div> -->
           </div>
         </transition>
       </div>
@@ -202,10 +202,10 @@ const tabs = ref([
     title: "Résultats",
     completed: false
   },
-  {
-    title: "Perspectives",
-    completed: false
-  }
+  // {
+  //   title: "Perspectives",
+  //   completed: false
+  // }
 ])
 
 const activeTab = ref(0)

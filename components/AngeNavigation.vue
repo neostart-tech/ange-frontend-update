@@ -22,10 +22,23 @@
           </li>
         </ul>
       </li>
-
-      <li>
-        <NuxtLink to="/prestations" exact-active-class="active-link">Prestations</NuxtLink>
+        <li class="has-children">
+        <NuxtLink to="#">Prestations</NuxtLink>
+        <ul class="sub-menu">
+          <li>
+            <NuxtLink to="/prestations" exact-active-class="active-link">Prestations</NuxtLink>
+          </li>
+          <li>
+            
+            <NuxtLink to="/obtentions-des-autorisations" exact-active-class="active-link">
+             Procédures administratives
+            </NuxtLink>
+          </li>
+        </ul>
       </li>
+      <!-- <li>
+        <NuxtLink to="/prestations" exact-active-class="active-link">Prestations</NuxtLink>
+      </li> -->
 
       <li :class="{ 'active-link': isActivePublications }" class="has-children">
         <NuxtLink to="#">Publications</NuxtLink>

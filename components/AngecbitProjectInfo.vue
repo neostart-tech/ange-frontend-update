@@ -167,7 +167,7 @@
       <!-- Pied de page -->
       <footer class="footer">
         <div class="footer-content">
-          <span>Projet CBIT Togo • Ministère de l'Environnement et des Ressources Forestières</span>
+          <span>Projet CBIT Togo • Ministère de l’Environnement, des Ressources Forestières, de la Protection Côtière et du Changement Climatique</span>
         </div>
       </footer>
     </div>

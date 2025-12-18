@@ -92,7 +92,7 @@
 
     <!-- Footer Simple -->
     <!-- <footer class="page-footer">
-      <p>CBIT Togo • Ministère de l'Environnement et des Ressources Forestières</p>
+      <p>CBIT Togo • Ministère de l’Environnement, des Ressources Forestières, de la Protection Côtière et du Changement Climatique</p>
     </footer> -->
   </div>
 </template>
