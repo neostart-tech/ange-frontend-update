@@ -181,9 +181,10 @@ onUnmounted(() => {
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
+     .container {
+   
+    padding: 0 20px !important;
+}
     
     .cards-grid {
         grid-template-columns: 1fr;
@@ -206,24 +207,10 @@ onUnmounted(() => {
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
-    
-    .title {
-        margin-bottom: 30px;
-    }
-    
-    .card {
-        padding: 20px 15px;
-    }
-    
-    .desc p {
-        font-size: 13px;
-    }
-    
-    .icone i {
-        font-size: 1.8rem;
-    }
+   .container {
+   
+    padding: 0 20px !important;
+}
+ 
 }
 </style>
