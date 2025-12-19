@@ -170,8 +170,9 @@ export default {
     margin: 0px 30px;
     margin-left: 270px !important;
     width: calc(100% - 500px) !important;
-    margin-top: 0px !important;
+    margin-top: 100px !important;
     margin-bottom: -70px;
+
   }
 }
 
@@ -181,7 +182,7 @@ export default {
     margin: 0px 30px;
     margin-left: 270px !important;
     width: calc(100% - 500px) !important;
-    margin-top: 70px !important;
+    margin-top: 100px !important;
     margin-bottom: -70px;
   }
 }
@@ -192,7 +193,7 @@ export default {
     margin: 100px 100px;
     margin-left: 180px !important;
     width: calc(100% - 320px) !important;
-    margin-top: 50px !important;
+    margin-top: -100px !important;
     margin-bottom: -90px;
   }
 }

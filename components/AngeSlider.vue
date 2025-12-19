@@ -476,20 +476,29 @@ export default {
   transform: scale(1.1);
 }
 @media (max-width: 2000px) {
+   .intro-section {
+    height: 350px !important;
+  }
   .domains-row {
-    margin-top: -300px !important;
+    margin-top: -250px !important;
   }
 
   .domain-card-iceberg {
     height: 100px !important;
     width: 280px !important;
   }
+
+  .hero-container {
+    height: 600px !important;
+    margin-bottom: 350px !important;
+    /* background: purple !important; */
+  }
 }
 
 @media (max-width: 1600px) {
+ 
   .intro-section {
     height: 300px !important;
-    /* background: green !important; */
   }
 
   .hero-container {
@@ -500,7 +509,6 @@ export default {
   .domain-card-iceberg {
     height: 100px !important;
     width: 280px !important;
-    /* background: red; */
   }
 }
 

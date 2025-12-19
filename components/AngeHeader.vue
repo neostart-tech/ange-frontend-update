@@ -189,7 +189,7 @@ export default {
 <style scoped>
 .header-wrapper {
   position: relative;
-
+  
 }
 
 .header-section {
