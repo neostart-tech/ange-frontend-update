@@ -3,17 +3,13 @@
     <div class="flash-info-label">Flash info :</div>
     <div class="flash-info-content">
       <div class="flash-text-wrapper">
-        <marquee 
-          behavior="scroll" 
-          direction="left" 
+        <marquee
+          behavior="scroll"
+          direction="left"
           scrollamount="10"
           class="flash-marquee"
         >
-          <span 
-            v-for="(info, index) in flashInfos" 
-            :key="index" 
-            class="flash-item"
-          >
+          <span v-for="(info, index) in flashInfos" :key="index" class="flash-item">
             {{ info.description_zone_pub }}
             <span class="separator" v-if="index < flashInfos.length - 1"> • </span>
           </span>
@@ -28,7 +24,7 @@ export default {
   data() {
     return {
       flashInfos: [],
-      isLoading: false
+      isLoading: false,
     };
   },
 
@@ -36,7 +32,7 @@ export default {
     async fetchFlashInfos() {
       this.isLoading = true;
       try {
-        const response = await this.$axios.get(`/zone-publicitaire/liste`); 
+        const response = await this.$axios.get(`/zone-publicitaire/liste`);
         const data = await response.data.data;
         if (data && data.length > 0) {
           this.flashInfos = data;
@@ -45,23 +41,25 @@ export default {
         console.error("Error fetching flash infos:", error);
         this.flashInfos = [
           {
-            "libelle_zone_pub": null,
-            "description_zone_pub": "L'ANGE informe les promoteurs de projets de développement que les demandes de certificat de conformité environnementale se font en ligne sur le : https://service-public.gouv.tg/ et www.ange.tg depuis le 1er octobre 2025."
+            libelle_zone_pub: null,
+            description_zone_pub:
+              "L'ANGE informe les promoteurs de projets de développement que les demandes de certificat de conformité environnementale se font en ligne sur le : https://service-public.gouv.tg/ et www.ange.tg depuis le 1er octobre 2025.",
           },
           {
-            "libelle_zone_pub": null,
-            "description_zone_pub": "L'agence nationale de gestion de l'environnement, au cœur de la gouvernance environnementale."
-          }
+            libelle_zone_pub: null,
+            description_zone_pub:
+              "L'agence nationale de gestion de l'environnement, au cœur de la gouvernance environnementale.",
+          },
         ];
       } finally {
         this.isLoading = false;
       }
-    }
+    },
   },
 
   mounted() {
     this.fetchFlashInfos();
-  }
+  },
 };
 </script>
 
@@ -72,18 +70,17 @@ export default {
   align-items: stretch;
   background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   border: 2px solid #e3f2fd;
-  height:50px;
+  height: 50px;
   overflow: hidden;
   justify-content: center;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  max-width: 1200px; 
-  margin: 200px auto; 
-  width: calc(100% - 260px); 
-    padding: 0;
-    margin-top:-90px !important;
-    margin-bottom: -90px;
-
+  max-width: 1200px;
+  margin: 200px auto;
+  width: calc(100% - 260px);
+  padding: 0;
+  margin-top: -80px !important;
+  margin-bottom: -90px;
 }
 
 .container:hover {
@@ -111,7 +108,7 @@ export default {
 }
 
 .flash-info-label::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
@@ -173,9 +170,19 @@ export default {
     margin: 0px 30px;
     margin-left: 270px !important;
     width: calc(100% - 500px) !important;
-    margin-top:0px !important;
-    margin-bottom:-70px;
+    margin-top: 0px !important;
+    margin-bottom: -70px;
+  }
+}
 
+@media (max-width: 1600px) {
+  .container {
+    max-width: 2500px !important;
+    margin: 0px 30px;
+    margin-left: 270px !important;
+    width: calc(100% - 500px) !important;
+    margin-top: 70px !important;
+    margin-bottom: -70px;
   }
 }
 
@@ -185,11 +192,8 @@ export default {
     margin: 100px 100px;
     margin-left: 180px !important;
     width: calc(100% - 320px) !important;
-    margin-top:50px !important;
-    margin-bottom:-90px;
-            background-color: red !important;
-
-
+    margin-top: 50px !important;
+    margin-bottom: -90px;
   }
 }
 
@@ -200,10 +204,9 @@ export default {
     margin: 20px 30px;
     margin-left: 160px !important;
     width: calc(100% - 290px) !important;
-    margin-top:90px !important;
-    margin-bottom:-90px;
+    margin-top: -90px !important;
+    margin-bottom: -90px;
     height: 50px !important;
-  
   }
 }
 
@@ -213,20 +216,20 @@ export default {
     margin: 18px 25px;
     margin-bottom: -50px;
     width: calc(100% - 50px);
-height:60px !important;
+    height: 60px !important;
   }
-  
+
   .flash-info-label {
     min-width: 130px;
     padding: 14px 15px;
     padding-left: 12px;
     font-size: 1.05rem;
   }
-  
+
   .flash-info-content {
     padding: 18px 22px;
   }
-  
+
   .flash-marquee {
     font-size: 0.98rem;
   }
@@ -236,9 +239,7 @@ height:60px !important;
   .container {
     margin-top: 50px !important;
     margin-bottom: -80px;
-    height:70px;
-        background-color: red !important;
-
+    height: 70px;
   }
 }
 
@@ -248,9 +249,8 @@ height:60px !important;
     margin: 0px 50px !important;
     margin-bottom: -90px !important;
     width: calc(100% - 100px) !important;
-    margin-top:0px !important;
-    height:100px !important;
-
+    margin-top: 0px !important;
+    height: 100px !important;
   }
 
   .flash-info-label {
@@ -269,13 +269,13 @@ height:60px !important;
     width: 100%;
     box-sizing: border-box;
   }
-  
+
   .flash-marquee {
     text-align: center;
     font-size: 0.95rem;
     line-height: 1.5;
   }
-  
+
   .separator {
     margin: 0 15px;
   }
@@ -288,7 +288,6 @@ height:60px !important;
     border-width: 1.5px;
     margin-bottom: -80px !important;
     height: 100px !important;
-    
   }
 
   .flash-info-label {
@@ -306,7 +305,7 @@ height:60px !important;
     font-size: 0.9rem;
     line-height: 1.4;
   }
-  
+
   .separator {
     margin: 0 10px;
   }
@@ -316,10 +315,9 @@ height:60px !important;
   .container {
     margin: 10px 38px !important;
     width: calc(100% - 80px) !important;
-    height:100px !important;
-    margin-top:0px !important;
-    margin-bottom:-50px !important;
-
+    height: 100px !important;
+    margin-top: 0px !important;
+    margin-bottom: -50px !important;
   }
 
   .flash-info-label {
@@ -337,7 +335,7 @@ height:60px !important;
     font-size: 0.85rem;
     line-height: 1.4;
   }
-  
+
   .separator {
     margin: 0 8px;
   }
@@ -363,7 +361,7 @@ height:60px !important;
     font-size: 0.8rem;
     line-height: 1.3;
   }
-  
+
   .separator {
     margin: 0 5px;
   }
@@ -373,18 +371,18 @@ height:60px !important;
   .container {
     max-width: 1400px;
   }
-  
+
   .flash-info-label {
     min-width: 160px;
     font-size: 1.2rem;
     padding: 18px 20px;
     padding-left: 18px;
   }
-  
+
   .flash-info-content {
     padding: 25px 30px;
   }
-  
+
   .flash-marquee {
     font-size: 1.1rem;
   }
@@ -395,18 +393,18 @@ height:60px !important;
     flex-direction: row;
     margin: 100px 15px;
   }
-  
+
   .flash-info-label {
     min-width: 120px;
     width: auto;
     justify-content: flex-start;
     padding-left: 12px;
   }
-  
+
   .flash-info-content {
     width: auto;
   }
-  
+
   .flash-marquee {
     text-align: left;
   }
@@ -416,11 +414,11 @@ height:60px !important;
   .flash-info-label::before {
     animation: none;
   }
-  
+
   .container:hover {
     transform: none;
   }
-  
+
   .flash-marquee {
     animation: none;
     white-space: normal;
