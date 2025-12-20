@@ -515,6 +515,8 @@ export default {
 @media (max-width: 1400px) {
   .hero-container {
     height: 550px;
+        margin-top: 0px !important;
+
   }
 
   .intro-slider {
@@ -582,6 +584,9 @@ export default {
   .container-fluid {
     max-width: 1140px;
     padding: 0 15px;
+    /* margin-left: 0px; */
+
+
   }
 
   .domains-row {
@@ -625,14 +630,16 @@ export default {
 
   .container-fluid {
     max-width: 960px;
-    padding: 0 15px;
-  }
+    padding: 0 15px !important;
+/* margin-left: 0px !important;   */
+}
 
   .domains-row {
     gap: 15px;
     flex-wrap: nowrap;
     padding: 0 15px;
-    margin-top: -100px !important;
+    margin-top:-300px !important;
+    /* background: red !important; */
   }
 
   .domain-col {
@@ -659,7 +666,7 @@ export default {
   }
 
   .title {
-    font-size: 1.8rem !important;
+    font-size: 1.5rem !important;
   }
 
   .link-gradient {
@@ -698,7 +705,7 @@ export default {
   .container-fluid {
     max-width: 720px;
     padding: 0 15px;
-    margin-top: -100px;
+    margin-top: -180px;
   }
 
   .domains-row {
@@ -739,7 +746,7 @@ export default {
   }
 
   .title {
-    font-size: 1.7rem !important;
+    font-size: 1.3rem !important;
   }
 
   .link-gradient {
@@ -764,11 +771,13 @@ export default {
 @media (max-width: 767px) and (min-width: 600px) {
   .hero-container {
     height: auto;
+    margin-top: -40px !important;
   }
 
   .intro-slider {
     height: 380px;
     margin-bottom: 25px;
+    margin-top: 0px !important;
   }
 
   .position-relative {
@@ -792,7 +801,7 @@ export default {
     flex-wrap: wrap;
     gap: 12px;
     padding: 0;
-    margin-top: 0 !important;
+    
   }
 
   .domain-col {
@@ -826,7 +835,7 @@ export default {
   }
 
   .title {
-    font-size: 1.6rem !important;
+    font-size: 1.3rem !important;
     padding: 0 15px;
   }
 
@@ -876,6 +885,8 @@ export default {
   .container-fluid {
     max-width: 100%;
     padding: 0 15px;
+    /* background: red !important; */
+    margin-top: -90px !important;
   }
 
   /* Les cartes empilées verticalement */
@@ -887,6 +898,7 @@ export default {
     margin-top: 0 !important;
     padding: 0;
     width: 100%;
+    
   }
 
   .domain-col {
@@ -959,8 +971,9 @@ export default {
   }
 
   .title {
-    font-size: 1.5rem !important;
     padding: 0 15px;
+    font-size: 50px !important;
+    
   }
 
   .description {
@@ -987,7 +1000,7 @@ export default {
 
   .container-fluid {
     padding: 0 12px;
-    margin-top: 100px;
+    margin-top:70px !important;
   }
 
   .domains-row {
@@ -1022,7 +1035,7 @@ export default {
   }
 
   .title {
-    font-size: 1rem !important;
+    font-size: 10px !important;
     padding: 0 12px;
   }
 
@@ -1110,6 +1123,14 @@ export default {
 @media (max-width: 767px) {
   .domain-card-body {
     flex-direction: column !important;
+  }
+    .container-fluid {
+   
+    margin-top: -180px;
+  }
+
+  .title {
+    font-size: 1.4rem !important;
   }
 }
 

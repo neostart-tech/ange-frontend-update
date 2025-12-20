@@ -479,7 +479,7 @@ export default {
 /* Tablettes (768px - 992px) */
 @media (max-width: 992px) {
       .stats-main-container {
-       padding: 0 40px;
+       padding: 0 60px !important;
         margin-bottom: 50px;
     }
     .stats-grid {
@@ -507,7 +507,7 @@ export default {
 @media (max-width: 768px) {
     .stats-main-container {
         margin: 20px auto;
-       padding: 0 40px;
+       padding: 0 50px !important;
         margin-bottom: 50px;
     }
     
@@ -541,7 +541,7 @@ export default {
 @media (max-width: 576px) {
     .stats-main-container {
         margin: 15px auto;
-        padding: 0 40px;
+        padding: 0 40px !important;
         margin-bottom: 50px;
     }
     

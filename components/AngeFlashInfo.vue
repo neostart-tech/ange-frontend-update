@@ -193,7 +193,7 @@ export default {
     margin: 100px 100px;
     margin-left: 180px !important;
     width: calc(100% - 320px) !important;
-    margin-top: -100px !important;
+    margin-top: 60px !important;
     margin-bottom: -90px;
   }
 }
@@ -205,7 +205,7 @@ export default {
     margin: 20px 30px;
     margin-left: 160px !important;
     width: calc(100% - 290px) !important;
-    margin-top: -90px !important;
+    margin-top: -350px !important;
     margin-bottom: -90px;
     height: 50px !important;
   }
@@ -238,7 +238,7 @@ export default {
 
 @media (max-width: 991px) {
   .container {
-    margin-top: 50px !important;
+    margin-top: -150px !important;
     margin-bottom: -80px;
     height: 70px;
   }
@@ -247,10 +247,10 @@ export default {
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
-    margin: 0px 50px !important;
+    margin: 0px 140px !important;
     margin-bottom: -90px !important;
-    width: calc(100% - 100px) !important;
-    margin-top: 0px !important;
+    width: calc(100% - 270px) !important;
+    margin-top: -150px !important;
     height: 100px !important;
   }
 
@@ -282,13 +282,28 @@ export default {
   }
 }
 
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    margin: 0px 40px !important;
+    margin-bottom: -90px !important;
+    width: calc(100% - 90px) !important;
+    margin-top: 480px !important;
+    height: 100px !important;
+  }
+}
+
+
 @media (max-width: 576px) {
   .container {
     margin: 12px 40px !important;
-    width: calc(100% - 100px) !important;
+    width: calc(100% - 80px) !important;
     border-width: 1.5px;
     margin-bottom: -80px !important;
+        margin-top: 480px !important;
+
     height: 100px !important;
+
   }
 
   .flash-info-label {
