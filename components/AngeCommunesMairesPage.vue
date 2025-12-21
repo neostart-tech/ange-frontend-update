@@ -191,86 +191,152 @@
 
 <script>
 import { defineComponent, ref, computed, onMounted } from 'vue';
-import CommunesTogo from "~/data/communes-togo.json";
-
+import config from "~~/config";
+import axios from 'axios'; // Assurez-vous d'avoir installé axios
 
 export default defineComponent({
     name: 'CommunesMairesPage',
     
     setup() {
-        // Réactives
+        // Réactives pour les données
+        const categories = ref([]);
+        const selectedRegion = ref("all");
+        const isLoading = ref(false);
+        const typeCommunes = ref([]);
         const communes = ref([]);
-        const loading = ref(true);
-        const error = ref(false);
+        const totalCommunes = ref(0);
+        const file_url_back = ref(null);
+        const search = ref("");
+        const itemsPerPage = ref(9);
+        const currentPage = ref(1);
         const dataDate = ref("10 février 2020");
         const pdfDownloadLink = ref("/pdf/liste-communes-maires-togo-2020.pdf");
 
-        // Méthode pour charger les données depuis le fichier JSON
+        // Computed properties
+        const filteredCommunes = computed(() => {
+            let ma_var = [];
+            
+            if (typeCommunes.value.length > 0) {
+                if (selectedRegion.value === "all") {
+                    typeCommunes.value.forEach((typeCommune) => {
+                        // Adaptez cette ligne selon votre structure de données
+                        // Ici, je suppose que vous avez "communes" au lieu de "documentations"
+                        (typeCommune.communes || []).forEach((commune) => {
+                            if (matchesSearch(commune)) {
+                                ma_var.push(commune);
+                            }
+                        });
+                    });
+                } else {
+                    typeCommunes.value.forEach((typeCommune) => {
+                        // Adaptez cette condition selon vos critères de filtrage
+                        if (typeCommune.region === selectedRegion.value || 
+                            typeCommune.titre === selectedRegion.value) {
+                            (typeCommune.communes || []).forEach((commune) => {
+                                if (matchesSearch(commune)) {
+                                    ma_var.push(commune);
+                                }
+                            });
+                        }
+                    });
+                }
+                communes.value = ma_var;
+                return communes.value;
+            }
+            return [];
+        });
+
+        const totalPages = computed(() => {
+            return Math.ceil(filteredCommunes.value.length / itemsPerPage.value);
+        });
+        
+        const paginatedCommunes = computed(() => {
+            const startIndex = (currentPage.value - 1) * itemsPerPage.value;
+            const endIndex = startIndex + itemsPerPage.value;
+            return filteredCommunes.value.slice(startIndex, endIndex);
+        });
+
+        // Méthodes
+        const matchesSearch = (commune) => {
+            if (!search.value) return true;
+            const searchTerm = search.value.toLowerCase();
+            
+            // Adaptez ces propriétés selon votre structure de données
+            return (
+                (commune.nom && commune.nom.toLowerCase().includes(searchTerm)) ||
+                (commune.maire && commune.maire.toLowerCase().includes(searchTerm)) ||
+                (commune.doc_name && commune.doc_name.toLowerCase().includes(searchTerm))
+            );
+        };
+
         const fetchCommunes = async () => {
             try {
-                loading.value = true;
-                error.value = false;
+                isLoading.value = true;
                 
-                // COMMENTAIRE : Chargement du fichier JSON que j'ai créé
-                // Placez le fichier `communes-togo.json` dans le dossier `public` de votre projet
-                  const response =CommunesTogo;
-                // const response = await fetch('../data/communes-togo.json');
+                // Appel API similaire à votre exemple Vue 2
+                const response = await axios.get('/autre-consultant-agrees');
+                const data = response.data.data; // Adaptez selon la structure de votre réponse
                 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                if (data) {
+                    typeCommunes.value = data;
+                    file_url_back.value = config.app_back_url_img;
+                    
+                    // Met à jour la date et le lien PDF si disponibles dans la réponse
+                    if (response.data.date) {
+                        dataDate.value = response.data.date;
+                    }
+                    if (response.data.pdfFile) {
+                        pdfDownloadLink.value = response.data.pdfFile;
+                    }
+                    
+                    AllCommunesNumber();
                 }
-                
-                const data = await response.json();
-                
-                if (data && data.communes && data.communes.length > 0) {
-                    communes.value = data.communes;
-                    dataDate.value = data.date || "10 février 2020";
-                    pdfDownloadLink.value = data.pdfFile || "/pdf/liste-communes-maires-togo-2020.pdf";
-                    console.log(` Données chargées avec succès : ${data.communes.length} communes`);
-                } else {
-                    communes.value = [];
-                    console.warn(" Données vides ou format incorrect");
-                }
-            } catch (err) {
-                console.error(" Erreur lors du chargement des communes:", err);
-                error.value = true;
-                
-                // Fallback : Charger les données par défaut (premières 10 communes)
-                loadDefaultData();
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                // Vous pouvez aussi gérer les erreurs ici
             } finally {
-                loading.value = false;
+                isLoading.value = false;
             }
         };
 
-        // Données par défaut (en cas d'erreur de chargement du JSON)
-        const loadDefaultData = () => {
-            communes.value = [
-                { id: 1, numero: "1", commune: "Golfe 1", maire: "M. GOMADO Koamy Gbloekpo" },
-                { id: 2, numero: "2", commune: "Golfe 2", maire: "M. AMAGLO Kokou Sénamé" },
-                { id: 3, numero: "3", commune: "Golfe 3", maire: "M. ADJAYI KAMAL Alawo" },
-                { id: 4, numero: "4", commune: "Golfe 4", maire: "M. FABRE Jean Pierre" },
-                { id: 5, numero: "5", commune: "Golfe 5", maire: "M. ABOKA Kossi Agbenyega" },
-                { id: 6, numero: "6", commune: "Golfe 6", maire: "M. DAGBOVIE Koffi" },
-                { id: 7, numero: "7", commune: "Golfe 7", maire: "M. DJIKOUNOU Koffi Aimé" },
-                { id: 8, numero: "8", commune: "Agoé-Nyivé 1", maire: "M. ADANBOUNOU Akoété" },
-                { id: 9, numero: "9", commune: "Agoé-Nyivé 2", maire: "M. BOLOR koffi Djabakou" },
-                { id: 10, numero: "10", commune: "Agoé-Nyivé 3", maire: "M. ADONKANOU Yawo" }
-            ];
-            dataDate.value = "10 février 2020";
+        const filterHandler = (selection) => {
+            selectedRegion.value = selection;
+            currentPage.value = 1; // Reset à la première page
         };
 
-        // Computed properties
+        const prevPage = () => {
+            if (currentPage.value > 1) {
+                currentPage.value--;
+            }
+        };
+        
+        const nextPage = () => {
+            if (currentPage.value < totalPages.value) {
+                currentPage.value++;
+            }
+        };
+        
+        const goToPage = (pageNumber) => {
+            currentPage.value = pageNumber;
+        };
+
+        const AllCommunesNumber = () => {
+            let total = 0;
+            typeCommunes.value.forEach((typeCommune) => {
+                total += (typeCommune.communes || []).length;
+            });
+            totalCommunes.value = total;
+            
+            // Calcul pour hommes/femmes maires si les données existent
+            hommesMaires.value = communes.value.filter(c => c.maire && c.maire.startsWith('M.')).length;
+            femmesMaires.value = communes.value.filter(c => c.maire && c.maire.startsWith('Mme')).length;
+        };
+
+        // Computed pour les statistiques
+        const hommesMaires = ref(0);
+        const femmesMaires = ref(0);
         const hasData = computed(() => communes.value && communes.value.length > 0);
-        const noData = computed(() => !loading.value && !error.value && !hasData.value);
-        const totalCommunes = computed(() => communes.value.length);
-        
-        const hommesMaires = computed(() => {
-            return communes.value.filter(c => c.maire && c.maire.startsWith('M.')).length;
-        });
-        
-        const femmesMaires = computed(() => {
-            return communes.value.filter(c => c.maire && c.maire.startsWith('Mme')).length;
-        });
+        const noData = computed(() => !isLoading.value && !hasData.value);
 
         // Lifecycle hook
         onMounted(() => {
@@ -279,21 +345,36 @@ export default defineComponent({
 
         return {
             // Réactives
+            categories,
+            selectedRegion,
+            isLoading,
+            typeCommunes,
             communes,
-            loading,
-            error,
+            totalCommunes,
+            file_url_back,
+            search,
+            itemsPerPage,
+            currentPage,
             dataDate,
             pdfDownloadLink,
             
             // Computed
+            filteredCommunes,
+            totalPages,
+            paginatedCommunes,
             hasData,
             noData,
-            totalCommunes,
-            hommesMaires,
-            femmesMaires,
+            hommesMaires: computed(() => hommesMaires.value),
+            femmesMaires: computed(() => femmesMaires.value),
             
             // Méthodes
-            fetchCommunes
+            matchesSearch,
+            fetchCommunes,
+            filterHandler,
+            prevPage,
+            nextPage,
+            goToPage,
+            AllCommunesNumber
         };
     }
 });
