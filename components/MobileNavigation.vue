@@ -28,12 +28,20 @@
             </li>
           </ul>
         </li>
+        
+        <li class="menu-item-has-children">
+          <NuxtLink to="#">Prestations</NuxtLink>
+          <ul class="sub-menu">
+            <li>
+              <NuxtLink to="/prestations">Prestations</NuxtLink>
+            </li>
 
-        <li>
-          <NuxtLink to="/prestations" exact-active-class="active-link"
-            >Prestations</NuxtLink
-          >
+            <li>
+              <NuxtLink to="/obtentions-des-autorisations"> Procédures administratives</NuxtLink>
+            </li>
+          </ul>
         </li>
+
 
         <li class="menu-item-has-children">
           <NuxtLink to="#">Publications</NuxtLink>
@@ -93,7 +101,11 @@
             </li>
 
             <li>
-              <a href="/consultants-agrees"> Consultants agréés </a>
+              <NuxtLink to="/consultants-agrees"> Consultants agréés </NuxtLink>
+            </li>
+
+             <li>
+              <NuxtLink to="/autre-consultant"> Autres consultants  </NuxtLink>
             </li>
           </ul>
         </li>

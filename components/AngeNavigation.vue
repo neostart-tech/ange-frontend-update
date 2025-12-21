@@ -86,7 +86,10 @@
         <NuxtLink to="#">Acteurs</NuxtLink>
         <ul class="sub-menu">
           <li>
-            <a href="/consultants-agrees">Consultants agréés</a>
+            <NuxtLink to="/consultants-agrees">Consultants agréés</NuxtLink>
+          </li>
+           <li>
+            <NuxtLink to="/autre-consultant">Autres consultants</NuxtLink>
           </li>
           <li>
             
