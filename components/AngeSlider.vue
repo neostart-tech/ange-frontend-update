@@ -476,7 +476,7 @@ export default {
   transform: scale(1.1);
 }
 @media (max-width: 2000px) {
-   .intro-section {
+  .intro-section {
     height: 350px !important;
   }
   .domains-row {
@@ -496,7 +496,6 @@ export default {
 }
 
 @media (max-width: 1600px) {
- 
   .intro-section {
     height: 300px !important;
   }
@@ -515,8 +514,7 @@ export default {
 @media (max-width: 1400px) {
   .hero-container {
     height: 550px;
-        margin-top: 0px !important;
-
+    margin-top: 0px !important;
   }
 
   .intro-slider {
@@ -569,7 +567,7 @@ export default {
   }
   .hero-container {
     height: 500px !important;
-    margin-bottom: -120px !important;
+    margin-bottom: -140px !important;
     /* background: red !important; */
   }
 
@@ -585,8 +583,6 @@ export default {
     max-width: 1140px;
     padding: 0 15px;
     /* margin-left: 0px; */
-
-
   }
 
   .domains-row {
@@ -631,14 +627,14 @@ export default {
   .container-fluid {
     max-width: 960px;
     padding: 0 15px !important;
-/* margin-left: 0px !important;   */
-}
+    /* margin-left: 0px !important;   */
+  }
 
   .domains-row {
     gap: 15px;
     flex-wrap: nowrap;
     padding: 0 15px;
-    margin-top:-300px !important;
+    margin-top: -300px !important;
     /* background: red !important; */
   }
 
@@ -801,7 +797,6 @@ export default {
     flex-wrap: wrap;
     gap: 12px;
     padding: 0;
-    
   }
 
   .domain-col {
@@ -898,7 +893,6 @@ export default {
     margin-top: 0 !important;
     padding: 0;
     width: 100%;
-    
   }
 
   .domain-col {
@@ -973,7 +967,6 @@ export default {
   .title {
     padding: 0 15px;
     font-size: 50px !important;
-    
   }
 
   .description {
@@ -1000,7 +993,7 @@ export default {
 
   .container-fluid {
     padding: 0 12px;
-    margin-top:70px !important;
+    margin-top: 70px !important;
   }
 
   .domains-row {
@@ -1124,8 +1117,7 @@ export default {
   .domain-card-body {
     flex-direction: column !important;
   }
-    .container-fluid {
-   
+  .container-fluid {
     margin-top: -180px;
   }
 
