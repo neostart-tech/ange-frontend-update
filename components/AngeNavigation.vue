@@ -89,7 +89,7 @@
             <NuxtLink to="/consultants-agrees">Consultants agréés</NuxtLink>
           </li>
            <li>
-            <NuxtLink to="/autre-consultant">Autres consultants</NuxtLink>
+            <NuxtLink to="/autre-acteur"> Autres acteurs </NuxtLink>
           </li>
           <li>
             
