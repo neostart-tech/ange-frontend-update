@@ -56,7 +56,7 @@ const projets = [
     titre: "Gestion des déchets plastiques",
     description:
       "Promotion du recyclage et de la réduction des déchets pour un environnement plus propre et plus sain.",
-    image: "/images/bg/déchets_plastiques.jpg",
+    image: "/images/bg/dechets_plastiques.jpg",
   },
 ];
 </script>
