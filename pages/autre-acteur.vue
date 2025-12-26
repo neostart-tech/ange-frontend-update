@@ -2,9 +2,9 @@
   <AngeRoot>
 
     <Head>
-      <Title>ANGE-TOGO | Autres consultants</Title>
+      <Title>ANGE-TOGO | Autres acteurs</Title>
       <Meta name="description"
-        content="Agence National de Gestion de l'environnement, LISTE DES AUTRES CONSULTANTS">
+        content="Agence National de Gestion de l'environnement, LISTE DES AUTRES ACTEURS">
       </Meta>
     </Head>
     <AngeBreadcrumb :page-title="pageData.title" :page-description="pageData.description" :breadcrumbs="breadcrumbs" />
@@ -20,13 +20,13 @@ import { ref } from 'vue';
 
 // Données réactives
 const pageData = ref({
-  title: 'AUTRES CONSULTANTS',
-  description: 'LISTE DES AUTRES CONSULTANTS'
+  title: 'AUTRES ACTEURS',
+  description: 'LISTE DES AUTRES ACTEURS'
 })
 
 const breadcrumbs = ref([
   { name: 'Accueil', path: '/' },
-  { name: 'Autres consultants', path: '/autre-consultant' }
+  { name: 'Autres acteurs', path: '/autre-acteur' }
 ])
 
 // Fonctions si besoin

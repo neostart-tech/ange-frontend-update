@@ -172,7 +172,6 @@ export default {
     width: calc(100% - 500px) !important;
     margin-top: 100px !important;
     margin-bottom: -70px;
-
   }
 }
 
@@ -293,17 +292,15 @@ export default {
   }
 }
 
-
 @media (max-width: 576px) {
   .container {
     margin: 12px 40px !important;
     width: calc(100% - 80px) !important;
     border-width: 1.5px;
     margin-bottom: -80px !important;
-        margin-top: 480px !important;
+    margin-top: 480px !important;
 
     height: 100px !important;
-
   }
 
   .flash-info-label {

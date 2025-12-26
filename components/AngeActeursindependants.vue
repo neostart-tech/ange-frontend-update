@@ -1,355 +1,423 @@
 <template>
-    <section class="consultants-green-section">
-        <div class="container">
-            <!-- En-tête -->
-            <div class="section-header">
-                <h6 class="main-title-first">Consultants & Bureaux d'études</h6>
-                <h1 class="main-title">Liste des consultants agréés et bureaux d'études</h1>
-                <h2 class="sub-title">Retrouvez ci-dessous la liste complète des consultants indépendants et bureaux d'études agréés pour vous accompagner dans vos démarches.</h2>
-            </div>
+  <section class="consultants-green-section">
+    <div class="container">
 
-            <!-- Bureaux d'études -->
-            <div class="table-section">
-                <div class="section-label">
-                    <span class="label-text">BUREAUX D'ÉTUDES</span>
-                </div>
-                <div v-if="loadingBureaux" class="loading">
-                    <i class="fas fa-spinner fa-spin"></i> Chargement des bureaux d'études...
-                </div>
-                <div v-else-if="errorBureaux" class="error">
-                    <i class="fas fa-exclamation-triangle"></i> Erreur de chargement des bureaux d'études
-                </div>
-                <div v-else class="list-container">
-                    <div class="list-item" v-for="(bureau, index) in bureauxEtudes" :key="'bureau-' + bureau.id">
-                        <div class="item-content">
-                            <span class="item-name">{{ bureau.nom }}</span>
-                            <span class="item-contact">{{ bureau.contact }}</span>
-                        </div>
-                        <div v-if="index < bureauxEtudes.length - 1" class="item-divider"></div>
-                    </div>
-                </div>
-            </div>
+      <!-- En-tête -->
+      <div class="section-header">
+        <h6 class="main-title-first">Consultants & Bureaux d'études</h6>
+        <h1 class="main-title">Liste des consultants agréés et bureaux d'études</h1>
+        <h2 class="sub-title">
+          Retrouvez ci-dessous la liste complète des consultants indépendants et bureaux
+          d'études agréés pour vous accompagner dans vos démarches.
+          <span v-if="document?.date_publication" class="date-badge">
+            Données du {{ document.date_publication }}
+          </span>
+        </h2>
+      </div>
 
-            <!-- Consultants indépendants -->
-            <div class="table-section">
-                <div class="section-label">
-                    <span class="label-text">CONSULTANTS INDÉPENDANTS</span>
-                </div>
-                <div v-if="loadingConsultants" class="loading">
-                    <i class="fas fa-spinner fa-spin"></i> Chargement des consultants...
-                </div>
-                <div v-else-if="errorConsultants" class="error">
-                    <i class="fas fa-exclamation-triangle"></i> Erreur de chargement des consultants
-                </div>
-                <div v-else class="list-container">
-                    <div class="list-item" v-for="(consultant, index) in consultantsIndependants" :key="'consultant-' + consultant.id">
-                        <div class="item-content">
-                            <span class="item-name">{{ consultant.nom }}</span>
-                            <span class="item-contact">{{ consultant.contact }}</span>
-                        </div>
-                        <div v-if="index < consultantsIndependants.length - 1" class="item-divider"></div>
-                    </div>
-                </div>
+      <!-- ================= CARTE TÉLÉCHARGEMENT ================= -->
+      <div class="download-card" v-if="document && document.path">
+        <div class="download-content">
+          <div class="download-info">
+            <div class="file-icon">
+              📄
             </div>
+            <div class="file-details">
+              <h3>Liste officielle des consultants agréés</h3>
+              <p>
+                Document PDF contenant les consultants indépendants et bureaux d’études agréés
+              </p>
+            </div>
+          </div>
 
-            <!-- Bouton de téléchargement -->
-            <div class="download-section">
-                <a class="download-btn" href="/pdf/LISTES DES CONSULTANTS & BUREAUX D'ETUDES.pdf" download>
-                    <i class="fas fa-download"></i>
-                    TÉLÉCHARGER LA LISTE COMPLÈTE
-                </a>
-            </div>
+          <a
+            :href="document.path"
+            target="_blank"
+            download
+            class="download-btn"
+          >
+            Télécharger le PDF
+          </a>
         </div>
-    </section>
-</template>
+      </div>
 
+      <!-- ================= BUREAUX D’ÉTUDES ================= -->
+      <div class="table-section">
+        <div class="section-label">
+          <span class="label-text">BUREAUX D'ÉTUDES</span>
+        </div>
+
+        <div v-if="loadingBureaux" class="loading">
+          Chargement des bureaux d'études...
+        </div>
+
+        <div v-else-if="errorBureaux" class="error">
+          Erreur de chargement des bureaux d'études
+        </div>
+
+        <div v-else-if="bureauxEtudes.length === 0" class="empty">
+          Aucun bureau d’étude disponible
+        </div>
+
+        <div v-else class="list-container">
+          <div
+            v-for="(bureau, index) in bureauxEtudes"
+            :key="bureau.id"
+            class="list-item"
+          >
+            <div class="item-content">
+              <span class="item-name">{{ bureau.nom }}</span>
+              <span class="item-contact">{{ bureau.contact }}</span>
+            </div>
+            <div v-if="index < bureauxEtudes.length - 1" class="item-divider"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= CONSULTANTS INDÉPENDANTS ================= -->
+      <div class="table-section">
+        <div class="section-label">
+          <span class="label-text">CONSULTANTS INDÉPENDANTS</span>
+        </div>
+
+        <div v-if="loadingConsultants" class="loading">
+          Chargement des consultants...
+        </div>
+
+        <div v-else-if="errorConsultants" class="error">
+          Erreur de chargement des consultants
+        </div>
+
+        <div v-else-if="consultantsIndependants.length === 0" class="empty">
+          Aucun consultant disponible
+        </div>
+
+        <div v-else class="list-container">
+          <div
+            v-for="(consultant, index) in consultantsIndependants"
+            :key="consultant.id"
+            class="list-item"
+          >
+            <div class="item-content">
+              <span class="item-name">{{ consultant.nom }}</span>
+              <span class="item-contact">{{ consultant.contact }}</span>
+            </div>
+            <div
+              v-if="index < consultantsIndependants.length - 1"
+              class="item-divider"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</template>
 <script>
 export default {
-    data() {
-        return {
-            // États pour les bureaux d'études
-            bureauxEtudes: [],
-            loadingBureaux: true,
-            errorBureaux: false,
-            
-            // États pour les consultants indépendants
-            consultantsIndependants: [],
-            loadingConsultants: true,
-            errorConsultants: false
-        };
+  name: "ConsultantsAgrees",
+
+  data() {
+    return {
+      bureauxEtudes: [],
+      consultantsIndependants: [],
+
+      document: null,
+
+      loadingBureaux: true,
+      loadingConsultants: true,
+      loadingDocument: true,
+
+      errorBureaux: false,
+      errorConsultants: false,
+      errorDocument: false,
+    };
+  },
+
+  methods: {
+    async fetchBureauxEtudes() {
+      try {
+        this.loadingBureaux = true;
+        const res = await this.$axios.get("/consultant-agrees/bureau-etude");
+        this.bureauxEtudes = res.data.data || [];
+      } catch (e) {
+        this.errorBureaux = true;
+      } finally {
+        this.loadingBureaux = false;
+      }
     },
 
-    methods: {
-        // Méthode pour charger les bureaux d'études
-        async fetchBureauxEtudes() {
-            try {
-                this.loadingBureaux = true;
-                this.errorBureaux = false;
-                
-                const response = await this.$axios.get('/consultant-agrees/bureau-etude');
-                const data = response.data.data || [];
-                
-                this.bureauxEtudes = data;
-            } catch (error) {
-                console.error("Erreur lors du chargement des bureaux d'études:", error);
-                this.errorBureaux = true;
-            } finally {
-                this.loadingBureaux = false;
-            }
-        },
-
-        // Méthode pour charger les consultants indépendants
-        async fetchConsultantsIndependants() {
-            try {
-                this.loadingConsultants = true;
-                this.errorConsultants = false;
-                
-                const response = await this.$axios.get('/consultant-agrees/consultant-independant');
-                const data = response.data.data || [];
-                
-                this.consultantsIndependants = data;
-            } catch (error) {
-                console.error("Erreur lors du chargement des consultants indépendants:", error);
-                this.errorConsultants = true;
-            } finally {
-                this.loadingConsultants = false;
-            }
-        },
-
-        // Méthode pour charger toutes les données
-        async fetchData() {
-            await Promise.all([
-                this.fetchBureauxEtudes(),
-                this.fetchConsultantsIndependants()
-            ]);
-        }
+    async fetchConsultantsIndependants() {
+      try {
+        this.loadingConsultants = true;
+        const res = await this.$axios.get(
+          "/consultant-agrees/consultant-independant"
+        );
+        this.consultantsIndependants = res.data.data || [];
+      } catch (e) {
+        this.errorConsultants = true;
+      } finally {
+        this.loadingConsultants = false;
+      }
     },
 
-    mounted() {
-        this.fetchData();
-    }
+    async fetchDocument() {
+      try {
+        this.loadingDocument = true;
+        const res = await this.$axios.get(
+          "/autre-consultant-agrees/get-consultant-agree-document"
+        );
+        this.document = res.data.data;
+      } catch (e) {
+        this.errorDocument = true;
+      } finally {
+        this.loadingDocument = false;
+      }
+    },
+
+    async fetchData() {
+      await Promise.all([
+        this.fetchBureauxEtudes(),
+        this.fetchConsultantsIndependants(),
+        this.fetchDocument(),
+      ]);
+    },
+  },
+
+  mounted() {
+    this.fetchData();
+  },
 };
 </script>
-
 <style scoped>
+
 .consultants-green-section {
-    padding: 40px 20px;
-    background: #ffffff;
-    min-height: 100vh;
+  padding: 40px 20px;
+  background: #ffffff;
+  min-height: 100vh;
+  position: relative;
+}
+
+.consultants-green-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(0,118,8,0.03), transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(0,118,8,0.03), transparent 50%);
+  pointer-events: none;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* En-tête */
 .section-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .main-title-first {
-    font-size: 13px;
-    color: #007608;
+  font-size: 13px;
+  color: #007608;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .main-title {
-    font-size: 25px;
-    font-weight: 700;
-    margin: 0 0 10px 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #1a202c;
 }
 
 .sub-title {
-    font-size: 13px;
-    font-weight: 500;
-    color: #333;
-    margin: 0;
-    line-height: 1.4;
+  font-size: 14px;
+  color: #4a5568;
+  max-width: 750px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
-/* Sections */
-.table-section {
-    margin-bottom: 40px;
+.date-badge {
+  display: inline-block;
+  background: rgba(0,118,8,0.1);
+  color: #007608;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-left: 8px;
 }
 
-.section-label {
-    background: #007608;
-    padding: 12px 20px;
-    margin-bottom: 15px;
-    border-radius: 4px 4px 0 0;
+.download-card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 40px;
 }
 
-.label-text {
-    color: white;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.download-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
 }
 
-/* List container */
-.list-container {
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 0 0 4px 4px;
+.download-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.list-item {
-    padding: 15px 20px;
+.file-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #007608, #00a10d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 26px;
+  border-radius: 10px;
 }
 
-.item-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+.file-details h3 {
+  font-size: 1.3rem;
+  color: #2d3748;
+  font-weight: 700;
+  margin-bottom: 6px;
 }
 
-.item-name {
-    font-weight: 600;
-    color: #333;
-    font-size: 0.95rem;
-    flex: 1;
-    min-width: 200px;
-}
-
-.item-contact {
-    color: #007608;
-    font-weight: 500;
-    font-size: 0.9rem;
-    text-align: right;
-}
-
-.item-divider {
-    height: 1px;
-    background: #f0f0f0;
-    margin: 10px 0;
-}
-
-/* États de chargement et d'erreur */
-.loading, .error {
-    padding: 30px 20px;
-    text-align: center;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 0 0 4px 4px;
-    color: #666;
-}
-
-.loading {
-    color: #007608;
-}
-
-.error {
-    color: #d32f2f;
-}
-
-.loading i, .error i {
-    margin-right: 10px;
-}
-
-/* Section téléchargement */
-.download-section {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 30px;
-    border-top: 2px solid #f0f0f0;
+.file-details p {
+  color: #718096;
+  font-size: 0.95rem;
 }
 
 .download-btn {
-    background: #000000;
-    color: #ffffff;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 4px;
-    text-decoration: none;
+  background: linear-gradient(135deg, #007608, #00a10d);
+  color: white;
+  text-decoration: none;
+  padding: 14px 30px;
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,118,8,0.35);
+  transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .download-btn:hover {
-    background: #333333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,118,8,0.45);
 }
 
-.download-btn:active {
-    transform: translateY(0);
+.table-section {
+  margin-bottom: 40px;
 }
 
-/* Responsive */
+.section-label {
+  background: linear-gradient(135deg, #007608, #00a10d);
+  padding: 14px 20px;
+  border-radius: 8px 8px 0 0;
+}
+
+.label-text {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.list-container {
+  background: white;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.list-item {
+  padding: 20px;
+  transition: background 0.3s ease;
+}
+
+.list-item:hover {
+  background: #f8fafc;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.item-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2d3748;
+}
+
+.item-contact {
+  color: #007608;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.item-divider {
+  height: 1px;
+  background: #edf2f7;
+  margin-top: 16px;
+}
+
+.loading,
+.error,
+.empty {
+  padding: 50px 20px;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+  margin-bottom: 30px;
+}
+
+.error {
+  color: #c53030;
+}
+
 @media (max-width: 768px) {
-    .consultants-green-section {
-        padding: 20px 15px;
-    }
+  .download-content {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .main-title {
-        font-size: 1.2rem;
-    }
+  .item-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .sub-title {
-        font-size: 0.9rem;
-    }
-
-    .item-content {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 5px;
-    }
-
-    .item-name {
-        min-width: auto;
-        width: 100%;
-    }
-
-    .item-contact {
-        text-align: left;
-        width: 100%;
-    }
-
-    .list-item {
-        padding: 12px 15px;
-    }
-
-    .download-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 20px;
-        font-size: 0.9rem;
-    }
+  .download-btn {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 0 10px;
-    }
+  .main-title {
+    font-size: 1.4rem;
+  }
 
-    .main-title {
-        font-size: 1.1rem;
-    }
-
-    .section-label {
-        padding: 10px 15px;
-    }
-
-    .label-text {
-        font-size: 0.9rem;
-    }
-
-    .list-item {
-        padding: 10px;
-    }
+  .file-details h3 {
+    font-size: 1.1rem;
+  }
 }
+
+
 </style>

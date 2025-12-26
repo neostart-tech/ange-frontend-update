@@ -8,8 +8,6 @@
   </div>
 </template>
 
-
 <style scoped>
 /* Aucun style */
-
 </style>
