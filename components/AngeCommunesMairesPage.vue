@@ -7,7 +7,7 @@
         <h1 class="main-title">Liste des Communes et Leurs Maires du Togo</h1>
         <h2 class="sub-title">
           Répertoire officiel des {{ totalCommunes }} communes togolaises et leurs maires
-          <span class="date-badge">Données du {{ dataDate }}</span>
+          <span class="date-badge">Données du {{ pdfDownloadLink.date_publication }}</span>
         </h2>
       </div>
 
@@ -30,7 +30,7 @@
               </p>
             </div>
           </div>
-          <a :href="pdfDownloadLink" target="_blank" class="download-btn">
+          <a :href="pdfDownloadLink.path" target="_blank" class="download-btn">
             <span>Télécharger le PDF</span>
             <svg
               class="download-icon"
@@ -141,7 +141,7 @@
                   >
                     <td class="cell-numero">
                       <div class="numero-badge">
-                        {{ commune.numero }}
+                        {{ index==0 ? 1 : index }}
                       </div>
                     </td>
                     <td class="cell-commune">
@@ -192,230 +192,135 @@
           </div>
         </div>
 
-        <!-- Statistiques -->
-        <div class="stats-section" v-if="hasData">
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-city"></i>
-              </div>
-              <div class="stat-info">
-                <h3>{{ totalCommunes }}</h3>
-                <p>Communes au total</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-user-tie"></i>
-              </div>
-              <div class="stat-info">
-                <h3>{{ hommesMaires }}</h3>
-                <p>Maires hommes</p>
-              </div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-icon">
-                <i class="fas fa-female"></i>
-              </div>
-              <div class="stat-info">
-                <h3>{{ femmesMaires }}</h3>
-                <p>Maires femmes</p>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
+
   </section>
-  {{ communes }}
 </template>
 
 <script>
-import { defineComponent, ref, computed, onMounted } from "vue";
-import config from "~~/config";
-import axios from "axios";
-
-export default defineComponent({
+  import config from '~~/config';
+  import { onMounted,ref } from 'vue';
+export default {
   name: "CommunesMairesPage",
 
-  setup() {
-    // Réactives pour les données
-    const categories = ref([]);
-    const selectedRegion = ref("all");
-    const isLoading = ref(false);
-    const typeCommunes = ref([]);
-    const communes = ref([]);
-    const totalCommunes = ref(0);
-    const file_url_back = ref(null);
-    const search = ref("");
-    const itemsPerPage = ref(9);
-    const currentPage = ref(1);
-    const dataDate = ref("10 février 2020");
-    const pdfDownloadLink = ref("/pdf/liste-communes-maires-togo-2020.pdf");
-
-    // Computed properties
-    const filteredCommunes = computed(() => {
-      let ma_var = [];
-
-      if (typeCommunes.value.length > 0) {
-        if (selectedRegion.value === "all") {
-          typeCommunes.value.forEach((typeCommune) => {
-            (typeCommune.communes || []).forEach((commune) => {
-              if (matchesSearch(commune)) {
-                ma_var.push(commune);
-              }
-            });
-          });
-        } else {
-          typeCommunes.value.forEach((typeCommune) => {
-            if (
-              typeCommune.region === selectedRegion.value ||
-              typeCommune.titre === selectedRegion.value
-            ) {
-              (typeCommune.communes || []).forEach((commune) => {
-                if (matchesSearch(commune)) {
-                  ma_var.push(commune);
-                }
-              });
-            }
-          });
-        }
-        communes.value = ma_var;
-        return communes.value;
-      }
-      return [];
-    });
-
-    const totalPages = computed(() => {
-      return Math.ceil(filteredCommunes.value.length / itemsPerPage.value);
-    });
-
-    const paginatedCommunes = computed(() => {
-      const startIndex = (currentPage.value - 1) * itemsPerPage.value;
-      const endIndex = startIndex + itemsPerPage.value;
-      return filteredCommunes.value.slice(startIndex, endIndex);
-    });
-
-    const matchesSearch = (commune) => {
-      if (!search.value) return true;
-      const searchTerm = search.value.toLowerCase();
-
-      return (
-        (commune.commune && commune.commune.toLowerCase().includes(searchTerm)) ||
-        (commune.maire && commune.maire.toLowerCase().includes(searchTerm)) ||
-        (commune.doc_name && commune.doc_name.toLowerCase().includes(searchTerm))
-      );
-    };
-
-    const fetchCommunes = async () => {
-      try {
-        isLoading.value = true;
-
-        const response = await axios.get("/autre-consultant-agrees");
-        const data = response.data;
-
-        if (data) {
-          typeCommunes.value = data;
-          file_url_back.value = config.app_back_url_img;
-
-          if (response.data.date) {
-            dataDate.value = response.data.date;
-          }
-          if (response.data.pdfFile) {
-            pdfDownloadLink.value = response.data.pdfFile;
-          }
-
-          AllCommunesNumber();
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      } finally {
-        isLoading.value = false;
-      }
-    };
-
-    const filterHandler = (selection) => {
-      selectedRegion.value = selection;
-      currentPage.value = 1;
-    };
-
-    const prevPage = () => {
-      if (currentPage.value > 1) {
-        currentPage.value--;
-      }
-    };
-
-    const nextPage = () => {
-      if (currentPage.value < totalPages.value) {
-        currentPage.value++;
-      }
-    };
-
-    const goToPage = (pageNumber) => {
-      currentPage.value = pageNumber;
-    };
-
-    const AllCommunesNumber = () => {
-      let total = 0;
-      typeCommunes.value.forEach((typeCommune) => {
-        total += (typeCommune.communes || []).length;
-      });
-      totalCommunes.value = total;
-
-      hommesMaires.value = communes.value.filter(
-        (c) => c.maire && c.maire.startsWith("M.")
-      ).length;
-      femmesMaires.value = communes.value.filter(
-        (c) => c.maire && c.maire.startsWith("Mme")
-      ).length;
-    };
-
-    const hommesMaires = ref(0);
-    const femmesMaires = ref(0);
-    const hasData = computed(() => communes.value && communes.value.length > 0);
-    const noData = computed(() => !isLoading.value && !hasData.value);
-
-    // Lifecycle hook
-    onMounted(() => {
-      fetchCommunes();
-    });
-
+  data() {
     return {
-      // Réactives
-      categories,
-      selectedRegion,
-      isLoading,
-      typeCommunes,
-      communes,
-      totalCommunes,
-      file_url_back,
-      search,
-      itemsPerPage,
-      currentPage,
-      dataDate,
-      pdfDownloadLink,
+   
+      communes: [],
+      
 
-      // Computed
-      filteredCommunes,
-      totalPages,
-      paginatedCommunes,
-      hasData,
-      noData,
-      hommesMaires: computed(() => hommesMaires.value),
-      femmesMaires: computed(() => femmesMaires.value),
+     
+      search: "",
 
-      // Méthodes
-      matchesSearch,
-      fetchCommunes,
-      filterHandler,
-      prevPage,
-      nextPage,
-      goToPage,
-      AllCommunesNumber,
+      totalCommunes: 0,
+      hommesMaires: 0,
+      femmesMaires: 0,
+
+    
+      // pdfDownloadLink: "/pdf/liste-communes-maires-togo-2020.pdf",
+       pdfDownloadLink: {},
+
+      loading: true,
+      error: false,
     };
   },
-});
+
+  computed: {
+  
+    filteredCommunes() {
+      if (!this.search) {
+        return this.communes;
+      }
+
+      const term = this.search.toLowerCase();
+
+      return this.communes.filter((c) => {
+        return (
+          (c.commune && c.commune.toLowerCase().includes(term)) ||
+          (c.maire && c.maire.toLowerCase().includes(term))
+        );
+      });
+    },
+
+    hasData() {
+      return this.filteredCommunes.length > 0;
+    },
+
+    noData() {
+      return !this.loading && this.filteredCommunes.length === 0;
+    },
+
+    dataDate() {
+      return "24 décembre 2025";
+    },
+  },
+
+  watch: {
+
+    filteredCommunes: {
+      immediate: true,
+      handler(value) {
+        this.totalCommunes = value.length;
+
+        this.hommesMaires = value.filter(
+          (c) => c.maire && c.maire.startsWith("M.")
+        ).length;
+
+        this.femmesMaires = value.filter(
+          (c) => c.maire && c.maire.startsWith("Mme")
+        ).length;
+      },
+    },
+  },
+
+  methods: {
+    
+    async fetchCommunes() {
+      try {
+        this.loading = true;
+        this.error = false;
+
+        const response = await this.$axios.get("/autre-consultant-agrees");
+
+        this.communes = response.data.data || [];
+      } catch (err) {
+        console.error("Erreur chargement communes :", err);
+        this.error = true;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+      async fetchCommuneDocument() {
+      try {
+        this.loading = true;
+        this.error = false;
+
+        const response = await this.$axios.get("/autre-consultant-agrees/get-autre-consultant-agree-document");
+
+        this.pdfDownloadLink = response.data.data || [];
+      } catch (err) {
+        console.error("Erreur chargement communes :", err);
+        this.error = true;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    resetFilters() {
+      this.search = "";
+    },
+  },
+
+  mounted() {
+    this.fetchCommunes();
+    this.fetchCommuneDocument();
+  },
+};
 </script>
+
 
 <style scoped>
 .communes-section {

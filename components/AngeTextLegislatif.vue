@@ -17,15 +17,16 @@
 
       <div v-if="!isLoading" class="container">
         <div class="row">
-          <!-- Zone de filtre refaite -->
+          <!-- Zone de filtre -->
           <div class="col-lg-3 col-12 mb-5">
             <div class="mobile-filter-dropdown d-lg-none mb-3">
               <button 
                 class="dropdown-toggle" 
                 @click="toggleMobileDropdown"
+                type="button"
               >
                 <span>Filtres</span>
-                <i class="fa" :class="mobileDropdownOpen ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                <i class="fa" :class="mobileDropdownOpen ? '' : ''"></i>
               </button>
               
               <div class="dropdown-content" :class="{ show: mobileDropdownOpen }">
@@ -63,7 +64,7 @@
                       </select>
                     </div>
                     
-                    <button class="btn-reset-date-mobile" @click="resetDateFilters">
+                    <button class="btn-reset-date-mobile" @click="resetDateFilters" type="button">
                       <i class="fa fa-refresh"></i>
                       Réinitialiser date
                     </button>
@@ -75,25 +76,27 @@
                   <div class="filter-section-mobile">
                     <h5 class="filter-title-mobile">Types de documents</h5>
                     
-                    <button
-                      class="filter-item-mobile"
-                      :class="{ active: selectedCat === 'all' }"
-                      @click="selectFilter('all')"
-                    >
-                      <span class="filter-text">Tout voir</span>
-                      <span class="filter-count">{{ totalDocuements }}</span>
-                    </button>
+                    <div class="filter-options-scroll-mobile">
+                      <div
+                        class="filter-item-mobile"
+                        :class="{ active: selectedCat === 'all' }"
+                        @click="selectFilter('all')"
+                      >
+                        <span class="filter-text">Tout voir</span>
+                        <span class="filter-count">{{ totalDocuments }}</span>
+                      </div>
 
-                    <button
-                      class="filter-item-mobile"
-                      v-for="(typeDocument, index) in typeDocuments"
-                      :key="index"
-                      :class="{ active: selectedCat === typeDocument.type }"
-                      @click="selectFilter(typeDocument.type)"
-                    >
-                      <span class="filter-text">{{ typeDocument.type }}</span>
-                      <span class="filter-count">{{ typeDocument.documents.length }}</span>
-                    </button>
+                      <div
+                        class="filter-item-mobile"
+                        v-for="(typeDocument, index) in typeDocuments"
+                        :key="index"
+                        :class="{ active: selectedCat === typeDocument.type }"
+                        @click="selectFilter(typeDocument.type)"
+                      >
+                        <span class="filter-text">{{ typeDocument.type }}</span>
+                        <span class="filter-count">{{ typeDocument.documents.length }}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -134,7 +137,7 @@
                   </select>
                 </div>
                 
-                <button class="btn-reset-date" @click="resetDateFilters">
+                <button class="btn-reset-date" @click="resetDateFilters" type="button">
                   <i class="fa fa-refresh"></i>
                   Réinitialiser les filtres
                 </button>
@@ -145,16 +148,16 @@
                 <h5 class="filter-section-title">Types de documents</h5>
                 
                 <div class="filter-list">
-                  <button
+                  <div
                     class="filter-item"
                     :class="{ active: selectedCat === 'all' }"
                     @click="filterHandler('all')"
                   >
                     <span class="filter-text">Tout voir</span>
-                    <span class="filter-count">{{ totalDocuements }}</span>
-                  </button>
+                    <span class="filter-count">{{ totalDocuments }}</span>
+                  </div>
 
-                  <button
+                  <div
                     class="filter-item"
                     v-for="(typeDocument, index) in typeDocuments"
                     :key="index"
@@ -163,13 +166,13 @@
                   >
                     <span class="filter-text">{{ typeDocument.type }}</span>
                     <span class="filter-count">{{ typeDocument.documents.length }}</span>
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Zone des documents refaite -->
+          <!-- Zone des documents -->
           <div class="col-lg-9 mb-3">
             <div class="documents-header">
               <div class="row align-items-center">
@@ -182,7 +185,7 @@
                     <span class="filter-badge" v-if="selectedYear !== 'all'">{{ selectedYear }}</span>
                     <span class="filter-badge" v-if="selectedMonth !== 'all'">{{ getMonthLabel(selectedMonth) }}</span>
                     <span class="filter-badge" v-if="search">{{ search }}</span>
-                    <button class="btn-clear-all" @click="clearAllFilters">
+                    <button class="btn-clear-all" @click="clearAllFilters" type="button">
                       <i class="fa fa-times"></i>
                       Tout effacer
                     </button>
@@ -197,11 +200,12 @@
                       class="search-input"
                       @input="handleSearch"
                     />
-                    <i class="fa fa-search search-icon"></i>
+                    <!-- <i class="fa fa-search search-icon"></i> -->
                     <button 
                       class="btn-clear-search" 
                       @click="clearSearch"
                       v-if="search"
+                      type="button"
                     >
                       <i class="fa fa-times"></i>
                     </button>
@@ -210,11 +214,11 @@
               </div>
             </div>
 
-            <div v-if="paginatedDocuments.length === 0" class="no-documents">
+            <div v-if="filteredDocuments.length === 0" class="no-documents">
               <div class="text-center">
                 <i class="fa fa-file-alt no-doc-icon"></i>
                 <p class="no-doc-text">Aucun texte correspondant...</p>
-                <button class="btn-reset-filters" @click="clearAllFilters">
+                <button class="btn-reset-filters" @click="clearAllFilters" type="button">
                   <i class="fa fa-refresh"></i>
                   Réinitialiser tous les filtres
                 </button>
@@ -227,15 +231,15 @@
                 <span class="results-count">
                   {{ filteredDocuments.length }} document<span v-if="filteredDocuments.length > 1">s</span> trouvé<span v-if="filteredDocuments.length > 1">s</span>
                 </span>
-                <div class="sort-container">
+                <!-- <div class="sort-container">
                   <label class="sort-label">Trier par :</label>
-                  <select class="form-select sort-select" v-model="sortBy" @change="sortDocuments">
+                  <select class="form-select sort-select" v-model="sortBy" @change="handleSortChange">
                     <option value="date_desc">Date (plus récent)</option>
                     <option value="date_asc">Date (plus ancien)</option>
                     <option value="name_asc">Nom (A-Z)</option>
                     <option value="name_desc">Nom (Z-A)</option>
                   </select>
-                </div>
+                </div> -->
               </div>
               
               <div class="row">
@@ -262,15 +266,14 @@
                         </span>
                       </div>
                       <div class="card-footer">
-                        <a
-                          :href="`${file_url_back}/${doc.file_link}`"
+                        <button
                           class="view-link"
-                          target="_blank"
+                          @click="openDocument(doc.file_link)"
+                          type="button"
                         >
                           <i class="fa fa-eye"></i>
                           Visualiser
-                        </a>
-                        
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -280,7 +283,7 @@
           </div>
         </div>
 
-        <!-- Pagination groupée par 5 -->
+        <!-- Pagination -->
         <div class="row mt-50" v-if="paginatedDocuments.length > 0">
           <div class="col">
             <ul class="pagination center">
@@ -348,7 +351,7 @@ export default {
       isLoading: false,
       typeDocuments: [],
       documents: [],
-      totalDocuements: 0,
+      totalDocuments: 0,
       file_url_back: null,
       search: "",
       itemsPerPage: 9,
@@ -356,7 +359,7 @@ export default {
       mobileDropdownOpen: false,
       pagesPerGroup: 5,
       
-      // Nouveaux filtres
+      // Filtres par date et tri
       selectedYear: "all",
       selectedMonth: "all",
       sortBy: "date_desc",
@@ -376,7 +379,10 @@ export default {
         { value: "10", label: "Octobre" },
         { value: "11", label: "Novembre" },
         { value: "12", label: "Décembre" }
-      ]
+      ],
+      
+      // Déclencheur pour forcer le recalcul
+      filterUpdateKey: 0
     };
   },
 
@@ -390,20 +396,50 @@ export default {
     
     allDocuments() {
       let allDocs = [];
-      if (this.typeDocuments.length > 0) {
+      if (this.typeDocuments && this.typeDocuments.length > 0) {
         this.typeDocuments.forEach((typeDocument) => {
-          typeDocument.documents.forEach((doc) => {
-            allDocs.push({
-              ...doc,
-              type: typeDocument.type
+          if (typeDocument.documents && typeDocument.documents.length > 0) {
+            typeDocument.documents.forEach((doc) => {
+              // Créer un objet Date normalisé pour le tri
+              let normalizedDate = null;
+              if (doc.date_publication) {
+                try {
+                  const date = new Date(doc.date_publication);
+                  if (!isNaN(date.getTime())) {
+                    normalizedDate = date;
+                  } else {
+                    // Essayer de parser différents formats
+                    const match = doc.date_publication.match(/(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
+                    if (match) {
+                      const year = parseInt(match[1]);
+                      const month = parseInt(match[2]) - 1;
+                      const day = parseInt(match[3]);
+                      normalizedDate = new Date(year, month, day);
+                    }
+                  }
+                } catch (e) {
+                  console.error("Erreur parsing date:", e);
+                }
+              }
+              
+              allDocs.push({
+                ...doc,
+                type: typeDocument.type,
+                // Propriétés normalisées pour le tri
+                normalizedName: doc.doc_name ? doc.doc_name.toLowerCase().trim() : '',
+                normalizedDate: normalizedDate || new Date(0) // Date très ancienne si invalide
+              });
             });
-          });
+          }
         });
       }
       return allDocs;
     },
 
     filteredDocuments() {
+      // Utiliser filterUpdateKey pour forcer le recalcul
+      const updateKey = this.filterUpdateKey;
+      
       let filtered = this.allDocuments;
       
       // Filtre par type de document
@@ -412,17 +448,19 @@ export default {
       }
       
       // Filtre par recherche
-      if (this.search) {
-        filtered = filtered.filter(doc => 
-          doc.doc_name.toLowerCase().includes(this.search.toLowerCase())
-        );
+      if (this.search && this.search.trim() !== '') {
+        const searchTerm = this.search.toLowerCase().trim();
+        filtered = filtered.filter(doc => {
+          const docName = doc.doc_name ? doc.doc_name.toLowerCase() : '';
+          return docName.includes(searchTerm);
+        });
       }
       
       // Filtre par année
       if (this.selectedYear !== "all") {
         filtered = filtered.filter(doc => {
           if (!doc.date_publication) return false;
-          const year = this.getYearFromDate(doc.date_publication);
+          const year = this.extractYearFromDate(doc.date_publication);
           return year === this.selectedYear;
         });
       }
@@ -431,7 +469,7 @@ export default {
       if (this.selectedMonth !== "all" && this.selectedYear !== "all") {
         filtered = filtered.filter(doc => {
           if (!doc.date_publication) return false;
-          const month = this.getMonthFromDate(doc.date_publication);
+          const month = this.extractMonthFromDate(doc.date_publication);
           return month === this.selectedMonth;
         });
       }
@@ -441,7 +479,7 @@ export default {
     },
 
     totalPages() {
-      return Math.ceil(this.filteredDocuments.length / this.itemsPerPage);
+      return Math.max(1, Math.ceil(this.filteredDocuments.length / this.itemsPerPage));
     },
 
     paginatedDocuments() {
@@ -471,8 +509,18 @@ export default {
   },
 
   methods: {
-    // Méthodes existantes
+    // Méthode pour ouvrir les documents
+    openDocument(fileLink) {
+      if (fileLink && this.file_url_back) {
+        const url = `${this.file_url_back}/${fileLink}`;
+        window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+        console.error('URL du document non disponible');
+      }
+    },
+    
     getFileIcon(fileLink) {
+      if (!fileLink) return 'fa fa-file';
       const extension = this.getFileExtension(fileLink).toLowerCase();
       switch (extension) {
         case 'pdf':
@@ -507,6 +555,7 @@ export default {
     },
 
     getIconClass(fileLink) {
+      if (!fileLink) return 'file-icon';
       const extension = this.getFileExtension(fileLink).toLowerCase();
       switch (extension) {
         case 'pdf':
@@ -543,44 +592,127 @@ export default {
     },
 
     getFileExtension(filename) {
-      return filename.split('.').pop();
+      return filename ? filename.split('.').pop() : '';
     },
     
     getDocumentType(doc) {
       return doc.type;
     },
     
-    getYearFromDate(dateString) {
+    extractYearFromDate(dateString) {
       if (!dateString) return null;
+      
+      // Essayez différents formats de date
+      const patterns = [
+        // Format YYYY-MM-DD
+        /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/,
+        // Format DD/MM/YYYY
+        /^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/,
+        // Format YYYY seulement
+        /^(\d{4})$/,
+        // Format avec texte
+        /(\d{4})/,
+      ];
+      
+      for (const pattern of patterns) {
+        const match = dateString.match(pattern);
+        if (match) {
+          let year = null;
+          
+          if (pattern === patterns[0]) {
+            // YYYY-MM-DD
+            year = match[1];
+          } else if (pattern === patterns[1]) {
+            // DD/MM/YYYY
+            year = match[3];
+          } else if (pattern === patterns[2]) {
+            // YYYY seulement
+            year = match[1];
+          } else if (pattern === patterns[3]) {
+            // Extraire 4 chiffres consécutifs
+            year = match[1];
+          }
+          
+          if (year && year.length === 4 && !isNaN(year)) {
+            return year;
+          }
+        }
+      }
+      
+      // Si aucune pattern ne marche, essayez de parser avec Date
       try {
         const date = new Date(dateString);
-        return date.getFullYear().toString();
-      } catch (error) {
-        return null;
+        if (!isNaN(date.getTime())) {
+          return date.getFullYear().toString();
+        }
+      } catch (e) {
+        console.error(`Erreur parsing date: ${dateString}`, e);
       }
+      
+      return null;
     },
     
-    getMonthFromDate(dateString) {
+    extractMonthFromDate(dateString) {
       if (!dateString) return null;
+      
+      // Essayez différents formats de date
+      const patterns = [
+        // Format YYYY-MM-DD
+        /^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$/,
+        // Format DD/MM/YYYY
+        /^(\d{1,2})[-/](\d{1,2})[-/](\d{4})$/,
+      ];
+      
+      for (const pattern of patterns) {
+        const match = dateString.match(pattern);
+        if (match) {
+          let month = null;
+          
+          if (pattern === patterns[0]) {
+            // YYYY-MM-DD
+            month = match[2];
+          } else if (pattern === patterns[1]) {
+            // DD/MM/YYYY
+            month = match[2];
+          }
+          
+          if (month) {
+            // Normaliser le mois à 2 chiffres
+            const monthNum = parseInt(month);
+            if (monthNum >= 1 && monthNum <= 12) {
+              return monthNum.toString().padStart(2, '0');
+            }
+          }
+        }
+      }
+      
+      // Si aucune pattern ne marche, essayez de parser avec Date
       try {
         const date = new Date(dateString);
-        return (date.getMonth() + 1).toString().padStart(2, '0');
-      } catch (error) {
-        return null;
+        if (!isNaN(date.getTime())) {
+          return (date.getMonth() + 1).toString().padStart(2, '0');
+        }
+      } catch (e) {
+        console.error(`Erreur parsing date: ${dateString}`, e);
       }
+      
+      return null;
     },
     
     formatDate(dateString) {
       if (!dateString) return 'Date non disponible';
       try {
         const date = new Date(dateString);
+        if (isNaN(date.getTime())) {
+          return dateString;
+        }
         return date.toLocaleDateString('fr-FR', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric'
         });
       } catch (error) {
-        return 'Date invalide';
+        return dateString;
       }
     },
     
@@ -592,9 +724,11 @@ export default {
     extractAvailableYears() {
       const years = new Set();
       this.allDocuments.forEach(doc => {
-        const year = this.getYearFromDate(doc.date_publication);
-        if (year) {
-          years.add(year);
+        if (doc.date_publication) {
+          const year = this.extractYearFromDate(doc.date_publication);
+          if (year) {
+            years.add(year);
+          }
         }
       });
       this.availableYears = Array.from(years).sort((a, b) => b - a);
@@ -609,11 +743,14 @@ export default {
         if (data) {
           this.typeDocuments = data;
           this.file_url_back = config.app_back_url_img;
-          this.isLoading = false;
+          
           this.extractAvailableYears();
+          this.allDocumentNumber();
         }
       } catch (error) {
         console.error("Error fetching data:", error);
+        this.typeDocuments = [];
+      } finally {
         this.isLoading = false;
       }
     },
@@ -621,14 +758,22 @@ export default {
     filterHandler(selection) {
       this.selectedCat = selection;
       this.currentPage = 1;
+      this.triggerFilterUpdate();
     },
     
     handleDateFilter() {
       this.currentPage = 1;
+      this.triggerFilterUpdate();
     },
     
     handleSearch() {
       this.currentPage = 1;
+      this.triggerFilterUpdate();
+    },
+
+    handleSortChange() {
+      this.currentPage = 1;
+      this.triggerFilterUpdate();
     },
 
     selectFilter(selection) {
@@ -644,11 +789,13 @@ export default {
       this.selectedYear = 'all';
       this.selectedMonth = 'all';
       this.currentPage = 1;
+      this.triggerFilterUpdate();
     },
     
     clearSearch() {
       this.search = '';
       this.currentPage = 1;
+      this.triggerFilterUpdate();
     },
     
     clearAllFilters() {
@@ -656,40 +803,65 @@ export default {
       this.selectedYear = 'all';
       this.selectedMonth = 'all';
       this.search = '';
+      this.sortBy = 'date_desc';
       this.currentPage = 1;
+      this.triggerFilterUpdate();
     },
     
-    sortDocuments() {
-      this.currentPage = 1;
+    // Méthode pour déclencher le recalcul des computed properties
+    triggerFilterUpdate() {
+      this.filterUpdateKey++;
     },
     
     sortDocumentsList(documents) {
+      if (!documents || documents.length === 0) return [];
+      
       const sorted = [...documents];
       
       switch (this.sortBy) {
         case 'date_desc':
           return sorted.sort((a, b) => {
-            const dateA = a.date_publication ? new Date(a.date_publication) : new Date(0);
-            const dateB = b.date_publication ? new Date(b.date_publication) : new Date(0);
-            return dateB - dateA;
+            const dateA = a.normalizedDate;
+            const dateB = b.normalizedDate;
+            
+            if (dateA && dateB) {
+              return dateB.getTime() - dateA.getTime();
+            }
+            
+            if (dateA && !dateB) return -1;
+            if (!dateA && dateB) return 1;
+            
+            return 0;
           });
           
         case 'date_asc':
           return sorted.sort((a, b) => {
-            const dateA = a.date_publication ? new Date(a.date_publication) : new Date(0);
-            const dateB = b.date_publication ? new Date(b.date_publication) : new Date(0);
-            return dateA - dateB;
+            const dateA = a.normalizedDate;
+            const dateB = b.normalizedDate;
+            
+            if (dateA && dateB) {
+              return dateA.getTime() - dateB.getTime();
+            }
+            
+            if (dateA && !dateB) return -1;
+            if (!dateA && dateB) return 1;
+            
+            return 0;
           });
           
         case 'name_asc':
-          return sorted.sort((a, b) => 
-            (a.doc_name || '').localeCompare(b.doc_name || '')
-          );
+          return sorted.sort((a, b) => {
+            const nameA = a.normalizedName || '';
+            const nameB = b.normalizedName || '';
+            return nameA.localeCompare(nameB, 'fr', { sensitivity: 'base' });
+          });
           
         case 'name_desc':
-          return sorted.sort((a, b) => 
-            (b.doc_name || '').localeCompare(a.doc_name || '')
-          );
+          return sorted.sort((a, b) => {
+            const nameA = a.normalizedName || '';
+            const nameB = b.normalizedName || '';
+            return nameB.localeCompare(nameA, 'fr', { sensitivity: 'base' });
+          });
           
         default:
           return sorted;
@@ -726,31 +898,53 @@ export default {
       }
     },
 
-    AllDocumentNumber() {
+    allDocumentNumber() {
       let total = 0;
-      this.typeDocuments.forEach((typeDocument) => {
-        total += typeDocument.documents.length;
-      });
-      this.totalDocuements = total;
+      if (this.typeDocuments && this.typeDocuments.length > 0) {
+        this.typeDocuments.forEach((typeDocument) => {
+          if (typeDocument.documents && typeDocument.documents.length > 0) {
+            total += typeDocument.documents.length;
+          }
+        });
+      }
+      this.totalDocuments = total;
     },
   },
 
   mounted() {
-    this.fetchDataDocument().then(() => {
-      this.AllDocumentNumber();
-    });
+    this.fetchDataDocument();
   },
+
+  watch: {
+    typeDocuments: {
+      handler() {
+        this.allDocumentNumber();
+      },
+      deep: true
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-/* Zone de filtre améliorée */
+.section-padding {
+  padding: 60px 0;
+}
+
+.container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Zone de filtre */
 .filter-sidebar {
   background: #f0fcf0;
   border-radius: 12px;
   padding: 25px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   height: fit-content;
+  position: sticky;
+  top: 20px;
 }
 
 .filter-section {
@@ -796,6 +990,7 @@ export default {
   color: #000;
   transition: all 0.3s ease;
   width: 100%;
+  cursor: pointer;
   
   &:focus {
     border-color: #1292ee;
@@ -829,6 +1024,11 @@ export default {
   &:hover {
     background: #dc3545;
     color: white;
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
 }
 
@@ -851,6 +1051,7 @@ export default {
   text-align: left;
   width: 100%;
   border-bottom: 1px solid #dfe1df;
+  position: relative;
   
   &:last-child {
     border-bottom: none;
@@ -899,7 +1100,7 @@ export default {
   transition: all 0.3s ease;
 }
 
-/* Dropdown pour mobile amélioré */
+/* Dropdown pour mobile */
 .mobile-filter-dropdown {
   position: relative;
   width: 100%;
@@ -946,7 +1147,8 @@ export default {
   transition: max-height 0.3s ease;
   
   &.show {
-    max-height: 600px;
+    max-height: 500px;
+    overflow-y: auto;
   }
 }
 
@@ -981,6 +1183,7 @@ export default {
   color: #000;
   width: 100%;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .btn-reset-date-mobile {
@@ -1002,6 +1205,30 @@ export default {
   &:hover {
     background: #dc3545;
     color: white;
+  }
+}
+
+.filter-options-scroll-mobile {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 5px;
+  
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #1292ee;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #0d7bd4;
   }
 }
 
@@ -1046,7 +1273,7 @@ export default {
   }
 }
 
-/* En-tête des documents amélioré */
+/* En-tête des documents */
 .documents-header {
   margin-bottom: 30px;
 }
@@ -1055,6 +1282,7 @@ export default {
   color: #000;
   font-weight: 600;
   margin: 0 0 5px 0;
+  font-size: 24px;
 }
 
 .documents-subtitle {
@@ -1097,10 +1325,15 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  margin-left: 8px;
   
   &:hover {
     background: #dc3545;
     color: white;
+  }
+  
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -1190,6 +1423,7 @@ export default {
   font-size: 14px;
   color: #000;
   min-width: 180px;
+  cursor: pointer;
   
   &:focus {
     border-color: #1292ee;
@@ -1197,7 +1431,7 @@ export default {
   }
 }
 
-/* Cartes de documents améliorées */
+/* Cartes de documents */
 .document-card {
   background: white;
   border-radius: 12px;
@@ -1209,6 +1443,8 @@ export default {
   display: flex;
   align-items: flex-start;
   gap: 15px;
+  position: relative;
+  overflow: visible;
   
   &:hover {
     transform: translateY(-5px);
@@ -1299,6 +1535,8 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
+  z-index: 2;
 }
 
 .document-name {
@@ -1339,55 +1577,55 @@ export default {
   justify-content: space-between;
   align-items: center;
   margin-top: auto;
+  position: relative;
+  z-index: 10;
 }
 
+/* BOUTON VISUALISER - CORRIGÉ */
 .view-link {
-  color: #1292ee;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  background: #f0fcf0;
-  border: 1px solid #e8f8e8;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #1292ee 0%, #0d7bd4 100%);
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 100;
+  min-height: 40px;
   
   &:hover {
-    background: #1292ee;
-    color: white;
+    background: linear-gradient(135deg, #0d7bd4 0%, #0a68b9 100%);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(18, 146, 238, 0.2);
-    
-    i {
-      transform: scale(1.1);
-    }
+    box-shadow: 0 6px 20px rgba(18, 146, 238, 0.3);
+    color: white;
+  }
+  
+  &:active {
+    transform: translateY(0);
   }
   
   i {
+    font-size: 14px;
     transition: transform 0.3s ease;
-    font-size: 12px;
   }
 }
 
-.document-year {
-  color: #1292ee;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 8px;
-  background: #f0fcf0;
-  border-radius: 4px;
-}
-
-/* État aucun document amélioré */
+/* État aucun document */
 .no-documents {
   padding: 60px 20px;
   text-align: center;
   background: #f8f9fa;
   border-radius: 12px;
   border: 2px dashed #e8f8e8;
+  margin-top: 20px;
   
   .no-doc-icon {
     font-size: 48px;
@@ -1415,37 +1653,62 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+  z-index: 10;
   
   &:hover {
     background: #0d7bd4;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(18, 146, 238, 0.2);
   }
+  
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 /* Pagination */
 .pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 40px 0 0 0;
+  
+  .page-item {
+    margin: 0 4px;
+    
+    &.active .page-link {
+      background: #1292ee;
+      border-color: #1292ee;
+      color: white;
+    }
+    
+    &.disabled .page-link {
+      color: #ccc;
+      pointer-events: none;
+      background: #f8f9fa;
+    }
+  }
+  
   .page-link {
-    color: #000;
+    display: block;
+    padding: 8px 16px;
     border: 1px solid #e8f8e8;
+    border-radius: 6px;
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s ease;
     background: white;
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
     
     &:hover {
       background: #f8f9fa;
       border-color: #1292ee;
       color: #1292ee;
     }
-  }
-  
-  .page-item.active .page-link {
-    background: #1292ee;
-    border-color: #1292ee;
-    color: white;
-  }
-  
-  .page-item.disabled .page-link {
-    color: #666;
-    background: #f8f9fa;
   }
 }
 
@@ -1463,6 +1726,7 @@ export default {
   
   .search-container {
     max-width: 100%;
+    margin-left: 0;
     margin-top: 15px;
   }
   
@@ -1486,19 +1750,29 @@ export default {
 }
 
 @media (max-width: 767.98px) {
-  .col-lg-6 {
-    flex: 0 0 100%;
-    max-width: 100%;
+  .section-padding {
+    padding: 30px 0;
+  }
+  
+  .documents-grid .row {
+    justify-content: center !important;
+  }
+  
+  .col-xl-4, .col-lg-6, .col-md-6 {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .document-card {
+    width: 100%;
+    max-width: 350px;
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
   
   .filter-sidebar {
     padding: 20px;
-  }
-  
-  .document-card {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
   }
   
   .card-icon {
@@ -1530,8 +1804,102 @@ export default {
     flex-direction: column;
   }
   
-  .search-container {
-    margin-left: 0;
+  .dropdown-content.show {
+    max-height: 400px;
   }
+  
+  .filter-options-scroll-mobile {
+    max-height: 250px;
+  }
+  
+  .documents-subtitle {
+    font-size: 13px;
+    
+    .filter-badge, .btn-clear-all {
+      font-size: 11px;
+      padding: 3px 8px;
+    }
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+    
+    .page-link {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+  }
+}
+
+/* Corrections spécifiques pour le clic */
+.filter-item,
+.filter-item-mobile,
+.view-link,
+.page-link,
+.btn-reset-date,
+.btn-reset-date-mobile,
+.btn-clear-all,
+.btn-clear-search,
+.btn-reset-filters,
+.dropdown-toggle,
+.sort-select,
+.filter-select {
+  cursor: pointer;
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Empêcher la sélection de texte */
+.filter-item,
+.filter-item-mobile,
+.btn-clear-all,
+.btn-reset-filters {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Assurer que les boutons sont cliquables */
+.btn-clear-all,
+.btn-reset-filters {
+  position: relative;
+  z-index: 10;
+  
+  &:hover, &:active, &:focus {
+    outline: none;
+  }
+}
+
+/* Correction pour le message aucun document */
+.no-documents {
+  .btn-reset-filters {
+    margin-top: 10px;
+    
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+/* Correction pour les cartes */
+.document-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-footer {
+  margin-top: auto;
+}
+
+/* S'assurer que tous les liens sont cliquables */
+a {
+  cursor: pointer;
 }
 </style>

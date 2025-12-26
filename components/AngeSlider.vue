@@ -567,7 +567,7 @@ export default {
   }
   .hero-container {
     height: 500px !important;
-    margin-bottom: -140px !important;
+    margin-bottom: -120px !important;
     /* background: red !important; */
   }
 
@@ -599,6 +599,7 @@ export default {
   .domain-card-iceberg {
     height: 200px !important;
     margin-top: -50px;
+    
   }
 
   .domain-card-body {
@@ -652,7 +653,7 @@ export default {
     padding: 20px 15px !important;
   }
 
-  .domain-title {
+  .domain-title { 
     font-size: 15px !important;
   }
 
