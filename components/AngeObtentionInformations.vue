@@ -14,7 +14,6 @@
                     pour l'obtention des autorisations environnementales au Togo
                 </p>
             </div>
-
             <!-- Carte de téléchargement -->
             <div class="download-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="download-content">
@@ -29,12 +28,20 @@
                             <p>Document détaillé contenant toutes les informations sur les coûts, délais et processus</p>
                         </div>
                     </div>
-                    <a href="/pdf/DV_PR_DG 13 Aout 2024 NBNB_DV_DELAIS_PRATIQUES.pdf" target="_blank" class="download-btn">
+                
+                    <a href="" v-if="!doc" target="_blank" class="download-btn" >
                         <span>Télécharger le PDF</span>
                         <svg class="download-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                         </svg>
                     </a>
+                     <a :href="doc.path" v-else target="_blank" class="download-btn" >
+                        <span>Télécharger le PDF</span>
+                        <svg class="download-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                    </a>
+                    
                 </div>
             </div>
 
@@ -184,6 +191,21 @@
 
 <script setup>
 import { defineProps } from 'vue';
+
+import axios from "axios";
+
+const doc = ref({});
+const fetchDocument = async () => {
+  const url = "/autre-consultant-agrees/get-procedure-des-autorisations";
+  const req =await axios.get(url);
+  const response = req.data.data;
+  doc.value = response;
+};
+
+onMounted(() => {
+  fetchDocument();
+});
+
 
 const props = defineProps({
     procedures: {

@@ -192,7 +192,7 @@ export default {
     margin: 100px 100px;
     margin-left: 180px !important;
     width: calc(100% - 320px) !important;
-    margin-top: 60px !important;
+    margin-top:-110px !important;
     margin-bottom: -90px;
   }
 }
@@ -204,7 +204,7 @@ export default {
     margin: 20px 30px;
     margin-left: 160px !important;
     width: calc(100% - 290px) !important;
-    margin-top: -350px !important;
+    margin-top: -340px !important;
     margin-bottom: -90px;
     height: 50px !important;
   }
@@ -237,7 +237,7 @@ export default {
 
 @media (max-width: 991px) {
   .container {
-    margin-top: -150px !important;
+    margin-top: -100px !important;
     margin-bottom: -80px;
     height: 70px;
   }
@@ -249,7 +249,7 @@ export default {
     margin: 0px 140px !important;
     margin-bottom: -90px !important;
     width: calc(100% - 270px) !important;
-    margin-top: -150px !important;
+    margin-top: -100px !important;
     height: 100px !important;
   }
 
@@ -298,7 +298,7 @@ export default {
     width: calc(100% - 80px) !important;
     border-width: 1.5px;
     margin-bottom: -80px !important;
-    margin-top: 480px !important;
+    margin-top: 580px !important;
 
     height: 100px !important;
   }
@@ -329,7 +329,7 @@ export default {
     margin: 10px 38px !important;
     width: calc(100% - 80px) !important;
     height: 100px !important;
-    margin-top: 0px !important;
+    margin-top: 480px !important;
     margin-bottom: -50px !important;
   }
 
