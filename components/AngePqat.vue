@@ -126,6 +126,8 @@
               @tab-complete="onTabComplete"
               @tab-error="onTabError"
             />
+            <!-- Budget affiché en bas de la page Projet uniquement -->
+<Angepqatbudget v-if="activeTab === 0" />
           </div>
         </transition>
       </div>
@@ -171,6 +173,7 @@ import Angepqatactivites from './Angepqatactivites.vue'
 import Angepqatzoneintervention from './Angepqatzoneintervention.vue'
 import Angepqatpartenairebeneficiaire from './Angepqatpartenairebeneficiaire.vue'
 import Angepqatbudget from './Angepqatbudget.vue'
+import Angepqatmediatheque from './Angepqatmediatheque.vue'
 
 const props = defineProps({
   showProgress: {
@@ -220,9 +223,9 @@ const tabs = ref([
     completed: false
   },
   { 
-    id: 'budget',
-    label: 'Budget', 
-    component: Angepqatbudget,
+    id: 'mediatheque',
+label: 'Médiathèque',
+component: Angepqatmediatheque,
     hasError: false,
     completed: false
   }
