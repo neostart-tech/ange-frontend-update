@@ -14,9 +14,9 @@
           
           <div class="tabs-navigation">
             <button 
+              type="button"
               class="nav-btn prev"
-              @click="previousTab"
-              :disabled="activeTab === 0"
+              @click.stop.prevent="previousTab"
               aria-label="Onglet précédent"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -48,9 +48,9 @@
             </div>
 
             <button 
+              type="button"
               class="nav-btn next"
-              @click="nextTab"
-              :disabled="activeTab === tabs.length - 1"
+              @click.stop.prevent="nextTab"
               aria-label="Onglet suivant"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
@@ -92,9 +92,10 @@
           <!-- Navigation mobile HAUT - BOUTONS AUX BORDS -->
           <div class="mobile-navigation-simple top-nav">
             <button 
+              type="button"
               class="mobile-nav-btn prev"
-              @click="previousTab"
-              :disabled="activeTab === 0"
+              @click.stop.prevent="previousTab"
+              aria-label="Onglet précédent"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -102,9 +103,10 @@
             </button>
             
             <button 
+              type="button"
               class="mobile-nav-btn next"
-              @click="nextTab"
-              :disabled="activeTab === tabs.length - 1"
+              @click.stop.prevent="nextTab"
+              aria-label="Onglet suivant"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
@@ -138,9 +140,10 @@
           <!-- Navigation mobile BAS - BOUTONS AUX BORDS -->
           <div class="mobile-navigation-simple bottom-nav">
             <button 
+              type="button"
               class="mobile-nav-btn prev"
-              @click="previousTab"
-              :disabled="activeTab === 0"
+              @click.stop.prevent="previousTab"
+              aria-label="Onglet précédent"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
@@ -148,9 +151,10 @@
             </button>
             
             <button 
+              type="button"
               class="mobile-nav-btn next"
-              @click="nextTab"
-              :disabled="activeTab === tabs.length - 1"
+              @click.stop.prevent="nextTab"
+              aria-label="Onglet suivant"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
@@ -250,46 +254,66 @@ const checkMobile = () => {
 
 // Fonction pour scroller vers le haut
 const scrollToTop = () => {
-  nextTick(() => {
-    // Scroller vers le haut du conteneur des tabs
-    if (tabsContainer.value) {
-      tabsContainer.value.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start'
-      })
-    }
-    
-    // Scroller aussi vers le haut de la page
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  try {
+    nextTick(() => {
+      if (tabsContainer.value && typeof tabsContainer.value.scrollIntoView === 'function') {
+        tabsContainer.value.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start'
+        })
+      }
+      if (typeof window !== 'undefined' && typeof window.scrollTo === 'function') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        })
+      }
     })
-  })
+  } catch (e) {
+    console.warn('Scroll error:', e)
+  }
 }
 
-const switchTab = (index) => {
-  const direction = index > activeTab.value ? 'next' : 'prev'
+const switchTab = (index, forcedDirection = null) => {
+  const targetIndex = Number(index)
+  if (isNaN(targetIndex) || targetIndex < 0 || targetIndex >= tabs.value.length) return
+  
+  const direction = forcedDirection || (targetIndex > activeTab.value ? 'next' : 'prev')
   transitionName.value = `slide-${direction}`
-  activeTab.value = index
+  activeTab.value = targetIndex
   
   // Scroller vers le haut après le changement d'onglet
   scrollToTop()
   
-  if (props.saveState) {
-    localStorage.setItem('active-tab', index.toString())
+  if (props.saveState && typeof localStorage !== 'undefined') {
+    try {
+      localStorage.setItem('active-tab', targetIndex.toString())
+    } catch (e) {
+      // Ignorer si localStorage est restreint
+    }
   }
 }
 
-const nextTab = () => {
-  if (activeTab.value < tabs.value.length - 1) {
-    switchTab(activeTab.value + 1)
+const nextTab = (event) => {
+  if (event && typeof event.stopPropagation === 'function') {
+    event.stopPropagation()
   }
+  if (event && typeof event.preventDefault === 'function') {
+    event.preventDefault()
+  }
+  const nextIndex = activeTab.value < tabs.value.length - 1 ? activeTab.value + 1 : 0
+  switchTab(nextIndex, 'next')
 }
 
-const previousTab = () => {
-  if (activeTab.value > 0) {
-    switchTab(activeTab.value - 1)
+const previousTab = (event) => {
+  if (event && typeof event.stopPropagation === 'function') {
+    event.stopPropagation()
   }
+  if (event && typeof event.preventDefault === 'function') {
+    event.preventDefault()
+  }
+  const prevIndex = activeTab.value > 0 ? activeTab.value - 1 : tabs.value.length - 1
+  switchTab(prevIndex, 'prev')
 }
 
 const onTabComplete = (tabId) => {
@@ -389,18 +413,24 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 10;
+  user-select: none;
 }
 
-.nav-btn:hover:not(:disabled) {
+.nav-btn svg {
+  pointer-events: none;
+}
+
+.nav-btn:hover {
   background: #1ba5d4;
   color: white;
   transform: translateY(-1px);
   box-shadow: 0 2px 6px rgba(27, 165, 212, 0.3);
 }
 
-.nav-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.nav-btn:active {
+  transform: translateY(0);
 }
 
 .tabs-wrapper {
@@ -636,6 +666,13 @@ onUnmounted(() => {
   width: 50px;
   height: 50px;
   flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+  user-select: none;
+}
+
+.mobile-nav-btn svg {
+  pointer-events: none;
 }
 
 .mobile-nav-btn.prev {
@@ -644,7 +681,7 @@ onUnmounted(() => {
   border: 2px solid #e2e8f0;
 }
 
-.mobile-nav-btn.prev:not(:disabled):hover {
+.mobile-nav-btn.prev:hover {
   background: #e2e8f0;
   border-color: #cbd5e1;
   transform: translateY(-2px);
@@ -656,16 +693,10 @@ onUnmounted(() => {
   border: 2px solid #1ba5d4;
 }
 
-.mobile-nav-btn.next:not(:disabled):hover {
+.mobile-nav-btn.next:hover {
   background: #1593c2;
   border-color: #1593c2;
   transform: translateY(-2px);
-}
-
-.mobile-nav-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none !important;
 }
 
 /* Animations */
